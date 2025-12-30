@@ -67,9 +67,9 @@ class _$Pet extends Pet {
   @override
   final int? id;
   @override
-  final String name;
-  @override
   final Category? category;
+  @override
+  final String name;
   @override
   final BuiltList<String> photoUrls;
   @override
@@ -82,8 +82,8 @@ class _$Pet extends Pet {
 
   _$Pet._(
       {this.id,
-      required this.name,
       this.category,
+      required this.name,
       required this.photoUrls,
       this.tags,
       this.status})
@@ -100,8 +100,8 @@ class _$Pet extends Pet {
     if (identical(other, this)) return true;
     return other is Pet &&
         id == other.id &&
-        name == other.name &&
         category == other.category &&
+        name == other.name &&
         photoUrls == other.photoUrls &&
         tags == other.tags &&
         status == other.status;
@@ -111,8 +111,8 @@ class _$Pet extends Pet {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, category.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, photoUrls.hashCode);
     _$hash = $jc(_$hash, tags.hashCode);
     _$hash = $jc(_$hash, status.hashCode);
@@ -124,8 +124,8 @@ class _$Pet extends Pet {
   String toString() {
     return (newBuiltValueToStringHelper(r'Pet')
           ..add('id', id)
-          ..add('name', name)
           ..add('category', category)
+          ..add('name', name)
           ..add('photoUrls', photoUrls)
           ..add('tags', tags)
           ..add('status', status))
@@ -140,13 +140,13 @@ class PetBuilder implements Builder<Pet, PetBuilder> {
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
 
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
   CategoryBuilder? _category;
   CategoryBuilder get category => _$this._category ??= CategoryBuilder();
   set category(CategoryBuilder? category) => _$this._category = category;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
   ListBuilder<String>? _photoUrls;
   ListBuilder<String> get photoUrls =>
@@ -170,8 +170,8 @@ class PetBuilder implements Builder<Pet, PetBuilder> {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _name = $v.name;
       _category = $v.category?.toBuilder();
+      _name = $v.name;
       _photoUrls = $v.photoUrls.toBuilder();
       _tags = $v.tags?.toBuilder();
       _status = $v.status;
@@ -199,8 +199,8 @@ class PetBuilder implements Builder<Pet, PetBuilder> {
       _$result = _$v ??
           _$Pet._(
             id: id,
-            name: BuiltValueNullFieldError.checkNotNull(name, r'Pet', 'name'),
             category: _category?.build(),
+            name: BuiltValueNullFieldError.checkNotNull(name, r'Pet', 'name'),
             photoUrls: photoUrls.build(),
             tags: _tags?.build(),
             status: status,
@@ -210,6 +210,7 @@ class PetBuilder implements Builder<Pet, PetBuilder> {
       try {
         _$failedField = 'category';
         _category?.build();
+
         _$failedField = 'photoUrls';
         photoUrls.build();
         _$failedField = 'tags';

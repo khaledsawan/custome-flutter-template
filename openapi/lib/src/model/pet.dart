@@ -15,8 +15,8 @@ part 'pet.g.dart';
 ///
 /// Properties:
 /// * [id] 
-/// * [name] 
 /// * [category] 
+/// * [name] 
 /// * [photoUrls] 
 /// * [tags] 
 /// * [status] - pet status in the store
@@ -25,11 +25,11 @@ abstract class Pet implements Built<Pet, PetBuilder> {
   @BuiltValueField(wireName: r'id')
   int? get id;
 
-  @BuiltValueField(wireName: r'name')
-  String get name;
-
   @BuiltValueField(wireName: r'category')
   Category? get category;
+
+  @BuiltValueField(wireName: r'name')
+  String get name;
 
   @BuiltValueField(wireName: r'photoUrls')
   BuiltList<String> get photoUrls;
@@ -72,11 +72,6 @@ class _$PetSerializer implements PrimitiveSerializer<Pet> {
         specifiedType: const FullType(int),
       );
     }
-    yield r'name';
-    yield serializers.serialize(
-      object.name,
-      specifiedType: const FullType(String),
-    );
     if (object.category != null) {
       yield r'category';
       yield serializers.serialize(
@@ -84,6 +79,11 @@ class _$PetSerializer implements PrimitiveSerializer<Pet> {
         specifiedType: const FullType(Category),
       );
     }
+    yield r'name';
+    yield serializers.serialize(
+      object.name,
+      specifiedType: const FullType(String),
+    );
     yield r'photoUrls';
     yield serializers.serialize(
       object.photoUrls,
@@ -133,19 +133,19 @@ class _$PetSerializer implements PrimitiveSerializer<Pet> {
           ) as int;
           result.id = valueDes;
           break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
         case r'category':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(Category),
           ) as Category;
           result.category.replace(valueDes);
+          break;
+        case r'name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
         case r'photoUrls':
           final valueDes = serializers.deserialize(

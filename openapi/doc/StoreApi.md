@@ -5,22 +5,22 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to */api/v3*
+All URIs are relative to *https://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteOrder**](StoreApi.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by identifier.
-[**getInventory**](StoreApi.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status.
-[**getOrderById**](StoreApi.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID.
-[**placeOrder**](StoreApi.md#placeorder) | **POST** /store/order | Place an order for a pet.
+[**deleteOrder**](StoreApi.md#deleteorder) | **DELETE** /store/order/{orderId} | Delete purchase order by ID
+[**getInventory**](StoreApi.md#getinventory) | **GET** /store/inventory | Returns pet inventories by status
+[**getOrderById**](StoreApi.md#getorderbyid) | **GET** /store/order/{orderId} | Find purchase order by ID
+[**placeOrder**](StoreApi.md#placeorder) | **POST** /store/order | Place an order for a pet
 
 
 # **deleteOrder**
 > deleteOrder(orderId)
 
-Delete purchase order by identifier.
+Delete purchase order by ID
 
-For valid response try integer IDs with value < 1000. Anything above 1000 or non-integers will generate API errors.
+For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors
 
 ### Example
 ```dart
@@ -60,9 +60,9 @@ No authorization required
 # **getInventory**
 > BuiltMap<String, int> getInventory()
 
-Returns pet inventories by status.
+Returns pet inventories by status
 
-Returns a map of status codes to quantities.
+Returns a map of status codes to quantities
 
 ### Example
 ```dart
@@ -103,16 +103,16 @@ This endpoint does not need any parameter.
 # **getOrderById**
 > Order getOrderById(orderId)
 
-Find purchase order by ID.
+Find purchase order by ID
 
-For valid response try integer IDs with value <= 5 or > 10. Other values will generate exceptions.
+For valid response try integer IDs with value >= 1 and <= 10. Other values will generated exceptions
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getStoreApi();
-final int orderId = 789; // int | ID of order that needs to be fetched
+final int orderId = 789; // int | ID of pet that needs to be fetched
 
 try {
     final response = api.getOrderById(orderId);
@@ -126,7 +126,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **orderId** | **int**| ID of order that needs to be fetched | 
+ **orderId** | **int**| ID of pet that needs to be fetched | 
 
 ### Return type
 
@@ -144,21 +144,19 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **placeOrder**
-> Order placeOrder(order)
+> Order placeOrder(body)
 
-Place an order for a pet.
-
-Place a new order in the store.
+Place an order for a pet
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getStoreApi();
-final Order order = ; // Order | 
+final Order body = ; // Order | order placed for purchasing the pet
 
 try {
-    final response = api.placeOrder(order);
+    final response = api.placeOrder(body);
     print(response);
 } on DioException catch (e) {
     print('Exception when calling StoreApi->placeOrder: $e\n');
@@ -169,7 +167,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order** | [**Order**](Order.md)|  | [optional] 
+ **body** | [**Order**](Order.md)| order placed for purchasing the pet | 
 
 ### Return type
 
@@ -181,8 +179,8 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json, application/xml, application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

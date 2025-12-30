@@ -10,7 +10,21 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/user.dart';
+import 'package:openapi/src/model/accept_user_invitation_dto.dart';
+import 'package:openapi/src/model/accept_user_invitation_from_external_login_dto.dart';
+import 'package:openapi/src/model/captcha_result.dart';
+import 'package:openapi/src/model/change_user_type_input.dart';
+import 'package:openapi/src/model/create_invitation_dto.dart';
+import 'package:openapi/src/model/create_or_update_user_input.dart';
+import 'package:openapi/src/model/entity_dto_of_int64.dart';
+import 'package:openapi/src/model/file_dto.dart';
+import 'package:openapi/src/model/get_user_for_edit_output.dart';
+import 'package:openapi/src/model/list_result_dto_of_user_list_dto.dart';
+import 'package:openapi/src/model/list_result_dto_of_user_list_with_invited_dto.dart';
+import 'package:openapi/src/model/lookup_user_dto.dart';
+import 'package:openapi/src/model/paged_result_dto_of_user_list_dto.dart';
+import 'package:openapi/src/model/user_identity_flag.dart';
+import 'package:openapi/src/model/user_invitation_dto.dart';
 
 class UserApi {
 
@@ -20,11 +34,11 @@ class UserApi {
 
   const UserApi(this._dio, this._serializers);
 
-  /// Create user.
-  /// This can only be done by the logged in user.
+  /// apiServicesAppUserAcceptuserinvitationPost
+  /// 
   ///
   /// Parameters:
-  /// * [user] - Created user object
+  /// * [acceptUserInvitationDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -32,10 +46,10 @@ class UserApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [User] as data
+  /// Returns a [Future] containing a [Response] with a [CaptchaResult] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<User>> createUser({ 
-    User? user,
+  Future<Response<CaptchaResult>> apiServicesAppUserAcceptuserinvitationPost({ 
+    AcceptUserInvitationDto? acceptUserInvitationDto,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,7 +57,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user';
+    final _path = r'/api/services/app/User/AcceptUserInvitation';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -60,8 +74,8 @@ class UserApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(User);
-      _bodyData = user == null ? null : _serializers.serialize(user, specifiedType: _type);
+      const _type = FullType(AcceptUserInvitationDto);
+      _bodyData = acceptUserInvitationDto == null ? null : _serializers.serialize(acceptUserInvitationDto, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -84,14 +98,14 @@ class UserApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    User? _responseData;
+    CaptchaResult? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(User),
-      ) as User;
+        specifiedType: const FullType(CaptchaResult),
+      ) as CaptchaResult;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -103,7 +117,7 @@ class UserApi {
       );
     }
 
-    return Response<User>(
+    return Response<CaptchaResult>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -115,106 +129,11 @@ class UserApi {
     );
   }
 
-  /// Creates list of users with given input array.
-  /// Creates list of users with given input array.
+  /// apiServicesAppUserAcceptuserinvitationfromexternalloginPost
+  /// 
   ///
   /// Parameters:
-  /// * [user] 
-  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
-  /// * [headers] - Can be used to add additional headers to the request
-  /// * [extras] - Can be used to add flags to the request
-  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
-  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
-  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
-  ///
-  /// Returns a [Future] containing a [Response] with a [User] as data
-  /// Throws [DioException] if API call or serialization fails
-  Future<Response<User>> createUsersWithListInput({ 
-    BuiltList<User>? user,
-    CancelToken? cancelToken,
-    Map<String, dynamic>? headers,
-    Map<String, dynamic>? extra,
-    ValidateStatus? validateStatus,
-    ProgressCallback? onSendProgress,
-    ProgressCallback? onReceiveProgress,
-  }) async {
-    final _path = r'/user/createWithList';
-    final _options = Options(
-      method: r'POST',
-      headers: <String, dynamic>{
-        ...?headers,
-      },
-      extra: <String, dynamic>{
-        'secure': <Map<String, String>>[],
-        ...?extra,
-      },
-      contentType: 'application/json',
-      validateStatus: validateStatus,
-    );
-
-    dynamic _bodyData;
-
-    try {
-      const _type = FullType(BuiltList, [FullType(User)]);
-      _bodyData = user == null ? null : _serializers.serialize(user, specifiedType: _type);
-
-    } catch(error, stackTrace) {
-      throw DioException(
-         requestOptions: _options.compose(
-          _dio.options,
-          _path,
-        ),
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    final _response = await _dio.request<Object>(
-      _path,
-      data: _bodyData,
-      options: _options,
-      cancelToken: cancelToken,
-      onSendProgress: onSendProgress,
-      onReceiveProgress: onReceiveProgress,
-    );
-
-    User? _responseData;
-
-    try {
-      final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(User),
-      ) as User;
-
-    } catch (error, stackTrace) {
-      throw DioException(
-        requestOptions: _response.requestOptions,
-        response: _response,
-        type: DioExceptionType.unknown,
-        error: error,
-        stackTrace: stackTrace,
-      );
-    }
-
-    return Response<User>(
-      data: _responseData,
-      headers: _response.headers,
-      isRedirect: _response.isRedirect,
-      requestOptions: _response.requestOptions,
-      redirects: _response.redirects,
-      statusCode: _response.statusCode,
-      statusMessage: _response.statusMessage,
-      extra: _response.extra,
-    );
-  }
-
-  /// Delete user resource.
-  /// This can only be done by the logged in user.
-  ///
-  /// Parameters:
-  /// * [username] - The name that needs to be deleted
+  /// * [acceptUserInvitationFromExternalLoginDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -224,8 +143,8 @@ class UserApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteUser({ 
-    required String username,
+  Future<Response<void>> apiServicesAppUserAcceptuserinvitationfromexternalloginPost({ 
+    AcceptUserInvitationFromExternalLoginDto? acceptUserInvitationFromExternalLoginDto,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -233,7 +152,236 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user/{username}'.replaceAll('{' r'username' '}', encodeQueryParameter(_serializers, username, const FullType(String)).toString());
+    final _path = r'/api/services/app/User/AcceptUserInvitationFromExternalLogin';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(AcceptUserInvitationFromExternalLoginDto);
+      _bodyData = acceptUserInvitationFromExternalLoginDto == null ? null : _serializers.serialize(acceptUserInvitationFromExternalLoginDto, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
+  /// apiServicesAppUserChangeusertypePost
+  /// 
+  ///
+  /// Parameters:
+  /// * [changeUserTypeInput] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> apiServicesAppUserChangeusertypePost({ 
+    ChangeUserTypeInput? changeUserTypeInput,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/ChangeUserType';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(ChangeUserTypeInput);
+      _bodyData = changeUserTypeInput == null ? null : _serializers.serialize(changeUserTypeInput, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
+  /// apiServicesAppUserCreateorupdateuserPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [createOrUpdateUserInput] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [LookupUserDto] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<LookupUserDto>> apiServicesAppUserCreateorupdateuserPost({ 
+    CreateOrUpdateUserInput? createOrUpdateUserInput,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/CreateOrUpdateUser';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(CreateOrUpdateUserInput);
+      _bodyData = createOrUpdateUserInput == null ? null : _serializers.serialize(createOrUpdateUserInput, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    LookupUserDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(LookupUserDto),
+      ) as LookupUserDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<LookupUserDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserDeleteuserinvitationDelete
+  /// 
+  ///
+  /// Parameters:
+  /// * [invitationId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> apiServicesAppUserDeleteuserinvitationDelete({ 
+    String? invitationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/DeleteUserInvitation';
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -246,9 +394,14 @@ class UserApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (invitationId != null) r'invitationId': encodeQueryParameter(_serializers, invitationId, const FullType(String)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
@@ -257,11 +410,10 @@ class UserApi {
     return _response;
   }
 
-  /// Get user by user name.
-  /// Get user detail based on username.
+  /// apiServicesAppUserGetalluserinvitationsGet
+  /// 
   ///
   /// Parameters:
-  /// * [username] - The name that needs to be fetched. Use user1 for testing
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -269,10 +421,9 @@ class UserApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [User] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<UserInvitationDto>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<User>> getUserByName({ 
-    required String username,
+  Future<Response<BuiltList<UserInvitationDto>>> apiServicesAppUserGetalluserinvitationsGet({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -280,7 +431,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user/{username}'.replaceAll('{' r'username' '}', encodeQueryParameter(_serializers, username, const FullType(String)).toString());
+    final _path = r'/api/services/app/User/GetAllUserInvitations';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -301,14 +452,14 @@ class UserApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    User? _responseData;
+    BuiltList<UserInvitationDto>? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(User),
-      ) as User;
+        specifiedType: const FullType(BuiltList, [FullType(UserInvitationDto)]),
+      ) as BuiltList<UserInvitationDto>;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -320,7 +471,7 @@ class UserApi {
       );
     }
 
-    return Response<User>(
+    return Response<BuiltList<UserInvitationDto>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -332,12 +483,15 @@ class UserApi {
     );
   }
 
-  /// Logs user into the system.
-  /// Log into the system.
+  /// apiServicesAppUserGetallusersGet
+  /// 
   ///
   /// Parameters:
-  /// * [username] - The user name for login
-  /// * [password] - The password for login in clear text
+  /// * [filter] 
+  /// * [permissions] 
+  /// * [role] 
+  /// * [onlyLockedUsers] 
+  /// * [sorting] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -345,11 +499,14 @@ class UserApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [String] as data
+  /// Returns a [Future] containing a [Response] with a [ListResultDtoOfUserListDto] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<String>> loginUser({ 
-    String? username,
-    String? password,
+  Future<Response<ListResultDtoOfUserListDto>> apiServicesAppUserGetallusersGet({ 
+    String? filter,
+    BuiltList<String>? permissions,
+    int? role,
+    bool? onlyLockedUsers,
+    String? sorting,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -357,7 +514,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user/login';
+    final _path = r'/api/services/app/User/GetAllUsers';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -371,8 +528,260 @@ class UserApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (username != null) r'username': encodeQueryParameter(_serializers, username, const FullType(String)),
-      if (password != null) r'password': encodeQueryParameter(_serializers, password, const FullType(String)),
+      r'Filter': encodeQueryParameter(_serializers, filter, const FullType(String)),
+      r'Permissions': encodeCollectionQueryParameter<String>(_serializers, permissions, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      r'Role': encodeQueryParameter(_serializers, role, const FullType(int)),
+      if (onlyLockedUsers != null) r'OnlyLockedUsers': encodeQueryParameter(_serializers, onlyLockedUsers, const FullType(bool)),
+      r'Sorting': encodeQueryParameter(_serializers, sorting, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ListResultDtoOfUserListDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ListResultDtoOfUserListDto),
+      ) as ListResultDtoOfUserListDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ListResultDtoOfUserListDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetalluserswithinvitedGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [filter] 
+  /// * [permissions] 
+  /// * [role] 
+  /// * [onlyLockedUsers] 
+  /// * [sorting] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [ListResultDtoOfUserListWithInvitedDto] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<ListResultDtoOfUserListWithInvitedDto>> apiServicesAppUserGetalluserswithinvitedGet({ 
+    String? filter,
+    BuiltList<String>? permissions,
+    int? role,
+    bool? onlyLockedUsers,
+    String? sorting,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetAllUsersWithInvited';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'Filter': encodeQueryParameter(_serializers, filter, const FullType(String)),
+      r'Permissions': encodeCollectionQueryParameter<String>(_serializers, permissions, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      r'Role': encodeQueryParameter(_serializers, role, const FullType(int)),
+      if (onlyLockedUsers != null) r'OnlyLockedUsers': encodeQueryParameter(_serializers, onlyLockedUsers, const FullType(bool)),
+      r'Sorting': encodeQueryParameter(_serializers, sorting, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    ListResultDtoOfUserListWithInvitedDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(ListResultDtoOfUserListWithInvitedDto),
+      ) as ListResultDtoOfUserListWithInvitedDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<ListResultDtoOfUserListWithInvitedDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetcurrentusersactiveGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [tenantId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [int] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<int>> apiServicesAppUserGetcurrentusersactiveGet({ 
+    int? tenantId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetCurrentUsersActive';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (tenantId != null) r'tenantId': encodeQueryParameter(_serializers, tenantId, const FullType(int)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    int? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : rawResponse as int;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<int>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetinvitationlinkGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [invitationId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [String] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<String>> apiServicesAppUserGetinvitationlinkGet({ 
+    String? invitationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetInvitationLink';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (invitationId != null) r'invitationId': encodeQueryParameter(_serializers, invitationId, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(
@@ -412,10 +821,11 @@ class UserApi {
     );
   }
 
-  /// Logs out current logged in user session.
-  /// Log user out of the system.
+  /// apiServicesAppUserGetuserforeditGet
+  /// 
   ///
   /// Parameters:
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -423,9 +833,10 @@ class UserApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future]
+  /// Returns a [Future] containing a [Response] with a [GetUserForEditOutput] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> logoutUser({ 
+  Future<Response<GetUserForEditOutput>> apiServicesAppUserGetuserforeditGet({ 
+    int? id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -433,7 +844,7 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user/logout';
+    final _path = r'/api/services/app/User/GetUserForEdit';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -446,23 +857,402 @@ class UserApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      r'Id': encodeQueryParameter(_serializers, id, const FullType(int)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,
     );
 
-    return _response;
+    GetUserForEditOutput? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(GetUserForEditOutput),
+      ) as GetUserForEditOutput;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<GetUserForEditOutput>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
   }
 
-  /// Update user resource.
-  /// This can only be done by the logged in user.
+  /// apiServicesAppUserGetuserinvitationGet
+  /// 
   ///
   /// Parameters:
-  /// * [username] - name that need to be deleted
-  /// * [user] - Update an existent user in the store
+  /// * [invitationId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [UserInvitationDto] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<UserInvitationDto>> apiServicesAppUserGetuserinvitationGet({ 
+    String? invitationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetUserInvitation';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (invitationId != null) r'invitationId': encodeQueryParameter(_serializers, invitationId, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    UserInvitationDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(UserInvitationDto),
+      ) as UserInvitationDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<UserInvitationDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetusersGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [maxResultCount] 
+  /// * [skipCount] 
+  /// * [filter] 
+  /// * [permissions] 
+  /// * [role] 
+  /// * [onlyLockedUsers] 
+  /// * [sorting] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PagedResultDtoOfUserListDto] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PagedResultDtoOfUserListDto>> apiServicesAppUserGetusersGet({ 
+    int? maxResultCount,
+    int? skipCount,
+    String? filter,
+    BuiltList<String>? permissions,
+    int? role,
+    bool? onlyLockedUsers,
+    String? sorting,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetUsers';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (maxResultCount != null) r'MaxResultCount': encodeQueryParameter(_serializers, maxResultCount, const FullType(int)),
+      if (skipCount != null) r'SkipCount': encodeQueryParameter(_serializers, skipCount, const FullType(int)),
+      r'Filter': encodeQueryParameter(_serializers, filter, const FullType(String)),
+      r'Permissions': encodeCollectionQueryParameter<String>(_serializers, permissions, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      r'Role': encodeQueryParameter(_serializers, role, const FullType(int)),
+      if (onlyLockedUsers != null) r'OnlyLockedUsers': encodeQueryParameter(_serializers, onlyLockedUsers, const FullType(bool)),
+      r'Sorting': encodeQueryParameter(_serializers, sorting, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PagedResultDtoOfUserListDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PagedResultDtoOfUserListDto),
+      ) as PagedResultDtoOfUserListDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PagedResultDtoOfUserListDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetuserstoexcelGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [filter] 
+  /// * [permissions] 
+  /// * [role] 
+  /// * [onlyLockedUsers] 
+  /// * [sorting] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [FileDto] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<FileDto>> apiServicesAppUserGetuserstoexcelGet({ 
+    String? filter,
+    BuiltList<String>? permissions,
+    int? role,
+    bool? onlyLockedUsers,
+    String? sorting,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetUsersToExcel';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      r'Filter': encodeQueryParameter(_serializers, filter, const FullType(String)),
+      r'Permissions': encodeCollectionQueryParameter<String>(_serializers, permissions, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
+      r'Role': encodeQueryParameter(_serializers, role, const FullType(int)),
+      if (onlyLockedUsers != null) r'OnlyLockedUsers': encodeQueryParameter(_serializers, onlyLockedUsers, const FullType(bool)),
+      r'Sorting': encodeQueryParameter(_serializers, sorting, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    FileDto? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(FileDto),
+      ) as FileDto;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<FileDto>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserGetvalueforuseridentityflagGet
+  /// 
+  ///
+  /// Parameters:
+  /// * [flag] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [int] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<int>> apiServicesAppUserGetvalueforuseridentityflagGet({ 
+    UserIdentityFlag? flag,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/GetValueForUserIdentityFlag';
+    final _options = Options(
+      method: r'GET',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (flag != null) r'flag': encodeQueryParameter(_serializers, flag, const FullType(UserIdentityFlag)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    int? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : rawResponse as int;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<int>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// apiServicesAppUserInviteusersPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [createInvitationDto] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -472,9 +1262,8 @@ class UserApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> updateUser({ 
-    required String username,
-    User? user,
+  Future<Response<void>> apiServicesAppUserInviteusersPost({ 
+    CreateInvitationDto? createInvitationDto,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -482,9 +1271,9 @@ class UserApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/user/{username}'.replaceAll('{' r'username' '}', encodeQueryParameter(_serializers, username, const FullType(String)).toString());
+    final _path = r'/api/services/app/User/InviteUsers';
     final _options = Options(
-      method: r'PUT',
+      method: r'POST',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -499,8 +1288,127 @@ class UserApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(User);
-      _bodyData = user == null ? null : _serializers.serialize(user, specifiedType: _type);
+      const _type = FullType(CreateInvitationDto);
+      _bodyData = createInvitationDto == null ? null : _serializers.serialize(createInvitationDto, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
+  /// apiServicesAppUserResenduserinvitationPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [invitationId] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> apiServicesAppUserResenduserinvitationPost({ 
+    String? invitationId,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/ResendUserInvitation';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      validateStatus: validateStatus,
+    );
+
+    final _queryParameters = <String, dynamic>{
+      if (invitationId != null) r'invitationId': encodeQueryParameter(_serializers, invitationId, const FullType(String)),
+    };
+
+    final _response = await _dio.request<Object>(
+      _path,
+      options: _options,
+      queryParameters: _queryParameters,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    return _response;
+  }
+
+  /// apiServicesAppUserUnlockuserPost
+  /// 
+  ///
+  /// Parameters:
+  /// * [entityDtoOfInt64] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future]
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<void>> apiServicesAppUserUnlockuserPost({ 
+    EntityDtoOfInt64? entityDtoOfInt64,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/services/app/User/UnlockUser';
+    final _options = Options(
+      method: r'POST',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(EntityDtoOfInt64);
+      _bodyData = entityDtoOfInt64 == null ? null : _serializers.serialize(entityDtoOfInt64, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(

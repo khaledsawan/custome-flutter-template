@@ -9,8 +9,8 @@ import 'package:openapi/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
-**name** | **String** |  | 
 **category** | [**Category**](Category.md) |  | [optional] 
+**name** | **String** |  | 
 **photoUrls** | **BuiltList&lt;String&gt;** |  | 
 **tags** | [**BuiltList&lt;Tag&gt;**](Tag.md) |  | [optional] 
 **status** | **String** | pet status in the store | [optional] 
