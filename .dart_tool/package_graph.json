@@ -7,8 +7,10 @@
       "name": "customtemplate",
       "version": "1.0.0+1",
       "dependencies": [
+        "built_collection",
         "cupertino_icons",
         "dartz",
+        "dio",
         "equatable",
         "flutter",
         "openapi"
@@ -42,6 +44,24 @@
         "test_api",
         "vector_math"
       ]
+    },
+    {
+      "name": "dio",
+      "version": "5.9.0",
+      "dependencies": [
+        "async",
+        "collection",
+        "dio_web_adapter",
+        "http_parser",
+        "meta",
+        "mime",
+        "path"
+      ]
+    },
+    {
+      "name": "built_collection",
+      "version": "5.1.1",
+      "dependencies": []
     },
     {
       "name": "equatable",
@@ -174,9 +194,37 @@
       ]
     },
     {
-      "name": "built_collection",
-      "version": "5.1.1",
+      "name": "dio_web_adapter",
+      "version": "2.1.1",
+      "dependencies": [
+        "dio",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "mime",
+      "version": "2.0.0",
       "dependencies": []
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "async",
+      "version": "2.13.0",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
     },
     {
       "name": "built_value",
@@ -205,19 +253,6 @@
       ]
     },
     {
-      "name": "dio",
-      "version": "5.9.0",
-      "dependencies": [
-        "async",
-        "collection",
-        "dio_web_adapter",
-        "http_parser",
-        "meta",
-        "mime",
-        "path"
-      ]
-    },
-    {
       "name": "sky_engine",
       "version": "0.0.0",
       "dependencies": []
@@ -233,14 +268,6 @@
       "name": "characters",
       "version": "1.4.0",
       "dependencies": []
-    },
-    {
-      "name": "async",
-      "version": "2.13.0",
-      "dependencies": [
-        "collection",
-        "meta"
-      ]
     },
     {
       "name": "leak_tracker_testing",
@@ -292,6 +319,18 @@
       ]
     },
     {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
       "name": "fixnum",
       "version": "1.1.1",
       "dependencies": []
@@ -304,46 +343,9 @@
       ]
     },
     {
-      "name": "dio_web_adapter",
-      "version": "2.1.1",
-      "dependencies": [
-        "dio",
-        "http_parser",
-        "meta",
-        "web"
-      ]
-    },
-    {
-      "name": "mime",
-      "version": "2.0.0",
-      "dependencies": []
-    },
-    {
-      "name": "http_parser",
-      "version": "4.1.2",
-      "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
-    },
-    {
       "name": "vm_service",
       "version": "15.0.2",
       "dependencies": []
-    },
-    {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "typed_data",
-      "version": "1.4.0",
-      "dependencies": [
-        "collection"
-      ]
     }
   ],
   "configVersion": 1
