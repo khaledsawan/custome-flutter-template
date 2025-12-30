@@ -8,6 +8,8 @@
       "version": "1.0.0+1",
       "dependencies": [
         "cupertino_icons",
+        "dartz",
+        "equatable",
         "flutter",
         "openapi"
       ],
@@ -40,6 +42,19 @@
         "test_api",
         "vector_math"
       ]
+    },
+    {
+      "name": "equatable",
+      "version": "2.0.7",
+      "dependencies": [
+        "collection",
+        "meta"
+      ]
+    },
+    {
+      "name": "dartz",
+      "version": "0.10.1",
+      "dependencies": []
     },
     {
       "name": "cupertino_icons",
@@ -159,6 +174,21 @@
       ]
     },
     {
+      "name": "built_collection",
+      "version": "5.1.1",
+      "dependencies": []
+    },
+    {
+      "name": "built_value",
+      "version": "8.12.1",
+      "dependencies": [
+        "built_collection",
+        "collection",
+        "fixnum",
+        "meta"
+      ]
+    },
+    {
       "name": "one_of_serializer",
       "version": "1.5.0",
       "dependencies": [
@@ -175,9 +205,17 @@
       ]
     },
     {
-      "name": "built_collection",
-      "version": "5.1.1",
-      "dependencies": []
+      "name": "dio",
+      "version": "5.9.0",
+      "dependencies": [
+        "async",
+        "collection",
+        "dio_web_adapter",
+        "http_parser",
+        "meta",
+        "mime",
+        "path"
+      ]
     },
     {
       "name": "sky_engine",
@@ -254,22 +292,9 @@
       ]
     },
     {
-      "name": "vm_service",
-      "version": "15.0.2",
+      "name": "fixnum",
+      "version": "1.1.1",
       "dependencies": []
-    },
-    {
-      "name": "dio",
-      "version": "5.9.0",
-      "dependencies": [
-        "async",
-        "collection",
-        "dio_web_adapter",
-        "http_parser",
-        "meta",
-        "mime",
-        "path"
-      ]
     },
     {
       "name": "quiver",
@@ -289,8 +314,8 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.1",
+      "name": "mime",
+      "version": "2.0.0",
       "dependencies": []
     },
     {
@@ -304,31 +329,21 @@
       ]
     },
     {
+      "name": "vm_service",
+      "version": "15.0.2",
+      "dependencies": []
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
+    },
+    {
       "name": "typed_data",
       "version": "1.4.0",
       "dependencies": [
         "collection"
       ]
-    },
-    {
-      "name": "mime",
-      "version": "2.0.0",
-      "dependencies": []
-    },
-    {
-      "name": "built_value",
-      "version": "8.12.1",
-      "dependencies": [
-        "built_collection",
-        "collection",
-        "fixnum",
-        "meta"
-      ]
-    },
-    {
-      "name": "fixnum",
-      "version": "1.1.1",
-      "dependencies": []
     }
   ],
   "configVersion": 1
