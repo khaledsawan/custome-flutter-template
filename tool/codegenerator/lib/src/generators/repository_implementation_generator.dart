@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/import_detector.dart';
 import 'package:feature_generator/src/models.dart';
 import 'package:feature_generator/src/naming_utils.dart';
@@ -8,6 +9,7 @@ import 'package:path/path.dart' as path;
 Future<void> generateRepositoryImplementation(
   ApiInfo apiInfo,
   String featureDir,
+  FileModifier fileModifier,
 ) async {
   final file = File(
     path.join(
@@ -80,17 +82,20 @@ Future<void> generateRepositoryImplementation(
     imports.add("import 'package:built_value/json_object.dart';");
   }
 
-  final content =
-      '''${imports.join('\n')}
-
-class ${featurePascal}RepositoryImp implements ${featurePascal}Repository {
+  final bodyContent = '''class ${featurePascal}RepositoryImp implements ${featurePascal}Repository {
   late ${featurePascal}RemoteDataSource remoteDataSource;
 
   ${featurePascal}RepositoryImp({required this.remoteDataSource});
 
 $methods
-}
-''';
-  await file.writeAsString(content);
+}''';
+
+  await fileModifier.writeFile(
+    file: file,
+    bodyContent: bodyContent,
+    imports: imports,
+    featureName: apiInfo.featureName,
+    fileType: 'repository_implementation',
+  );
 }
 

@@ -1,8 +1,13 @@
 library;
 
 export 'src/api_parser.dart';
+export 'src/code_markers.dart';
+export 'src/config.dart';
+export 'src/feature_filter.dart';
 export 'src/feature_generator.dart';
 export 'src/file_discovery.dart';
+export 'src/file_modifier.dart';
+export 'src/folder_filter.dart';
 export 'src/generators/presentation_stub_generator.dart';
 export 'src/generators/remote_data_source_generator.dart';
 export 'src/generators/repository_implementation_generator.dart';

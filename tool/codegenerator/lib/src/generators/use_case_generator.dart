@@ -1,12 +1,17 @@
 import 'dart:io';
 
+import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/import_detector.dart';
 import 'package:feature_generator/src/models.dart';
 import 'package:feature_generator/src/naming_utils.dart';
 import 'package:feature_generator/src/type_converter.dart';
 import 'package:path/path.dart' as path;
 
-Future<void> generateUseCases(ApiInfo apiInfo, String featureDir) async {
+Future<void> generateUseCases(
+  ApiInfo apiInfo,
+  String featureDir,
+  FileModifier fileModifier,
+) async {
   final usecasesDir = Directory(path.join(featureDir, 'domain', 'usecases'));
 
   for (final method in apiInfo.methods) {
@@ -62,18 +67,21 @@ Future<void> generateUseCases(ApiInfo apiInfo, String featureDir) async {
       paramsType: paramsType,
     );
 
-    final content =
-        '''${imports.join('\n')}
-
-class $useCaseName extends UseCase<$returnType, $paramsType> {
+    final bodyContent = '''class $useCaseName extends UseCase<$returnType, $paramsType> {
   final ${featurePascal}Repository repository;
 
   $useCaseName({required this.repository});
 
   @override
   Future<Either> call($callParams) => $repositoryCall;
-}
-''';
-    await file.writeAsString(content);
+}''';
+
+    await fileModifier.writeFile(
+      file: file,
+      bodyContent: bodyContent,
+      imports: imports,
+      featureName: apiInfo.featureName,
+      fileType: 'use_case_${toSnakeCase(useCaseName)}',
+    );
   }
 }

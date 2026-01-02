@@ -1,0 +1,31 @@
+# Feature Generator Configuration
+# Copy this file to config.yaml and customize as needed
+
+# Feature selection
+features:
+  # Optional: explicitly include only these features (overrides exclude if both present)
+  # include:
+  #   - pet
+  #   - store
+  #   - user
+  
+  # Optional: exclude these features from generation
+  # exclude:
+  #   - audit_log
+  #   - hangfire
+
+# Folder/layer selection - control which parts to generate
+folders:
+  data:
+    sources: true          # Generate remote data source
+    implements: true       # Generate repository implementation
+  domain:
+    repositories: true     # Generate repository interface
+    usecases: true         # Generate use cases
+  presentation:
+    getX: true             # Generate presentation stubs
+
+# File modification behavior
+# Options: 'modify' (use markers to preserve manual code) or 'overwrite' (regenerate completely)
+file_mode: modify
+

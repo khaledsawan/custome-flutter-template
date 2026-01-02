@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/models.dart';
 import 'package:feature_generator/src/naming_utils.dart';
 import 'package:path/path.dart' as path;
@@ -6,6 +7,7 @@ import 'package:path/path.dart' as path;
 Future<void> generatePresentationStubs(
   ApiInfo apiInfo,
   String featureDir,
+  FileModifier fileModifier,
 ) async {
   // Generate binding file
   final bindingFile = File(
@@ -16,11 +18,16 @@ Future<void> generatePresentationStubs(
       '${apiInfo.featureName}_binding.dart',
     ),
   );
-  await bindingFile.writeAsString(
-    '''class ${toPascalCase(apiInfo.featureName)}Binding {
+  final bindingBody = '''class ${toPascalCase(apiInfo.featureName)}Binding {
   // TODO: Implement the ${toPascalCase(apiInfo.featureName)}Binding
-}
-''',
+}''';
+
+  await fileModifier.writeFile(
+    file: bindingFile,
+    bodyContent: bindingBody,
+    imports: [],
+    featureName: apiInfo.featureName,
+    fileType: 'binding',
   );
 
   // Generate library export file
@@ -32,9 +39,16 @@ Future<void> generatePresentationStubs(
       '${apiInfo.featureName}.dart',
     ),
   );
-  await exportFile.writeAsString('''library;
+  final exportBody = '''library;
 
-export '${apiInfo.featureName}_binding.dart';
-''');
+export '${apiInfo.featureName}_binding.dart';''';
+
+  await fileModifier.writeFile(
+    file: exportFile,
+    bodyContent: exportBody,
+    imports: [],
+    featureName: apiInfo.featureName,
+    fileType: 'export',
+  );
 }
 
