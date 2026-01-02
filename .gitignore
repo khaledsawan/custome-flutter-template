@@ -1,3 +1,5 @@
 openapi/
 tool/codegenerator/.dart_tool/
 
+.dart_tool/extension_discovery/README.md
+.dart_tool/extension_discovery/vs_code.json
