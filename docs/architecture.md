@@ -27,14 +27,26 @@ lib/features/<feature_name>/
 ### 2.1 Domain Layer
 
 - Contains:
-  - Entities
+  - Entities (can be from external OpenAPI DTOs or internally created)
   - Use cases
   - Repository interfaces
+- Entities can be sourced from **two approaches**:
+  - **External source (OpenAPI DTOs)**: Entities defined directly from OpenAPI-generated DTO classes
+    - The OpenAPI specification serves as the source of truth for these Entity definitions
+    - No separate entity mapping or transformation layer exists
+    - OpenAPI DTOs are used directly as Entities across all layers
+  - **Internal source (Custom Entities)**: Developers can create custom Entity classes within the Domain layer
+    - Custom Entities provide flexibility for domain-specific models not defined in the API
+    - Must be pure Dart classes following domain-driven design principles
+    - Can coexist with OpenAPI DTO Entities in the same feature
 - Must be **pure Dart**:
   - No Flutter imports
-  - No third-party libraries (e.g., Dio, Firebase, OpenAPI models)
+  - No third-party infrastructure libraries (e.g., Dio, Firebase)
+  - **OpenAPI-generated models are allowed** as they can serve as Entity definitions
 - Can only depend on:
   - Core shared abstractions
+  - OpenAPI-generated DTO classes (when using DTOs as Entities)
+  - Custom Entity classes (when creating internal Entities)
 - Cannot be modified by code generators beyond scaffolding stubs.
 
 ### 2.2 Presentation Layer
@@ -51,22 +63,28 @@ lib/features/<feature_name>/
 
 - Contains:
   - Repository implementations
-  - Mappings from external models (DTO → Domain)
   - Remote / Local data sources
+  - Mapping logic (only when custom Entities are used)
 - Can import **external generated OpenAPI code**
 - Implements Domain contracts
-- Must **never expose external models outside the Data layer**
+- **Mapping behavior depends on Entity source**:
+  - **OpenAPI DTO Entities**: No mapping required - DTOs are used directly as Entities
+  - **Custom Entities**: Mapping from OpenAPI DTOs to custom Entities may be required when consuming API responses
 
 ---
 
 ## 3. OpenAPI / Generated Code
 
 - Generated OpenAPI code **lives in an external Dart package**, imported via `pubspec.yaml`.
-- Features import generated code only in their **Data layer**.
+- OpenAPI DTO classes can serve as **Entity definitions** when using the external source approach.
+- All layers can import OpenAPI-generated DTO classes:
+  - When using DTOs as Entities: DTOs flow directly through all layers
+  - When using custom Entities: DTOs are used in Data layer and mapped to custom Entities
 - Generators must be **idempotent**:
   - Safe to run multiple times
   - Do not overwrite existing handwritten logic
 - Generators may **scaffold Domain and Presentation** placeholders, but never overwrite business logic.
+- Developers can choose per-feature whether to use OpenAPI DTOs directly or create custom Entities.
 
 ---
 
@@ -81,13 +99,111 @@ Presentation → Domain → Data → External packages
 
 ---
 
+## 4.1 Entity Data Flow
+
+Entities can be sourced from two approaches:
+
+### External Source Flow (OpenAPI DTOs)
+
+```mermaid
+flowchart TD
+    OpenAPISpec[(OpenAPI Specification)] --> DTOGen[OpenAPI Code Generator]
+    DTOGen --> OpenAPIDTO[(OpenAPI DTO Package)]
+    OpenAPIDTO -->|Imported as Entities| DomainLayer[Domain Layer]
+    OpenAPIDTO -->|Used directly| DataLayer[Data Layer]
+    DomainLayer -->|Entities flow through| PresentationLayer[Presentation Layer]
+    DataLayer -->|Returns DTO Entities| DomainLayer
+    DomainLayer -->|Provides Entities| PresentationLayer
+```
+
+### Internal Source Flow (Custom Entities)
+
+```mermaid
+flowchart TD
+    Developer[Developer] --> CustomEntity[Custom Entity Classes]
+    CustomEntity --> DomainLayer[Domain Layer]
+    OpenAPISpec[(OpenAPI Specification)] --> DTOGen[OpenAPI Code Generator]
+    DTOGen --> OpenAPIDTO[(OpenAPI DTO Package)]
+    OpenAPIDTO --> DataLayer[Data Layer]
+    DataLayer -->|Map DTO to Entity| DomainLayer
+    DomainLayer -->|Custom Entities flow through| PresentationLayer[Presentation Layer]
+    DomainLayer -->|Provides Entities| PresentationLayer
+```
+
+Key points:
+
+- **External Source**: OpenAPI DTOs are generated from the API specification and used directly as Entities. No mapping required.
+- **Internal Source**: Developers create custom Entity classes. Data layer maps OpenAPI DTOs to custom Entities when consuming API responses.
+- Both approaches can coexist in the same application but should not be mixed for the same domain concept.
+- Choose the approach based on requirements: use DTOs for API-aligned models, custom Entities for domain-specific needs.
+
+---
+
+## 4.2 Entity Source Approaches
+
+### External Source (OpenAPI DTOs as Entities)
+
+**Advantages:**
+
+- **Single Source of Truth**: The API specification defines all models, eliminating duplication and ensuring consistency
+- **Reduced Complexity**: No mapping layer required, reducing code complexity and maintenance burden
+- **Automatic Updates**: When the API changes, regenerating OpenAPI code automatically updates Entities across the entire application
+- **Type Safety**: Generated DTOs provide compile-time type checking across all layers
+- **API-First Development**: The architecture aligns with API-first design principles
+
+**Considerations:**
+
+- **API Coupling**: The application becomes more tightly coupled to the API schema. Changes to the API may require updates throughout the codebase
+- **Schema Limitations**: Entities are constrained by what the API provides
+- **Extensibility**: Extending Entities with domain-specific behavior is limited. Business logic must work with the DTO structure as-is
+
+**When to Use:**
+
+- API schema accurately represents your domain model
+- You want to minimize mapping code and maintenance
+- API changes should directly reflect in your application
+- Strong alignment between API and domain requirements
+
+### Internal Source (Custom Entities)
+
+**Advantages:**
+
+- **Domain Flexibility**: Create Entities that accurately represent your domain model, independent of API structure
+- **Separation of Concerns**: Domain models are decoupled from API schema, allowing independent evolution
+- **Rich Domain Models**: Entities can include domain-specific methods, validations, and business logic
+- **API Independence**: Domain layer remains stable even when API structure changes (only Data layer mapping needs updates)
+
+**Considerations:**
+
+- **Mapping Overhead**: Requires mapping logic in Data layer to convert between DTOs and Entities
+- **Maintenance**: Mapping code must be maintained and updated when API or domain models change
+- **Additional Code**: More code to write and maintain compared to using DTOs directly
+
+**When to Use:**
+
+- Domain model differs significantly from API structure
+- Need domain-specific behavior, methods, or validations in Entities
+- Want to decouple domain from API schema
+- API schema is not stable or frequently changes
+
+### Best Practices
+
+- **Choose one approach per Entity**: Do not mix OpenAPI DTOs and custom Entities for the same domain concept
+- **Be consistent within a feature**: Use the same approach for related Entities in a feature module
+- **Document your choice**: Clearly document why you chose external vs internal source for each Entity
+- **Keep OpenAPI specification well-documented and versioned** (when using external source)
+- **Maintain mapping code carefully** (when using internal source)
+- **Consider API schema evolution** when designing new features
+
+---
+
 ## 5. Forbidden Practices
 
-- No feature directly accessing another feature’s data
+- No feature directly accessing another feature's data
 - No business logic in Data or Presentation
-- No external models (DTOs) in Domain or Presentation
 - Generators **cannot overwrite existing code**
 - Hardcoding external services inside Domain or Presentation
+- Mixing OpenAPI DTOs and custom Entities for the same domain concept (choose one approach per Entity)
 
 ---
 
@@ -103,7 +219,9 @@ Presentation → Domain → Data → External packages
 ## 7. Summary
 
 - **Features are isolated**
-- **Domain is pure Dart**
+- **Entities are flexible**: Can be OpenAPI DTOs (external source) or custom classes (internal source)
+- **Domain can use OpenAPI models or custom Entities** depending on the chosen approach
+- **Data layer handles mapping** when custom Entities are used (no mapping needed for DTO Entities)
 - **Generators are safe and controlled**
 - **OpenAPI clients live outside the app**
 - **Rules are enforceable and must be followed by all contributors**

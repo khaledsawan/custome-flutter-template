@@ -48,14 +48,31 @@ Rules:
 
 Domain layer must contain:
 
-- Entities
-- Uory interfaces
+- Entities (from external OpenAPI DTOs or internally created custom classes)
+- Repository interfaces
+- Use cases
+
+Entity Sources:
+
+- **External Source (OpenAPI DTOs)**: Entities can be OpenAPI-generated DTO classes imported from the external package
+  - DTOs serve as Entity definitions directly
+  - No mapping layer needed
+  - API schema is the source of truth
+  
+- **Internal Source (Custom Entities)**: Developers can create custom Entity classes
+  - Pure Dart classes following domain-driven design principles
+  - Can include domain-specific methods and validations
+  - Provides flexibility for domain models not aligned with API structure
 
 Restrictions:
 
-- **Pure Dart only** (no Flutter, no OpenAPI clients, no Firebase, no Dio)
+- **Pure Dart only** (no Flutter, no Firebase, no Dio)
+- **OpenAPI-generated DTO classes are allowed** when using external source approach
+- **Custom Entity classes are allowed** when using internal source approach
 - Business logic only
 - Generators may create scaffolding or stubs, but never overwrite existing logic
+
+Important: Choose one Entity source approach per Entity. Do not mix OpenAPI DTOs and custom Entities for the same domain concept. The chosen approach should be consistent within a feature module.
 
 ---
 
@@ -65,13 +82,17 @@ Data layer responsibilities:
 
 - Implement domain repositories
 - Consume external OpenAPI-generated clients as primary API source
-- Perform DTO → Domain mapping if needed
+- Return Entities to domain layer (either DTOs directly or custom Entities)
 - Can depend on shared Core abstractions
+- Perform DTO to Entity mapping when using custom Entities
 
 Rules:
 
-- Must **not leak external models** outside the Data layer
+- **External Source Entities**: No mapping required - OpenAPI DTOs are returned directly as Entities
+- **Internal Source Entities**: Mapping from OpenAPI DTOs to custom Entities is required
 - Must be replaceable via DI
+- Mapping logic should be isolated and maintainable
+- Choose mapping strategy based on Entity source approach used in Domain layer
 
 ---
 
@@ -186,8 +207,10 @@ For any third-party service:
 
 ## FINAL RULE
 
-1. Domain layer is **pure Dart**; no infrastructure code allowed.
-2. Features are isolated; no cross-feature imports.
-3. Generators may scaffold but **cannot overwrite existing handwritten logic**.
-4. OpenAPI-generated code lives **outside the project**.
-5. Any dependency on infrastructure must **never be in Domain**.
+1. Domain layer is **pure Dart**; no infrastructure code allowed (except OpenAPI DTOs when using external source, or custom Entity classes when using internal source).
+2. **Entities are flexible**: Can be OpenAPI DTOs (external source) or custom classes (internal source).
+3. **Choose one approach per Entity**: Do not mix OpenAPI DTOs and custom Entities for the same domain concept.
+4. Features are isolated; no cross-feature imports.
+5. Generators may scaffold but **cannot overwrite existing handwritten logic**.
+6. OpenAPI-generated code lives **outside the project**.
+7. Data layer handles mapping only when using custom Entities (no mapping needed for DTO Entities).
