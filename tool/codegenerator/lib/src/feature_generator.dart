@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:feature_generator/src/config.dart';
 import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/folder_filter.dart';
+import 'package:feature_generator/src/generators/barrel_file_generator.dart';
 import 'package:feature_generator/src/generators/presentation_stub_generator.dart';
 import 'package:feature_generator/src/generators/remote_data_source_generator.dart';
 import 'package:feature_generator/src/generators/repository_implementation_generator.dart';
@@ -104,6 +105,14 @@ Future<void> generateFeature(
   }
 
   await Future.wait(futures);
+
+  // Generate barrel files after all use cases are generated
+  if (folderFilter.shouldGenerateDomainUseCases()) {
+    await _safe(
+      () => generateBarrelFiles(apiInfo, featureDir, fileModifier),
+      'BarrelFiles',
+    );
+  }
 }
 
 Future<void> _safe(Future<void> Function() task, String name) async {

@@ -73,8 +73,84 @@ class FileModifier {
   }
 
   List<String> _mergeImports(List<String> existing, List<String> newImports) {
-    final all = <String>{...existing};
+    final all = <String>{};
+    
+    // Check if new imports include a barrel import (params.dart or use_cases.dart)
+    final hasBarrelImport = newImports.any((imp) {
+      final trimmed = imp.trim();
+      return trimmed.contains('/usecases/params.dart') || 
+             trimmed.contains('/usecases/use_cases.dart');
+    });
+    
+    // Add new imports first (these take precedence)
     all.addAll(newImports);
+    
+    // Add existing imports, but filter out old-style imports
+    for (final existingImport in existing) {
+      final trimmed = existingImport.trim();
+      
+      // If we have a barrel import, remove all individual Params imports
+      if (hasBarrelImport && trimmed.contains('/usecases/')) {
+        // Check if this is an individual Params or UseCase import
+        final isParamsImport = trimmed.contains('_params.dart');
+        final isUseCaseImport = trimmed.contains('_use_case.dart');
+        
+        if (isParamsImport || isUseCaseImport) {
+          continue; // Skip individual imports when barrel import exists
+        }
+      }
+      
+      // Skip old-style imports if we have new-style imports for the same use case
+      if (trimmed.contains('/usecases/')) {
+        // Extract use case folder name from the import path
+        // Example: .../usecases/api_services_app_account_activateemail_post_use_case/params.dart
+        final useCaseMatch = RegExp(r'/usecases/([^/]+)/').firstMatch(trimmed);
+        if (useCaseMatch != null) {
+          final useCaseFolderName = useCaseMatch.group(1)!;
+          final fileName = trimmed.split('/').last.replaceAll("';", '').replaceAll("import 'package:", '');
+          
+          // Check if this is an old-style import (params.dart or use_case.dart)
+          if (fileName == 'params.dart' || fileName == 'use_case.dart') {
+            // Check if we have a new-style import for the same use case folder
+            final hasNewStyle = newImports.any((newImport) {
+              if (!newImport.contains('/usecases/')) return false;
+              final newUseCaseMatch = RegExp(r'/usecases/([^/]+)/').firstMatch(newImport);
+              if (newUseCaseMatch == null) return false;
+              final newUseCaseFolderName = newUseCaseMatch.group(1)!;
+              // Same use case folder, but with new-style file name (not params.dart or use_case.dart)
+              if (newUseCaseFolderName == useCaseFolderName) {
+                final newFileName = newImport.split('/').last.replaceAll("';", '').replaceAll("import 'package:", '');
+                return newFileName != 'params.dart' && newFileName != 'use_case.dart';
+              }
+              return false;
+            });
+            if (hasNewStyle) {
+              continue; // Skip old-style import
+            }
+          }
+        }
+        
+        // Skip old-style usecase imports (ending with _use_case.dart') if we have new folder-style imports
+        if (trimmed.contains("_use_case.dart'")) {
+          // Extract usecase name from old import path
+          final parts = trimmed.split('/');
+          final fileName = parts.last.replaceAll("';", '').replaceAll("import '", '');
+          if (fileName.endsWith('_use_case.dart')) {
+            final useCaseName = fileName.replaceAll('_use_case.dart', '');
+            // Check if we have a corresponding new-style import (ending with /params.dart)
+            final hasNewStyle = newImports.any((newImport) => 
+              newImport.contains('/usecases/') && 
+              newImport.contains('$useCaseName/params.dart'));
+            if (hasNewStyle) {
+              continue; // Skip old-style import
+            }
+          }
+        }
+      }
+      
+      all.add(existingImport);
+    }
+    
     return all.toList()..sort();
   }
 
@@ -85,9 +161,12 @@ class FileModifier {
 
     for (final line in lines) {
       final trimmed = line.trim();
+      // Remove import statements, ignore comments, and raw package paths (old broken imports)
       if (!pastImports &&
-          (trimmed.startsWith('import ') || trimmed.startsWith('// ignore'))) {
-        continue; // Skip import lines
+          (trimmed.startsWith('import ') || 
+           trimmed.startsWith('// ignore') ||
+           (trimmed.startsWith('package:') && !trimmed.startsWith("import 'package:")))) {
+        continue; // Skip import lines and raw package paths
       }
       if (!pastImports && trimmed.isEmpty) {
         continue; // Skip empty lines before imports
