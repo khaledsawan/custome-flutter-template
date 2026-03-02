@@ -1,3 +1,4 @@
+import 'package:customtemplate/core/cache/cache_type.dart';
 import 'package:customtemplate/core/model/i_params.dart';
 
 /// Parameters for fetching data through BaseRepository.fetchData().
@@ -29,26 +30,33 @@ class FetchDataParams<T, P extends Params> extends Params {
   /// Extract `.data` from Response inside this function.
   final Future<T> Function(P params) getData;
 
-  /// Optional: Function to cache successful data locally.
-  /// Called asynchronously (fire-and-forget) after successful fetch.
-  final Future<void> Function(T data)? cacheData;
-
-  /// Optional: Function to retrieve cached data.
-  /// Used when network is unavailable.
-  final Future<T> Function()? cachedData;
-
-  /// Whether to cache the fetched data.
-  /// Only effective if `cacheData` is provided.
-  final bool needCache;
-
   /// Request parameters passed to `getData` function.
   final P requestParams;
+
+  /// Cache type to use for storing/retrieving data.
+  /// If null, caching is disabled.
+  final CacheType? cacheType;
+
+  /// Time-to-live duration for cached data.
+  /// If null, uses default TTL for the cache type.
+  final Duration? ttl;
+
+  /// If true, bypasses cache and always fetches from API.
+  final bool forceRefresh;
+
+  /// Custom cache key. If null, will be auto-generated from method name and params.
+  final String? cacheKey;
+
+  /// Hash checker function that validates cache freshness.
+  /// Returns `true` if hash changed (should fetch from API),
+  /// `false` if hash unchanged (can use cached data).
 
   const FetchDataParams({
     required this.getData,
     required this.requestParams,
-    this.cacheData,
-    this.cachedData,
-    this.needCache = false,
+    this.cacheType,
+    this.ttl,
+    this.forceRefresh = false,
+    this.cacheKey,
   });
 }

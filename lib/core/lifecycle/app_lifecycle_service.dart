@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:customtemplate/core/lifecycle/i_app_lifecycle_service.dart';
 import 'package:flutter/widgets.dart';
+import 'package:injectable/injectable.dart';
 
+@singleton
 class AppLifecycleService
     with WidgetsBindingObserver
     implements IAppLifecycleService {
