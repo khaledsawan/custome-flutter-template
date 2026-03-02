@@ -112,6 +112,7 @@ Future<void> generateUseCases(
       "import 'package:customtemplate/core/usecases/usecase.dart';",
       "import 'package:customtemplate/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
       "import 'package:dartz/dartz.dart';",
+      "import 'package:injectable/injectable.dart';",
     ];
 
     // Import Params from params file if method has parameters
@@ -140,10 +141,11 @@ Future<void> generateUseCases(
     }
 
     final useCaseBodyContent =
-        '''class $useCaseName extends UseCase<$returnType, $paramsClassName> {
+        '''@injectable
+class $useCaseName extends UseCase<$returnType, $paramsClassName> {
   final ${featurePascal}Repository repository;
 
-  $useCaseName({required this.repository});
+  $useCaseName(this.repository);
 
   @override
   Future<Either> call($callParams) => $repositoryCall;

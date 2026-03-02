@@ -20,11 +20,15 @@ Future<void> generateRemoteDataSource(
   );
 
   final bodyContent =
-      '''class ${toPascalCase(apiInfo.featureName)}RemoteDataSource extends ${apiInfo.apiClassName} {
+      '''@singleton
+class ${toPascalCase(apiInfo.featureName)}RemoteDataSource extends ${apiInfo.apiClassName} {
   ${toPascalCase(apiInfo.featureName)}RemoteDataSource(super.dio, super.serializers);
 }''';
 
-  final imports = ["import 'package:openapi/openapi.dart';"];
+  final imports = [
+    "import 'package:injectable/injectable.dart';",
+    "import 'package:openapi/openapi.dart';",
+  ];
 
   await fileModifier.writeFile(
     file: file,

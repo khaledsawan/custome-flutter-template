@@ -5,7 +5,7 @@
 features:
   Optional: explicitly include only these features (overrides exclude if both present)
   include:
-    - account
+    - auth
   
   # Optional: exclude these features from generation
   # exclude:

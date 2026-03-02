@@ -30,6 +30,18 @@ dart tool/codegenerator/bin/generate_features.dart -c config.yaml
 
 If no config file is provided, the tool looks for `tool/codegenerator/config.yaml` by default. If the file doesn't exist, it uses default settings.
 
+### After Generation: Dependency Injection Setup
+
+After running the generator, you need to generate dependency injection code:
+
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+This will generate `lib/di/injection.config.dart` with all service registrations.
+
+**Note**: The generated code includes `@injectable` and `@singleton` annotations that are automatically processed by `build_runner` and `injectable_generator`.
+
 ## Configuration
 
 The tool can be configured via a YAML file to control which features and folders are generated, and how files are modified.
@@ -112,17 +124,30 @@ For each API file (e.g., `PetApi`, `StoreApi`, `UserApi`), the tool creates:
 ### Data Layer
 
 - `data/sources/{feature}_remote_data_source.dart` - Extends the OpenAPI API class
+  - Annotated with `@singleton` for dependency injection
 - `data/implements/{feature}_repository_imp.dart` - Implements the repository interface
+  - Annotated with `@singleton` for dependency injection
 
 ### Domain Layer
 
 - `domain/repositories/{feature}_repository.dart` - Abstract repository interface
 - `domain/usecases/{action}_{feature}_usecase.dart` - One use case per API method
+  - Annotated with `@injectable` for dependency injection
 
 ### Presentation Layer
 
 - `presentation/getX/{feature}_binding.dart` - GetX binding stub
 - `presentation/getX/{feature}.dart` - Library export file
+
+### Dependency Injection
+
+All generated classes include `@injectable` or `@singleton` annotations from the `injectable` package. After generation, run:
+
+```bash
+flutter pub run build_runner build --delete-conflicting-outputs
+```
+
+This generates the DI registration code in `lib/di/injection.config.dart`.
 
 ## Features
 

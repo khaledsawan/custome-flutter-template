@@ -42,6 +42,7 @@ Future<void> generateRepositoryImplementation(
     "import 'package:customtemplate/features/${apiInfo.featureName}/data/sources/${apiInfo.featureName}_remote_data_source.dart';",
     "import 'package:customtemplate/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
     "import 'package:dartz/dartz.dart';",
+    "import 'package:injectable/injectable.dart';",
     "import 'package:openapi/openapi.dart';",
   ];
 
@@ -69,12 +70,14 @@ Future<void> generateRepositoryImplementation(
   }
 
   final bodyContent =
-      '''class ${featurePascal}RepositoryImp extends BaseRepository implements ${featurePascal}Repository {
-  late ${featurePascal}RemoteDataSource remoteDataSource;
+      '''@LazySingleton(as: ${featurePascal}Repository)
+class ${featurePascal}RepositoryImp extends BaseRepository implements ${featurePascal}Repository {
+  final ${featurePascal}RemoteDataSource remoteDataSource;
 
   ${featurePascal}RepositoryImp({
     required this.remoteDataSource,
     required super.networkInfo,
+    super.cacheManager,
   });
 
 $methods

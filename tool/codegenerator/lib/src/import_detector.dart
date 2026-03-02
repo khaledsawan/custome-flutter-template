@@ -196,7 +196,7 @@ List<String> getUseCaseImports({
 
   // Check if params type uses MultipartFile
   if (paramsType.contains('MultipartFile')) {
-    imports.add("import 'package:dio/dio.dart';");
+    imports.add("import 'package:dio/dio.dart' show MultipartFile;");
   }
 
   return imports;
