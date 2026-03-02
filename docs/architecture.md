@@ -216,7 +216,115 @@ Key points:
 
 ---
 
-## 7. Summary
+## 7. Core Module Guidelines
+
+The Core module (`lib/core/`) contains shared abstractions, utilities, and infrastructure that can be used across all layers.
+
+### 7.1 What Belongs in Core
+
+Core should contain:
+
+- **Shared Abstractions/Interfaces**: Contract definitions for replaceable services
+  - Examples: `INetworkInfo`, `IBaseRepo`, `IAppLifecycleService`
+  - These allow services to be swapped via Dependency Injection
+
+- **Common Models & Contracts**: Reusable data structures and base classes
+  - Examples: `Params`, `UseCase`, `FetchDataParams`
+  - Must be pure Dart (no Flutter dependencies)
+
+- **Error Handling Infrastructure**: Centralized error management
+  - Failure classes (pure Dart)
+  - Error mappers and localization services
+  - Error display helpers (can use Flutter)
+
+- **Infrastructure Abstractions**: Core infrastructure for error handling and HTTP
+  - Error mappers (e.g., `DioErrorMapper`) - **Dio package is acceptable in core for error mapping**
+  - Network status abstractions
+
+- **Shared UI Widgets/Helpers**: Reusable presentation components
+  - Location: `lib/core/widgets/`
+  - Can use Flutter Material/Cupertino
+  - Examples: Error widgets, common UI components
+
+- **Extensions**: Core extensions on common types
+  - Examples: `TaskX` extension for error mapping
+
+### 7.2 What Should NOT Be in Core
+
+Core should NOT contain:
+
+- **Feature-specific logic**: All feature code belongs in `lib/features/`
+- **Business domain models**: Domain entities belong in feature domain layers
+- **Direct third-party service implementations**: Prefer interfaces (see exception below)
+- **Feature-specific widgets**: Only shared/reusable widgets belong in `core/widgets/`
+
+### 7.3 Acceptable Third-Party Dependencies in Core
+
+While Core generally favors abstractions over concrete implementations, certain infrastructure dependencies are acceptable:
+
+- **Dio Package** (`package:dio`): Acceptable in core for HTTP error mapping
+  - `DioErrorMapper` is core infrastructure for translating HTTP exceptions to domain failures
+  - This is an exception to the "abstract third-party services" rule due to the fundamental nature of error handling
+  - Future HTTP client abstractions can be added without breaking existing error mapping
+
+- **Flutter Framework**: Acceptable for:
+  - Lifecycle services (`AppLifecycleService`)
+  - UI widgets in `core/widgets/`
+  - Platform-specific abstractions
+
+- **Dartz**: Functional programming utilities (`Either`, `Task`)
+  - Core dependency for error handling patterns
+
+### 7.4 Core Module Structure
+
+```
+lib/core/
+├── base/              # Base repository abstractions
+│   ├── i_base_repo.dart        # Interface
+│   └── base_repo.dart          # Implementation
+├── dio/               # HTTP error mapping infrastructure
+│   └── dio_error_mapper.dart   # DioException → Failure mapper
+├── error/             # Error handling system
+│   ├── failure.dart                    # Failure classes (pure Dart)
+│   ├── exceptions.dart                # Exception definitions
+│   ├── error_localization_service.dart # Localization service
+│   └── error_display_helper.dart      # Display helpers
+├── extension/         # Core extensions
+│   └── core_extension.dart    # Task extensions, etc.
+├── lifecycle/         # App lifecycle management
+│   ├── i_app_lifecycle_service.dart  # Interface
+│   ├── app_lifecycle_service.dart    # Implementation
+│   └── app_lifecycle_coordinator.dart
+├── model/             # Core models & contracts
+│   ├── i_params.dart           # Params interface
+│   └── fetch_data_params.dart  # Fetch data parameters
+├── network/           # Network abstractions
+│   ├── network_info.dart       # INetworkInfo interface
+│   └── network_info_impl.dart  # Implementation
+├── usecases/          # Use case contracts
+│   ├── usecase.dart            # UseCase base class
+│   └── i_usecase_entity.dart   # Entity mapping interface
+└── widgets/           # Shared UI widgets
+    └── error_widget.dart       # Error display widgets
+```
+
+### 7.5 When to Put Something in Core vs Feature
+
+**Put in Core if:**
+- Used by multiple features or layers
+- Provides infrastructure/abstraction rather than business logic
+- Is a shared utility or helper
+- Defines contracts/interfaces for replaceable services
+
+**Put in Feature if:**
+- Specific to a single feature's domain
+- Contains business logic
+- Is a feature-specific entity or use case
+- Implements feature-specific requirements
+
+---
+
+## 8. Summary
 
 - **Features are isolated**
 - **Entities are flexible**: Can be OpenAPI DTOs (external source) or custom classes (internal source)
@@ -224,6 +332,8 @@ Key points:
 - **Data layer handles mapping** when custom Entities are used (no mapping needed for DTO Entities)
 - **Generators are safe and controlled**
 - **OpenAPI clients live outside the app**
+- **Core module contains shared abstractions, infrastructure, and reusable components**
+- **Dio is acceptable in core for HTTP error mapping infrastructure**
 - **Rules are enforceable and must be followed by all contributors**
 
 This document is the **law of the land**.  

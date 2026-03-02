@@ -114,10 +114,20 @@ Rules:
 
 ## 6. Dependency Injection
 
-- Use a service locator (e.g., `get_it`)
-- Register all dependencies via DI
+- Use `get_it` as the service locator
+- Use `injectable` for automatic DI code generation
+- Register all dependencies via DI annotations (`@injectable`, `@singleton`)
 - No direct instantiation inside widgets or use cases
-- Generars may create registration stubs
+- Code generator automatically adds `@injectable` annotations to generated classes
+
+**Setup:**
+1. Generated code includes `@injectable` or `@singleton` annotations
+2. Run `flutter pub run build_runner build --delete-conflicting-outputs` to generate DI registration code
+3. Initialize DI in `main.dart`: `configureDependencies()` (from `lib/di/injection.dart`)
+
+**Annotation Strategy:**
+- `@singleton`: For services that should have one instance (repositories, data sources, cache manager, network info)
+- `@injectable`: For transient instances (use cases typically)
 
 > All services must be swappable by changing DI bindings only
 
@@ -185,12 +195,13 @@ Suggested generators:
 - OpenAPI generator (external package)
 - build_runner
 - freezed / json_serializable (as needed)
-- injectable
+- injectable (automatic DI registration)
 
-Run:
-\`\`\`
-flutter pub run build_runner build --delete-conflicting-outputs
-\`\`\`
+**Workflow:**
+1. Run feature generator: `dart tool/codegenerator/bin/generate_features.dart`
+2. Generated code includes `@injectable` annotations
+3. Run build_runner: `flutter pub run build_runner build --delete-conflicting-outputs`
+4. `injectable_generator` generates `lib/di/injection.config.dart` with all service registrations
 
 ---
 

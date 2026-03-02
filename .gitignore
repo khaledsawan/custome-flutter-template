@@ -46,3 +46,6 @@ app.*.map.json
 
 openapi/
 tool/codegenerator/.dart_tool/
+
+.DS_Store
+
