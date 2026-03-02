@@ -12,13 +12,13 @@ void main() {
       // TODO
     });
 
-    // String name
-    test('to test the property `name`', () async {
+    // Category category
+    test('to test the property `category`', () async {
       // TODO
     });
 
-    // Category category
-    test('to test the property `category`', () async {
+    // String name
+    test('to test the property `name`', () async {
       // TODO
     });
 

@@ -7,25 +7,30 @@ void main() {
   final instance = Openapi().getUserApi();
 
   group(UserApi, () {
-    // Create user.
+    // Create user
     //
     // This can only be done by the logged in user.
     //
-    //Future<User> createUser({ User user }) async
+    //Future createUser(User body) async
     test('test createUser', () async {
       // TODO
     });
 
-    // Creates list of users with given input array.
+    // Creates list of users with given input array
     //
-    // Creates list of users with given input array.
+    //Future createUsersWithArrayInput(BuiltList<User> body) async
+    test('test createUsersWithArrayInput', () async {
+      // TODO
+    });
+
+    // Creates list of users with given input array
     //
-    //Future<User> createUsersWithListInput({ BuiltList<User> user }) async
+    //Future createUsersWithListInput(BuiltList<User> body) async
     test('test createUsersWithListInput', () async {
       // TODO
     });
 
-    // Delete user resource.
+    // Delete user
     //
     // This can only be done by the logged in user.
     //
@@ -34,38 +39,32 @@ void main() {
       // TODO
     });
 
-    // Get user by user name.
-    //
-    // Get user detail based on username.
+    // Get user by user name
     //
     //Future<User> getUserByName(String username) async
     test('test getUserByName', () async {
       // TODO
     });
 
-    // Logs user into the system.
+    // Logs user into the system
     //
-    // Log into the system.
-    //
-    //Future<String> loginUser({ String username, String password }) async
+    //Future<String> loginUser(String username, String password) async
     test('test loginUser', () async {
       // TODO
     });
 
-    // Logs out current logged in user session.
-    //
-    // Log user out of the system.
+    // Logs out current logged in user session
     //
     //Future logoutUser() async
     test('test logoutUser', () async {
       // TODO
     });
 
-    // Update user resource.
+    // Updated user
     //
     // This can only be done by the logged in user.
     //
-    //Future updateUser(String username, { User user }) async
+    //Future updateUser(String username, User body) async
     test('test updateUser', () async {
       // TODO
     });

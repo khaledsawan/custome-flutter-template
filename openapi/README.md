@@ -47,13 +47,15 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import 'package:openapi/openapi.dart';
 
 
-final api = Openapi().getAccountApi();
-final ActivateEmailInput activateEmailInput = ; // ActivateEmailInput | 
+final api = Openapi().getAuthApi();
+final int userId = 56; // int | 
+final String apiVersion = apiVersion_example; // String | 
+final SetUserActiveStatusRequest setUserActiveStatusRequest = ; // SetUserActiveStatusRequest | 
 
 try {
-    api.apiServicesAppAccountActivateemailPost(activateEmailInput);
+    api.apiAuthAdminUsersUserIdStatusPatch(userId, apiVersion, setUserActiveStatusRequest);
 } on DioException catch (e) {
-    print("Exception when calling AccountApi->apiServicesAppAccountActivateemailPost: $e\n");
+    print("Exception when calling AuthApi->apiAuthAdminUsersUserIdStatusPatch: $e\n");
 }
 
 ```
@@ -64,1068 +66,163 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountActivateemailPost**](doc/AccountApi.md#apiservicesappaccountactivateemailpost) | **POST** /api/services/app/Account/ActivateEmail | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountBacktoimpersonatorPost**](doc/AccountApi.md#apiservicesappaccountbacktoimpersonatorpost) | **POST** /api/services/app/Account/BackToImpersonator | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountDelegatedimpersonatePost**](doc/AccountApi.md#apiservicesappaccountdelegatedimpersonatepost) | **POST** /api/services/app/Account/DelegatedImpersonate | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountGenerateapikeyPost**](doc/AccountApi.md#apiservicesappaccountgenerateapikeypost) | **POST** /api/services/app/Account/GenerateApiKey | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountGetactivetenantsbyemailGet**](doc/AccountApi.md#apiservicesappaccountgetactivetenantsbyemailget) | **GET** /api/services/app/Account/GetActiveTenantsByEmail | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountImpersonatePost**](doc/AccountApi.md#apiservicesappaccountimpersonatepost) | **POST** /api/services/app/Account/Impersonate | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountIstenantavailablePost**](doc/AccountApi.md#apiservicesappaccountistenantavailablepost) | **POST** /api/services/app/Account/IsTenantAvailable | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountIstenantavailablebyformtokenPost**](doc/AccountApi.md#apiservicesappaccountistenantavailablebyformtokenpost) | **POST** /api/services/app/Account/IsTenantAvailableByFormToken | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountRegisterPost**](doc/AccountApi.md#apiservicesappaccountregisterpost) | **POST** /api/services/app/Account/Register | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountResetpasswordPost**](doc/AccountApi.md#apiservicesappaccountresetpasswordpost) | **POST** /api/services/app/Account/ResetPassword | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountResolvetenantidPost**](doc/AccountApi.md#apiservicesappaccountresolvetenantidpost) | **POST** /api/services/app/Account/ResolveTenantId | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountSendemailactivationlinkPost**](doc/AccountApi.md#apiservicesappaccountsendemailactivationlinkpost) | **POST** /api/services/app/Account/SendEmailActivationLink | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountSendpasswordresetcodePost**](doc/AccountApi.md#apiservicesappaccountsendpasswordresetcodepost) | **POST** /api/services/app/Account/SendPasswordResetCode | 
-[*AccountApi*](doc/AccountApi.md) | [**apiServicesAppAccountSwitchtolinkedaccountPost**](doc/AccountApi.md#apiservicesappaccountswitchtolinkedaccountpost) | **POST** /api/services/app/Account/SwitchToLinkedAccount | 
-[*AddonApi*](doc/AddonApi.md) | [**apiServicesAppAddonGetaddondefinitionsGet**](doc/AddonApi.md#apiservicesappaddongetaddondefinitionsget) | **GET** /api/services/app/Addon/GetAddonDefinitions | 
-[*AddonApi*](doc/AddonApi.md) | [**apiServicesAppAddonGetallenabledaddonsGet**](doc/AddonApi.md#apiservicesappaddongetallenabledaddonsget) | **GET** /api/services/app/Addon/GetAllEnabledAddons | 
-[*AddonApi*](doc/AddonApi.md) | [**apiServicesAppAddonGetenabledaddonGet**](doc/AddonApi.md#apiservicesappaddongetenabledaddonget) | **GET** /api/services/app/Addon/GetEnabledAddon | 
-[*AddonApi*](doc/AddonApi.md) | [**apiServicesAppAddonUpdateaddondefinitionsPut**](doc/AddonApi.md#apiservicesappaddonupdateaddondefinitionsput) | **PUT** /api/services/app/Addon/UpdateAddonDefinitions | 
-[*AdvancedCommentApi*](doc/AdvancedCommentApi.md) | [**apiServicesAppAdvancedcommentChangecommentreplynotificationPut**](doc/AdvancedCommentApi.md#apiservicesappadvancedcommentchangecommentreplynotificationput) | **PUT** /api/services/app/AdvancedComment/ChangeCommentReplyNotification | 
-[*AdvancedCommentApi*](doc/AdvancedCommentApi.md) | [**apiServicesAppAdvancedcommentCommentPost**](doc/AdvancedCommentApi.md#apiservicesappadvancedcommentcommentpost) | **POST** /api/services/app/AdvancedComment/Comment | 
-[*AdvancedCommentApi*](doc/AdvancedCommentApi.md) | [**apiServicesAppAdvancedcommentDeletecommentDelete**](doc/AdvancedCommentApi.md#apiservicesappadvancedcommentdeletecommentdelete) | **DELETE** /api/services/app/AdvancedComment/DeleteComment | 
-[*AdvancedCommentApi*](doc/AdvancedCommentApi.md) | [**apiServicesAppAdvancedcommentSetcommentemojisPut**](doc/AdvancedCommentApi.md#apiservicesappadvancedcommentsetcommentemojisput) | **PUT** /api/services/app/AdvancedComment/SetCommentEmojis | 
-[*AdvancedCommentApi*](doc/AdvancedCommentApi.md) | [**apiServicesAppAdvancedcommentUpdatecommentPut**](doc/AdvancedCommentApi.md#apiservicesappadvancedcommentupdatecommentput) | **PUT** /api/services/app/AdvancedComment/UpdateComment | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardClonePost**](doc/AppDashboardApi.md#apiservicesappappdashboardclonepost) | **POST** /api/services/app/AppDashboard/Clone | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardCreatePost**](doc/AppDashboardApi.md#apiservicesappappdashboardcreatepost) | **POST** /api/services/app/AppDashboard/Create | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardDeleteDelete**](doc/AppDashboardApi.md#apiservicesappappdashboarddeletedelete) | **DELETE** /api/services/app/AppDashboard/Delete | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardGetGet**](doc/AppDashboardApi.md#apiservicesappappdashboardgetget) | **GET** /api/services/app/AppDashboard/Get | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardGetallGet**](doc/AppDashboardApi.md#apiservicesappappdashboardgetallget) | **GET** /api/services/app/AppDashboard/GetAll | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardGetdataGet**](doc/AppDashboardApi.md#apiservicesappappdashboardgetdataget) | **GET** /api/services/app/AppDashboard/GetData | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardGetforeditGet**](doc/AppDashboardApi.md#apiservicesappappdashboardgetforeditget) | **GET** /api/services/app/AppDashboard/GetForEdit | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardPreviewPost**](doc/AppDashboardApi.md#apiservicesappappdashboardpreviewpost) | **POST** /api/services/app/AppDashboard/Preview | 
-[*AppDashboardApi*](doc/AppDashboardApi.md) | [**apiServicesAppAppdashboardUpdatePut**](doc/AppDashboardApi.md#apiservicesappappdashboardupdateput) | **PUT** /api/services/app/AppDashboard/Update | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsCloneappPost**](doc/AppsApi.md#apiservicesappappscloneapppost) | **POST** /api/services/app/Apps/CloneApp | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsCreatePost**](doc/AppsApi.md#apiservicesappappscreatepost) | **POST** /api/services/app/Apps/Create | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsCreatefromexternalappPost**](doc/AppsApi.md#apiservicesappappscreatefromexternalapppost) | **POST** /api/services/app/Apps/CreateFromExternalApp | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsCreatefromtemplatePost**](doc/AppsApi.md#apiservicesappappscreatefromtemplatepost) | **POST** /api/services/app/Apps/CreateFromTemplate | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsCreatefromtemplatecategoryPost**](doc/AppsApi.md#apiservicesappappscreatefromtemplatecategorypost) | **POST** /api/services/app/Apps/CreateFromTemplateCategory | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsDeleteDelete**](doc/AppsApi.md#apiservicesappappsdeletedelete) | **DELETE** /api/services/app/Apps/Delete | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsDeletedummydataDelete**](doc/AppsApi.md#apiservicesappappsdeletedummydatadelete) | **DELETE** /api/services/app/Apps/DeleteDummyData | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsDeserializeappPost**](doc/AppsApi.md#apiservicesappappsdeserializeapppost) | **POST** /api/services/app/Apps/DeserializeApp | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGetGet**](doc/AppsApi.md#apiservicesappappsgetget) | **GET** /api/services/app/Apps/Get | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGetallGet**](doc/AppsApi.md#apiservicesappappsgetallget) | **GET** /api/services/app/Apps/GetAll | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGetforeditGet**](doc/AppsApi.md#apiservicesappappsgetforeditget) | **GET** /api/services/app/Apps/GetForEdit | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGettemplatecategoryGet**](doc/AppsApi.md#apiservicesappappsgettemplatecategoryget) | **GET** /api/services/app/Apps/GetTemplateCategory | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGettemplatesGet**](doc/AppsApi.md#apiservicesappappsgettemplatesget) | **GET** /api/services/app/Apps/GetTemplates | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsGettemplatescategoriesGet**](doc/AppsApi.md#apiservicesappappsgettemplatescategoriesget) | **GET** /api/services/app/Apps/GetTemplatesCategories | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsIsappnamealreadyusedPost**](doc/AppsApi.md#apiservicesappappsisappnamealreadyusedpost) | **POST** /api/services/app/Apps/IsAppNameAlreadyUsed | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsSerializeappPost**](doc/AppsApi.md#apiservicesappappsserializeapppost) | **POST** /api/services/app/Apps/SerializeApp | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsUpdatePut**](doc/AppsApi.md#apiservicesappappsupdateput) | **PUT** /api/services/app/Apps/Update | 
-[*AppsApi*](doc/AppsApi.md) | [**apiServicesAppAppsUpdatelistvisibilityPut**](doc/AppsApi.md#apiservicesappappsupdatelistvisibilityput) | **PUT** /api/services/app/Apps/UpdateListVisibility | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetauditlogsGet**](doc/AuditLogApi.md#apiservicesappauditloggetauditlogsget) | **GET** /api/services/app/AuditLog/GetAuditLogs | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetauditlogstoexcelGet**](doc/AuditLogApi.md#apiservicesappauditloggetauditlogstoexcelget) | **GET** /api/services/app/AuditLog/GetAuditLogsToExcel | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetentitychangesGet**](doc/AuditLogApi.md#apiservicesappauditloggetentitychangesget) | **GET** /api/services/app/AuditLog/GetEntityChanges | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetentitychangestoexcelGet**](doc/AuditLogApi.md#apiservicesappauditloggetentitychangestoexcelget) | **GET** /api/services/app/AuditLog/GetEntityChangesToExcel | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetentityhistoryobjecttypesGet**](doc/AuditLogApi.md#apiservicesappauditloggetentityhistoryobjecttypesget) | **GET** /api/services/app/AuditLog/GetEntityHistoryObjectTypes | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetentitypropertychangesGet**](doc/AuditLogApi.md#apiservicesappauditloggetentitypropertychangesget) | **GET** /api/services/app/AuditLog/GetEntityPropertyChanges | 
-[*AuditLogApi*](doc/AuditLogApi.md) | [**apiServicesAppAuditlogGetentitytypechangesGet**](doc/AuditLogApi.md#apiservicesappauditloggetentitytypechangesget) | **GET** /api/services/app/AuditLog/GetEntityTypeChanges | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationChangeactivatePost**](doc/AutomationApi.md#apiservicesappautomationchangeactivatepost) | **POST** /api/services/app/Automation/ChangeActivate | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationChangewebhookauthrequiredPost**](doc/AutomationApi.md#apiservicesappautomationchangewebhookauthrequiredpost) | **POST** /api/services/app/Automation/ChangeWebhookAuthRequired | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationClonePost**](doc/AutomationApi.md#apiservicesappautomationclonepost) | **POST** /api/services/app/Automation/Clone | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationCreatePost**](doc/AutomationApi.md#apiservicesappautomationcreatepost) | **POST** /api/services/app/Automation/Create | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationDeleteDelete**](doc/AutomationApi.md#apiservicesappautomationdeletedelete) | **DELETE** /api/services/app/Automation/Delete | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationGeneratewebhookPost**](doc/AutomationApi.md#apiservicesappautomationgeneratewebhookpost) | **POST** /api/services/app/Automation/GenerateWebhook | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationGetGet**](doc/AutomationApi.md#apiservicesappautomationgetget) | **GET** /api/services/app/Automation/Get | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationGetallGet**](doc/AutomationApi.md#apiservicesappautomationgetallget) | **GET** /api/services/app/Automation/GetAll | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationGetwebhookinfoGet**](doc/AutomationApi.md#apiservicesappautomationgetwebhookinfoget) | **GET** /api/services/app/Automation/GetWebhookInfo | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationGetwebhooktestpayloadGet**](doc/AutomationApi.md#apiservicesappautomationgetwebhooktestpayloadget) | **GET** /api/services/app/Automation/GetWebhookTestPayload | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationRegeneratewebhookauthtokenPost**](doc/AutomationApi.md#apiservicesappautomationregeneratewebhookauthtokenpost) | **POST** /api/services/app/Automation/RegenerateWebhookAuthToken | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationRetryautomationexecutePost**](doc/AutomationApi.md#apiservicesappautomationretryautomationexecutepost) | **POST** /api/services/app/Automation/RetryAutomationExecute | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationUpdatePut**](doc/AutomationApi.md#apiservicesappautomationupdateput) | **PUT** /api/services/app/Automation/Update | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationUpdateonerrornotificationsettingsPut**](doc/AutomationApi.md#apiservicesappautomationupdateonerrornotificationsettingsput) | **PUT** /api/services/app/Automation/UpdateOnErrorNotificationSettings | 
-[*AutomationApi*](doc/AutomationApi.md) | [**apiServicesAppAutomationValidateformulaPost**](doc/AutomationApi.md#apiservicesappautomationvalidateformulapost) | **POST** /api/services/app/Automation/ValidateFormula | 
-[*AutomationApprovalRequestApi*](doc/AutomationApprovalRequestApi.md) | [**apiServicesAppAutomationapprovalrequestApprovePost**](doc/AutomationApprovalRequestApi.md#apiservicesappautomationapprovalrequestapprovepost) | **POST** /api/services/app/AutomationApprovalRequest/Approve | 
-[*AutomationApprovalRequestApi*](doc/AutomationApprovalRequestApi.md) | [**apiServicesAppAutomationapprovalrequestGetGet**](doc/AutomationApprovalRequestApi.md#apiservicesappautomationapprovalrequestgetget) | **GET** /api/services/app/AutomationApprovalRequest/Get | 
-[*AutomationApprovalRequestApi*](doc/AutomationApprovalRequestApi.md) | [**apiServicesAppAutomationapprovalrequestRejectPost**](doc/AutomationApprovalRequestApi.md#apiservicesappautomationapprovalrequestrejectpost) | **POST** /api/services/app/AutomationApprovalRequest/Reject | 
-[*AutomationHistoryApi*](doc/AutomationHistoryApi.md) | [**apiServicesAppAutomationhistoryCountexecutionsPost**](doc/AutomationHistoryApi.md#apiservicesappautomationhistorycountexecutionspost) | **POST** /api/services/app/AutomationHistory/CountExecutions | 
-[*AutomationHistoryApi*](doc/AutomationHistoryApi.md) | [**apiServicesAppAutomationhistoryGetGet**](doc/AutomationHistoryApi.md#apiservicesappautomationhistorygetget) | **GET** /api/services/app/AutomationHistory/Get | 
-[*AutomationHistoryApi*](doc/AutomationHistoryApi.md) | [**apiServicesAppAutomationhistoryGetallpagedPost**](doc/AutomationHistoryApi.md#apiservicesappautomationhistorygetallpagedpost) | **POST** /api/services/app/AutomationHistory/GetAllPaged | 
-[*AutomationHistoryApi*](doc/AutomationHistoryApi.md) | [**apiServicesAppAutomationhistoryGetallstatisticsPost**](doc/AutomationHistoryApi.md#apiservicesappautomationhistorygetallstatisticspost) | **POST** /api/services/app/AutomationHistory/GetAllStatistics | 
-[*CachingApi*](doc/CachingApi.md) | [**apiServicesAppCachingClearallcachesPost**](doc/CachingApi.md#apiservicesappcachingclearallcachespost) | **POST** /api/services/app/Caching/ClearAllCaches | 
-[*CachingApi*](doc/CachingApi.md) | [**apiServicesAppCachingClearcachebynamePost**](doc/CachingApi.md#apiservicesappcachingclearcachebynamepost) | **POST** /api/services/app/Caching/ClearCacheByName | 
-[*CachingApi*](doc/CachingApi.md) | [**apiServicesAppCachingClearcachebytenantidPost**](doc/CachingApi.md#apiservicesappcachingclearcachebytenantidpost) | **POST** /api/services/app/Caching/ClearCacheByTenantId | 
-[*CachingApi*](doc/CachingApi.md) | [**apiServicesAppCachingGetallcachesGet**](doc/CachingApi.md#apiservicesappcachinggetallcachesget) | **GET** /api/services/app/Caching/GetAllCaches | 
-[*CachingApi*](doc/CachingApi.md) | [**apiServicesAppCachingSendclearcachenotificationPost**](doc/CachingApi.md#apiservicesappcachingsendclearcachenotificationpost) | **POST** /api/services/app/Caching/SendClearCacheNotification | 
-[*ChatApi*](doc/ChatApi.md) | [**apiServicesAppChatGetuserchatfriendswithsettingsGet**](doc/ChatApi.md#apiservicesappchatgetuserchatfriendswithsettingsget) | **GET** /api/services/app/Chat/GetUserChatFriendsWithSettings | 
-[*ChatApi*](doc/ChatApi.md) | [**apiServicesAppChatGetuserchatmessagesGet**](doc/ChatApi.md#apiservicesappchatgetuserchatmessagesget) | **GET** /api/services/app/Chat/GetUserChatMessages | 
-[*ChatApi*](doc/ChatApi.md) | [**apiServicesAppChatMarkallunreadmessagesofuserasreadPost**](doc/ChatApi.md#apiservicesappchatmarkallunreadmessagesofuserasreadpost) | **POST** /api/services/app/Chat/MarkAllUnreadMessagesOfUserAsRead | 
-[*CommonLookupApi*](doc/CommonLookupApi.md) | [**apiServicesAppCommonlookupFindusersPost**](doc/CommonLookupApi.md#apiservicesappcommonlookupfinduserspost) | **POST** /api/services/app/CommonLookup/FindUsers | 
-[*CommonLookupApi*](doc/CommonLookupApi.md) | [**apiServicesAppCommonlookupFinduserswithtokenPost**](doc/CommonLookupApi.md#apiservicesappcommonlookupfinduserswithtokenpost) | **POST** /api/services/app/CommonLookup/FindUsersWithToken | 
-[*CommonLookupApi*](doc/CommonLookupApi.md) | [**apiServicesAppCommonlookupGetdefaulteditionnameGet**](doc/CommonLookupApi.md#apiservicesappcommonlookupgetdefaulteditionnameget) | **GET** /api/services/app/CommonLookup/GetDefaultEditionName | 
-[*CommonLookupApi*](doc/CommonLookupApi.md) | [**apiServicesAppCommonlookupGetuserGet**](doc/CommonLookupApi.md#apiservicesappcommonlookupgetuserget) | **GET** /api/services/app/CommonLookup/GetUser | 
-[*ConversationApi*](doc/ConversationApi.md) | [**apiServicesAppConversationAddconversationPost**](doc/ConversationApi.md#apiservicesappconversationaddconversationpost) | **POST** /api/services/app/Conversation/AddConversation | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsAdddashboardwidgetsPost**](doc/DashboardsApi.md#apiservicesappdashboardsadddashboardwidgetspost) | **POST** /api/services/app/Dashboards/AddDashboardWidgets | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsChangedashboardwidgetorderPost**](doc/DashboardsApi.md#apiservicesappdashboardschangedashboardwidgetorderpost) | **POST** /api/services/app/Dashboards/ChangeDashboardWidgetOrder | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsChangeorderPost**](doc/DashboardsApi.md#apiservicesappdashboardschangeorderpost) | **POST** /api/services/app/Dashboards/ChangeOrder | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsClonedashboardPost**](doc/DashboardsApi.md#apiservicesappdashboardsclonedashboardpost) | **POST** /api/services/app/Dashboards/CloneDashboard | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsCreatePost**](doc/DashboardsApi.md#apiservicesappdashboardscreatepost) | **POST** /api/services/app/Dashboards/Create | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsDeleteDelete**](doc/DashboardsApi.md#apiservicesappdashboardsdeletedelete) | **DELETE** /api/services/app/Dashboards/Delete | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsGetallGet**](doc/DashboardsApi.md#apiservicesappdashboardsgetallget) | **GET** /api/services/app/Dashboards/GetAll | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsGetalldashboardwidgetsGet**](doc/DashboardsApi.md#apiservicesappdashboardsgetalldashboardwidgetsget) | **GET** /api/services/app/Dashboards/GetAllDashboardWidgets | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsGetbyidGet**](doc/DashboardsApi.md#apiservicesappdashboardsgetbyidget) | **GET** /api/services/app/Dashboards/GetById | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsRemovedashboardwidgetDelete**](doc/DashboardsApi.md#apiservicesappdashboardsremovedashboardwidgetdelete) | **DELETE** /api/services/app/Dashboards/RemoveDashboardWidget | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsSetdashboardwidgetsPost**](doc/DashboardsApi.md#apiservicesappdashboardssetdashboardwidgetspost) | **POST** /api/services/app/Dashboards/SetDashboardWidgets | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsUpdatePut**](doc/DashboardsApi.md#apiservicesappdashboardsupdateput) | **PUT** /api/services/app/Dashboards/Update | 
-[*DashboardsApi*](doc/DashboardsApi.md) | [**apiServicesAppDashboardsUpdatedashboardwidgetPut**](doc/DashboardsApi.md#apiservicesappdashboardsupdatedashboardwidgetput) | **PUT** /api/services/app/Dashboards/UpdateDashboardWidget | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataAllPost**](doc/DataApi.md#apiservicesappdataallpost) | **POST** /api/services/app/Data/All | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataAllgroupingPost**](doc/DataApi.md#apiservicesappdataallgroupingpost) | **POST** /api/services/app/Data/AllGrouping | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataAllgroupingpagedPost**](doc/DataApi.md#apiservicesappdataallgroupingpagedpost) | **POST** /api/services/app/Data/AllGroupingPaged | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataBulkcalculateexpressionvaluePost**](doc/DataApi.md#apiservicesappdatabulkcalculateexpressionvaluepost) | **POST** /api/services/app/Data/BulkCalculateExpressionValue | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataBulkdeletePost**](doc/DataApi.md#apiservicesappdatabulkdeletepost) | **POST** /api/services/app/Data/BulkDelete | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataBulkupdatepartialPost**](doc/DataApi.md#apiservicesappdatabulkupdatepartialpost) | **POST** /api/services/app/Data/BulkUpdatePartial | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataCaclulateaifieldvaluePost**](doc/DataApi.md#apiservicesappdatacaclulateaifieldvaluepost) | **POST** /api/services/app/Data/CaclulateAiFieldValue | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataCalculatecalculatedfieldvaluePost**](doc/DataApi.md#apiservicesappdatacalculatecalculatedfieldvaluepost) | **POST** /api/services/app/Data/CalculateCalculatedFieldValue | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataCalculateexpressionvaluePost**](doc/DataApi.md#apiservicesappdatacalculateexpressionvaluepost) | **POST** /api/services/app/Data/CalculateExpressionValue | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataCreatePost**](doc/DataApi.md#apiservicesappdatacreatepost) | **POST** /api/services/app/Data/Create | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataCreatecompressedfilefieldarchivePost**](doc/DataApi.md#apiservicesappdatacreatecompressedfilefieldarchivepost) | **POST** /api/services/app/Data/CreateCompressedFileFieldArchive | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataDeleteDelete**](doc/DataApi.md#apiservicesappdatadeletedelete) | **DELETE** /api/services/app/Data/Delete | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataExportdatatofilePost**](doc/DataApi.md#apiservicesappdataexportdatatofilepost) | **POST** /api/services/app/Data/ExportDataToFile | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataGetGet**](doc/DataApi.md#apiservicesappdatagetget) | **GET** /api/services/app/Data/Get | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataGetapprecordscountGet**](doc/DataApi.md#apiservicesappdatagetapprecordscountget) | **GET** /api/services/app/Data/GetAppRecordsCount | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataGetduplicatedvaluesGet**](doc/DataApi.md#apiservicesappdatagetduplicatedvaluesget) | **GET** /api/services/app/Data/GetDuplicatedValues | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataGetimportexamplefileGet**](doc/DataApi.md#apiservicesappdatagetimportexamplefileget) | **GET** /api/services/app/Data/GetImportExampleFile | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataGetsummaryGet**](doc/DataApi.md#apiservicesappdatagetsummaryget) | **GET** /api/services/app/Data/GetSummary | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataImportdatafromcsvPost**](doc/DataApi.md#apiservicesappdataimportdatafromcsvpost) | **POST** /api/services/app/Data/ImportDataFromCsv | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataIsacceptfiltersPost**](doc/DataApi.md#apiservicesappdataisacceptfilterspost) | **POST** /api/services/app/Data/IsAcceptFilters | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataIsfieldemptyPost**](doc/DataApi.md#apiservicesappdataisfieldemptypost) | **POST** /api/services/app/Data/IsFieldEmpty | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataLookupPost**](doc/DataApi.md#apiservicesappdatalookuppost) | **POST** /api/services/app/Data/Lookup | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataLookupforpublicformPost**](doc/DataApi.md#apiservicesappdatalookupforpublicformpost) | **POST** /api/services/app/Data/LookupForPublicForm | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataSubmitprivateformPost**](doc/DataApi.md#apiservicesappdatasubmitprivateformpost) | **POST** /api/services/app/Data/SubmitPrivateForm | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataSubmitpublicformPost**](doc/DataApi.md#apiservicesappdatasubmitpublicformpost) | **POST** /api/services/app/Data/SubmitPublicForm | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataUpdatePut**](doc/DataApi.md#apiservicesappdataupdateput) | **PUT** /api/services/app/Data/Update | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataUpdatecalculatedfieldPut**](doc/DataApi.md#apiservicesappdataupdatecalculatedfieldput) | **PUT** /api/services/app/Data/UpdateCalculatedField | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataUpdatepartialPut**](doc/DataApi.md#apiservicesappdataupdatepartialput) | **PUT** /api/services/app/Data/UpdatePartial | 
-[*DataApi*](doc/DataApi.md) | [**apiServicesAppDataUpdaterecordpositionPut**](doc/DataApi.md#apiservicesappdataupdaterecordpositionput) | **PUT** /api/services/app/Data/UpdateRecordPosition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionCreatecustomeditionPost**](doc/EditionApi.md#apiservicesappeditioncreatecustomeditionpost) | **POST** /api/services/app/Edition/CreateCustomEdition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionCreatefreeeditionPost**](doc/EditionApi.md#apiservicesappeditioncreatefreeeditionpost) | **POST** /api/services/app/Edition/CreateFreeEdition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionCreatesubscribableeditionPost**](doc/EditionApi.md#apiservicesappeditioncreatesubscribableeditionpost) | **POST** /api/services/app/Edition/CreateSubscribableEdition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionDeleteeditionDelete**](doc/EditionApi.md#apiservicesappeditiondeleteeditiondelete) | **DELETE** /api/services/app/Edition/DeleteEdition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionGeteditioncomboboxitemsGet**](doc/EditionApi.md#apiservicesappeditiongeteditioncomboboxitemsget) | **GET** /api/services/app/Edition/GetEditionComboboxItems | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionGeteditionforeditGet**](doc/EditionApi.md#apiservicesappeditiongeteditionforeditget) | **GET** /api/services/app/Edition/GetEditionForEdit | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionGeteditionsGet**](doc/EditionApi.md#apiservicesappeditiongeteditionsget) | **GET** /api/services/app/Edition/GetEditions | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionGettenantcountGet**](doc/EditionApi.md#apiservicesappeditiongettenantcountget) | **GET** /api/services/app/Edition/GetTenantCount | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionMovetenantstoanothereditionPost**](doc/EditionApi.md#apiservicesappeditionmovetenantstoanothereditionpost) | **POST** /api/services/app/Edition/MoveTenantsToAnotherEdition | 
-[*EditionApi*](doc/EditionApi.md) | [**apiServicesAppEditionUpdateeditionPut**](doc/EditionApi.md#apiservicesappeditionupdateeditionput) | **PUT** /api/services/app/Edition/UpdateEdition | 
-[*FeaturesApi*](doc/FeaturesApi.md) | [**apiServicesAppFeaturesGettenantfeatureusageinfoGet**](doc/FeaturesApi.md#apiservicesappfeaturesgettenantfeatureusageinfoget) | **GET** /api/services/app/Features/GetTenantFeatureUsageInfo | 
-[*FeaturesApi*](doc/FeaturesApi.md) | [**apiServicesAppFeaturesGettenantfeaturevaluesGet**](doc/FeaturesApi.md#apiservicesappfeaturesgettenantfeaturevaluesget) | **GET** /api/services/app/Features/GetTenantFeatureValues | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsCanchangedatatypePost**](doc/FieldsApi.md#apiservicesappfieldscanchangedatatypepost) | **POST** /api/services/app/Fields/CanChangeDataType | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsChangeorderPost**](doc/FieldsApi.md#apiservicesappfieldschangeorderpost) | **POST** /api/services/app/Fields/ChangeOrder | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsCreatePost**](doc/FieldsApi.md#apiservicesappfieldscreatepost) | **POST** /api/services/app/Fields/Create | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsDeleteDelete**](doc/FieldsApi.md#apiservicesappfieldsdeletedelete) | **DELETE** /api/services/app/Fields/Delete | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsGetGet**](doc/FieldsApi.md#apiservicesappfieldsgetget) | **GET** /api/services/app/Fields/Get | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsGetallGet**](doc/FieldsApi.md#apiservicesappfieldsgetallget) | **GET** /api/services/app/Fields/GetAll | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsGetforeditGet**](doc/FieldsApi.md#apiservicesappfieldsgetforeditget) | **GET** /api/services/app/Fields/GetForEdit | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsMergefilefieldsPost**](doc/FieldsApi.md#apiservicesappfieldsmergefilefieldspost) | **POST** /api/services/app/Fields/MergeFileFields | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsTracesourcefieldPost**](doc/FieldsApi.md#apiservicesappfieldstracesourcefieldpost) | **POST** /api/services/app/Fields/TraceSourceField | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsUpdatePut**](doc/FieldsApi.md#apiservicesappfieldsupdateput) | **PUT** /api/services/app/Fields/Update | 
-[*FieldsApi*](doc/FieldsApi.md) | [**apiServicesAppFieldsValidateexpressionPost**](doc/FieldsApi.md#apiservicesappfieldsvalidateexpressionpost) | **POST** /api/services/app/Fields/ValidateExpression | 
-[*FileApi*](doc/FileApi.md) | [**apiServicesAppFileConfirmexternalfileuploadPost**](doc/FileApi.md#apiservicesappfileconfirmexternalfileuploadpost) | **POST** /api/services/app/File/ConfirmExternalFileUpload | 
-[*FileApi*](doc/FileApi.md) | [**apiServicesAppFileEstimategeneratepublicurlsByCountGet**](doc/FileApi.md#apiservicesappfileestimategeneratepublicurlsbycountget) | **GET** /api/services/app/File/EstimateGeneratePublicUrls/{count} | 
-[*FileApi*](doc/FileApi.md) | [**apiServicesAppFileGeneratepublicdownloadurlByFiletokenGet**](doc/FileApi.md#apiservicesappfilegeneratepublicdownloadurlbyfiletokenget) | **GET** /api/services/app/File/GeneratePublicDownloadUrl/{fileToken} | 
-[*FileApi*](doc/FileApi.md) | [**apiServicesAppFileGetexternalfileuploadpermitPost**](doc/FileApi.md#apiservicesappfilegetexternalfileuploadpermitpost) | **POST** /api/services/app/File/GetExternalFileUploadPermit | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsClonePost**](doc/FormsApi.md#apiservicesappformsclonepost) | **POST** /api/services/app/Forms/Clone | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsCreatePost**](doc/FormsApi.md#apiservicesappformscreatepost) | **POST** /api/services/app/Forms/Create | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsDeleteDelete**](doc/FormsApi.md#apiservicesappformsdeletedelete) | **DELETE** /api/services/app/Forms/Delete | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsGeneratetokenPost**](doc/FormsApi.md#apiservicesappformsgeneratetokenpost) | **POST** /api/services/app/Forms/GenerateToken | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsGetbyidGet**](doc/FormsApi.md#apiservicesappformsgetbyidget) | **GET** /api/services/app/Forms/GetById | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsGetbytokenGet**](doc/FormsApi.md#apiservicesappformsgetbytokenget) | **GET** /api/services/app/Forms/GetByToken | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsGetuserappformsGet**](doc/FormsApi.md#apiservicesappformsgetuserappformsget) | **GET** /api/services/app/Forms/GetUserAppForms | 
-[*FormsApi*](doc/FormsApi.md) | [**apiServicesAppFormsUpdatePut**](doc/FormsApi.md#apiservicesappformsupdateput) | **PUT** /api/services/app/Forms/Update | 
-[*FormulaApi*](doc/FormulaApi.md) | [**apiServicesAppFormulaGetformuladocsGet**](doc/FormulaApi.md#apiservicesappformulagetformuladocsget) | **GET** /api/services/app/Formula/GetFormulaDocs | 
-[*FriendshipApi*](doc/FriendshipApi.md) | [**apiServicesAppFriendshipAcceptfriendshiprequestPost**](doc/FriendshipApi.md#apiservicesappfriendshipacceptfriendshiprequestpost) | **POST** /api/services/app/Friendship/AcceptFriendshipRequest | 
-[*FriendshipApi*](doc/FriendshipApi.md) | [**apiServicesAppFriendshipBlockuserPost**](doc/FriendshipApi.md#apiservicesappfriendshipblockuserpost) | **POST** /api/services/app/Friendship/BlockUser | 
-[*FriendshipApi*](doc/FriendshipApi.md) | [**apiServicesAppFriendshipCreatefriendshiprequestPost**](doc/FriendshipApi.md#apiservicesappfriendshipcreatefriendshiprequestpost) | **POST** /api/services/app/Friendship/CreateFriendshipRequest | 
-[*FriendshipApi*](doc/FriendshipApi.md) | [**apiServicesAppFriendshipCreatefriendshiprequestbyusernamePost**](doc/FriendshipApi.md#apiservicesappfriendshipcreatefriendshiprequestbyusernamepost) | **POST** /api/services/app/Friendship/CreateFriendshipRequestByUserName | 
-[*FriendshipApi*](doc/FriendshipApi.md) | [**apiServicesAppFriendshipUnblockuserPost**](doc/FriendshipApi.md#apiservicesappfriendshipunblockuserpost) | **POST** /api/services/app/Friendship/UnblockUser | 
-[*GlobalSettingsApi*](doc/GlobalSettingsApi.md) | [**apiServicesAppGlobalsettingsGetcustomsettingvalueGet**](doc/GlobalSettingsApi.md#apiservicesappglobalsettingsgetcustomsettingvalueget) | **GET** /api/services/app/GlobalSettings/GetCustomSettingValue | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireFetchawaitingjobstoqueuePost**](doc/HangfireApi.md#apiservicesapphangfirefetchawaitingjobstoqueuepost) | **POST** /api/services/app/Hangfire/FetchAwaitingJobsToQueue | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireGetawaitingjobidsGet**](doc/HangfireApi.md#apiservicesapphangfiregetawaitingjobidsget) | **GET** /api/services/app/Hangfire/GetAwaitingJobIds | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireGetjobshealthGet**](doc/HangfireApi.md#apiservicesapphangfiregetjobshealthget) | **GET** /api/services/app/Hangfire/GetJobsHealth | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireMoveawaitingjobstoenqueuedPost**](doc/HangfireApi.md#apiservicesapphangfiremoveawaitingjobstoenqueuedpost) | **POST** /api/services/app/Hangfire/MoveAwaitingJobsToEnqueued | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireMoveenqueuedjobstoawaitingPost**](doc/HangfireApi.md#apiservicesapphangfiremoveenqueuedjobstoawaitingpost) | **POST** /api/services/app/Hangfire/MoveEnqueuedJobsToAwaiting | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireRestartscheduledjobsPost**](doc/HangfireApi.md#apiservicesapphangfirerestartscheduledjobspost) | **POST** /api/services/app/Hangfire/RestartScheduledJobs | 
-[*HangfireApi*](doc/HangfireApi.md) | [**apiServicesAppHangfireTriggerassociatedlinkedlistupdatePost**](doc/HangfireApi.md#apiservicesapphangfiretriggerassociatedlinkedlistupdatepost) | **POST** /api/services/app/Hangfire/TriggerAssociatedLinkedListUpdate | 
-[*HashingApi*](doc/HashingApi.md) | [**apiServicesAppHashingGetapphashGet**](doc/HashingApi.md#apiservicesapphashinggetapphashget) | **GET** /api/services/app/Hashing/GetAppHash | 
-[*HashingApi*](doc/HashingApi.md) | [**apiServicesAppHashingGetgrantedappshashGet**](doc/HashingApi.md#apiservicesapphashinggetgrantedappshashget) | **GET** /api/services/app/Hashing/GetGrantedAppsHash | 
-[*HashingApi*](doc/HashingApi.md) | [**apiServicesAppHashingGetroleshashGet**](doc/HashingApi.md#apiservicesapphashinggetroleshashget) | **GET** /api/services/app/Hashing/GetRolesHash | 
-[*HashingApi*](doc/HashingApi.md) | [**apiServicesAppHashingGetuserpermissiontreehashGet**](doc/HashingApi.md#apiservicesapphashinggetuserpermissiontreehashget) | **GET** /api/services/app/Hashing/GetUserPermissionTreeHash | 
-[*HashingApi*](doc/HashingApi.md) | [**apiServicesAppHashingGetusershashGet**](doc/HashingApi.md#apiservicesapphashinggetusershashget) | **GET** /api/services/app/Hashing/GetUsersHash | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryCommentPost**](doc/HistoryApi.md#apiservicesapphistorycommentpost) | **POST** /api/services/app/History/Comment | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryExporthistorydatatofilePost**](doc/HistoryApi.md#apiservicesapphistoryexporthistorydatatofilepost) | **POST** /api/services/app/History/ExportHistoryDataToFile | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryGetGet**](doc/HistoryApi.md#apiservicesapphistorygetget) | **GET** /api/services/app/History/Get | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryGetallGet**](doc/HistoryApi.md#apiservicesapphistorygetallget) | **GET** /api/services/app/History/GetAll | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryGetallcountPost**](doc/HistoryApi.md#apiservicesapphistorygetallcountpost) | **POST** /api/services/app/History/GetAllCount | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryGetallpagedPost**](doc/HistoryApi.md#apiservicesapphistorygetallpagedpost) | **POST** /api/services/app/History/GetAllPaged | 
-[*HistoryApi*](doc/HistoryApi.md) | [**apiServicesAppHistoryGethistoryitemindexGet**](doc/HistoryApi.md#apiservicesapphistorygethistoryitemindexget) | **GET** /api/services/app/History/GetHistoryItemIndex | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGetdashboardstatisticsdataGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgetdashboardstatisticsdataget) | **GET** /api/services/app/HostDashboard/GetDashboardStatisticsData | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGeteditiontenantstatisticsGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgeteditiontenantstatisticsget) | **GET** /api/services/app/HostDashboard/GetEditionTenantStatistics | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGetincomestatisticsGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgetincomestatisticsget) | **GET** /api/services/app/HostDashboard/GetIncomeStatistics | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGetrecenttenantsdataGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgetrecenttenantsdataget) | **GET** /api/services/app/HostDashboard/GetRecentTenantsData | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGetsubscriptionexpiringtenantsdataGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgetsubscriptionexpiringtenantsdataget) | **GET** /api/services/app/HostDashboard/GetSubscriptionExpiringTenantsData | 
-[*HostDashboardApi*](doc/HostDashboardApi.md) | [**apiServicesAppHostdashboardGettopstatsdataGet**](doc/HostDashboardApi.md#apiservicesapphostdashboardgettopstatsdataget) | **GET** /api/services/app/HostDashboard/GetTopStatsData | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsGetallsettingsGet**](doc/HostSettingsApi.md#apiservicesapphostsettingsgetallsettingsget) | **GET** /api/services/app/HostSettings/GetAllSettings | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsGetcustomsettingsvalueGet**](doc/HostSettingsApi.md#apiservicesapphostsettingsgetcustomsettingsvalueget) | **GET** /api/services/app/HostSettings/GetCustomSettingsValue | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsGetcustomsettingvalueGet**](doc/HostSettingsApi.md#apiservicesapphostsettingsgetcustomsettingvalueget) | **GET** /api/services/app/HostSettings/GetCustomSettingValue | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsGetenabledsocialloginsettingsGet**](doc/HostSettingsApi.md#apiservicesapphostsettingsgetenabledsocialloginsettingsget) | **GET** /api/services/app/HostSettings/GetEnabledSocialLoginSettings | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsSendtestemailPost**](doc/HostSettingsApi.md#apiservicesapphostsettingssendtestemailpost) | **POST** /api/services/app/HostSettings/SendTestEmail | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsSetcustomsettingvaluePost**](doc/HostSettingsApi.md#apiservicesapphostsettingssetcustomsettingvaluepost) | **POST** /api/services/app/HostSettings/SetCustomSettingValue | 
-[*HostSettingsApi*](doc/HostSettingsApi.md) | [**apiServicesAppHostsettingsUpdateallsettingsPut**](doc/HostSettingsApi.md#apiservicesapphostsettingsupdateallsettingsput) | **PUT** /api/services/app/HostSettings/UpdateAllSettings | 
-[*InstallApi*](doc/InstallApi.md) | [**apiServicesAppInstallCheckdatabasePost**](doc/InstallApi.md#apiservicesappinstallcheckdatabasepost) | **POST** /api/services/app/Install/CheckDatabase | 
-[*InstallApi*](doc/InstallApi.md) | [**apiServicesAppInstallGetappsettingsjsonGet**](doc/InstallApi.md#apiservicesappinstallgetappsettingsjsonget) | **GET** /api/services/app/Install/GetAppSettingsJson | 
-[*InstallApi*](doc/InstallApi.md) | [**apiServicesAppInstallSetupPost**](doc/InstallApi.md#apiservicesappinstallsetuppost) | **POST** /api/services/app/Install/Setup | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsCreategmailPost**](doc/IntegrationsApi.md#apiservicesappintegrationscreategmailpost) | **POST** /api/services/app/Integrations/CreateGmail | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsCreateoutlookPost**](doc/IntegrationsApi.md#apiservicesappintegrationscreateoutlookpost) | **POST** /api/services/app/Integrations/CreateOutlook | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsCreatesmtpPost**](doc/IntegrationsApi.md#apiservicesappintegrationscreatesmtppost) | **POST** /api/services/app/Integrations/CreateSmtp | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsCreatetwilioPost**](doc/IntegrationsApi.md#apiservicesappintegrationscreatetwiliopost) | **POST** /api/services/app/Integrations/CreateTwilio | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsCreateunifonicPost**](doc/IntegrationsApi.md#apiservicesappintegrationscreateunifonicpost) | **POST** /api/services/app/Integrations/CreateUnifonic | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsDeleteDelete**](doc/IntegrationsApi.md#apiservicesappintegrationsdeletedelete) | **DELETE** /api/services/app/Integrations/Delete | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsGetallGet**](doc/IntegrationsApi.md#apiservicesappintegrationsgetallget) | **GET** /api/services/app/Integrations/GetAll | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsGetpropertiesGet**](doc/IntegrationsApi.md#apiservicesappintegrationsgetpropertiesget) | **GET** /api/services/app/Integrations/GetProperties | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsRenamePost**](doc/IntegrationsApi.md#apiservicesappintegrationsrenamepost) | **POST** /api/services/app/Integrations/Rename | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsTestgmailconnectionPost**](doc/IntegrationsApi.md#apiservicesappintegrationstestgmailconnectionpost) | **POST** /api/services/app/Integrations/TestGmailConnection | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsTestoutlookconnectionPost**](doc/IntegrationsApi.md#apiservicesappintegrationstestoutlookconnectionpost) | **POST** /api/services/app/Integrations/TestOutlookConnection | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsTestsmtpconnectionPost**](doc/IntegrationsApi.md#apiservicesappintegrationstestsmtpconnectionpost) | **POST** /api/services/app/Integrations/TestSmtpConnection | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsTesttwilioconnectionPost**](doc/IntegrationsApi.md#apiservicesappintegrationstesttwilioconnectionpost) | **POST** /api/services/app/Integrations/TestTwilioConnection | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsTestunifonicconnectionPost**](doc/IntegrationsApi.md#apiservicesappintegrationstestunifonicconnectionpost) | **POST** /api/services/app/Integrations/TestUnifonicConnection | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsToggleenabledPost**](doc/IntegrationsApi.md#apiservicesappintegrationstoggleenabledpost) | **POST** /api/services/app/Integrations/ToggleEnabled | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsUpdategmailPut**](doc/IntegrationsApi.md#apiservicesappintegrationsupdategmailput) | **PUT** /api/services/app/Integrations/UpdateGmail | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsUpdateoutlookPut**](doc/IntegrationsApi.md#apiservicesappintegrationsupdateoutlookput) | **PUT** /api/services/app/Integrations/UpdateOutlook | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsUpdatesmtpPut**](doc/IntegrationsApi.md#apiservicesappintegrationsupdatesmtpput) | **PUT** /api/services/app/Integrations/UpdateSmtp | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsUpdatetwilioPut**](doc/IntegrationsApi.md#apiservicesappintegrationsupdatetwilioput) | **PUT** /api/services/app/Integrations/UpdateTwilio | 
-[*IntegrationsApi*](doc/IntegrationsApi.md) | [**apiServicesAppIntegrationsUpdateunifonicPut**](doc/IntegrationsApi.md#apiservicesappintegrationsupdateunifonicput) | **PUT** /api/services/app/Integrations/UpdateUnifonic | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageCreateorupdatelanguagePost**](doc/LanguageApi.md#apiservicesapplanguagecreateorupdatelanguagepost) | **POST** /api/services/app/Language/CreateOrUpdateLanguage | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageDeletelanguageDelete**](doc/LanguageApi.md#apiservicesapplanguagedeletelanguagedelete) | **DELETE** /api/services/app/Language/DeleteLanguage | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageGetlanguageforeditGet**](doc/LanguageApi.md#apiservicesapplanguagegetlanguageforeditget) | **GET** /api/services/app/Language/GetLanguageForEdit | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageGetlanguagesGet**](doc/LanguageApi.md#apiservicesapplanguagegetlanguagesget) | **GET** /api/services/app/Language/GetLanguages | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageGetlanguagetextsGet**](doc/LanguageApi.md#apiservicesapplanguagegetlanguagetextsget) | **GET** /api/services/app/Language/GetLanguageTexts | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageSetdefaultlanguagePost**](doc/LanguageApi.md#apiservicesapplanguagesetdefaultlanguagepost) | **POST** /api/services/app/Language/SetDefaultLanguage | 
-[*LanguageApi*](doc/LanguageApi.md) | [**apiServicesAppLanguageUpdatelanguagetextPut**](doc/LanguageApi.md#apiservicesapplanguageupdatelanguagetextput) | **PUT** /api/services/app/Language/UpdateLanguageText | 
-[*LayoutSettingApi*](doc/LayoutSettingApi.md) | [**apiServicesAppLayoutsettingCreatePost**](doc/LayoutSettingApi.md#apiservicesapplayoutsettingcreatepost) | **POST** /api/services/app/LayoutSetting/Create | 
-[*LayoutSettingApi*](doc/LayoutSettingApi.md) | [**apiServicesAppLayoutsettingDeleteDelete**](doc/LayoutSettingApi.md#apiservicesapplayoutsettingdeletedelete) | **DELETE** /api/services/app/LayoutSetting/Delete | 
-[*LayoutSettingApi*](doc/LayoutSettingApi.md) | [**apiServicesAppLayoutsettingGetallGet**](doc/LayoutSettingApi.md#apiservicesapplayoutsettinggetallget) | **GET** /api/services/app/LayoutSetting/GetAll | 
-[*LayoutSettingApi*](doc/LayoutSettingApi.md) | [**apiServicesAppLayoutsettingUpdatePut**](doc/LayoutSettingApi.md#apiservicesapplayoutsettingupdateput) | **PUT** /api/services/app/LayoutSetting/Update | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsCanchangelisttypePost**](doc/ListsApi.md#apiservicesapplistscanchangelisttypepost) | **POST** /api/services/app/Lists/CanChangeListType | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsChangeorderPost**](doc/ListsApi.md#apiservicesapplistschangeorderpost) | **POST** /api/services/app/Lists/ChangeOrder | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsClonelistPost**](doc/ListsApi.md#apiservicesapplistsclonelistpost) | **POST** /api/services/app/Lists/CloneList | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsCreatePost**](doc/ListsApi.md#apiservicesapplistscreatepost) | **POST** /api/services/app/Lists/Create | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsDeleteDelete**](doc/ListsApi.md#apiservicesapplistsdeletedelete) | **DELETE** /api/services/app/Lists/Delete | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsGetGet**](doc/ListsApi.md#apiservicesapplistsgetget) | **GET** /api/services/app/Lists/Get | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsGetallGet**](doc/ListsApi.md#apiservicesapplistsgetallget) | **GET** /api/services/app/Lists/GetAll | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsGetlistforpublicformGet**](doc/ListsApi.md#apiservicesapplistsgetlistforpublicformget) | **GET** /api/services/app/Lists/GetListForPublicForm | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsMovePost**](doc/ListsApi.md#apiservicesapplistsmovepost) | **POST** /api/services/app/Lists/Move | 
-[*ListsApi*](doc/ListsApi.md) | [**apiServicesAppListsUpdatePut**](doc/ListsApi.md#apiservicesapplistsupdateput) | **PUT** /api/services/app/Lists/Update | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationCreatenotificationPost**](doc/NotificationApi.md#apiservicesappnotificationcreatenotificationpost) | **POST** /api/services/app/Notification/CreateNotification | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationDeleteallusernotificationsDelete**](doc/NotificationApi.md#apiservicesappnotificationdeleteallusernotificationsdelete) | **DELETE** /api/services/app/Notification/DeleteAllUserNotifications | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationDeletenotificationDelete**](doc/NotificationApi.md#apiservicesappnotificationdeletenotificationdelete) | **DELETE** /api/services/app/Notification/DeleteNotification | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationGetnotificationsettingsGet**](doc/NotificationApi.md#apiservicesappnotificationgetnotificationsettingsget) | **GET** /api/services/app/Notification/GetNotificationSettings | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationGetusernotificationsGet**](doc/NotificationApi.md#apiservicesappnotificationgetusernotificationsget) | **GET** /api/services/app/Notification/GetUserNotifications | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationGetusernotificationssummaryGet**](doc/NotificationApi.md#apiservicesappnotificationgetusernotificationssummaryget) | **GET** /api/services/app/Notification/GetUserNotificationsSummary | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationRegisteruserdevicePost**](doc/NotificationApi.md#apiservicesappnotificationregisteruserdevicepost) | **POST** /api/services/app/Notification/RegisterUserDevice | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationRemoveuserdeviceDelete**](doc/NotificationApi.md#apiservicesappnotificationremoveuserdevicedelete) | **DELETE** /api/services/app/Notification/RemoveUserDevice | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationSetallasarchivedPost**](doc/NotificationApi.md#apiservicesappnotificationsetallasarchivedpost) | **POST** /api/services/app/Notification/SetAllAsArchived | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationSetallnotificationsasreadPost**](doc/NotificationApi.md#apiservicesappnotificationsetallnotificationsasreadpost) | **POST** /api/services/app/Notification/SetAllNotificationsAsRead | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationSetarchivestatusPost**](doc/NotificationApi.md#apiservicesappnotificationsetarchivestatuspost) | **POST** /api/services/app/Notification/SetArchiveStatus | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationSetnotificationasreadPost**](doc/NotificationApi.md#apiservicesappnotificationsetnotificationasreadpost) | **POST** /api/services/app/Notification/SetNotificationAsRead | 
-[*NotificationApi*](doc/NotificationApi.md) | [**apiServicesAppNotificationUpdatenotificationsettingsPut**](doc/NotificationApi.md#apiservicesappnotificationupdatenotificationsettingsput) | **PUT** /api/services/app/Notification/UpdateNotificationSettings | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiAppcreationchatPost**](doc/OpenAIApi.md#apiservicesappopenaiappcreationchatpost) | **POST** /api/services/app/OpenAI/AppCreationChat | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiAppcreationgeneratejsonPost**](doc/OpenAIApi.md#apiservicesappopenaiappcreationgeneratejsonpost) | **POST** /api/services/app/OpenAI/AppCreationGenerateJson | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiAppsuggestionsPost**](doc/OpenAIApi.md#apiservicesappopenaiappsuggestionspost) | **POST** /api/services/app/OpenAI/AppSuggestions | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiCancelmodelgenerationPost**](doc/OpenAIApi.md#apiservicesappopenaicancelmodelgenerationpost) | **POST** /api/services/app/OpenAI/CancelModelGeneration | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiChatrawdataPost**](doc/OpenAIApi.md#apiservicesappopenaichatrawdatapost) | **POST** /api/services/app/OpenAI/ChatRawData | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiChatreactionPost**](doc/OpenAIApi.md#apiservicesappopenaichatreactionpost) | **POST** /api/services/app/OpenAI/ChatReaction | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiDeletehisotryrecordPost**](doc/OpenAIApi.md#apiservicesappopenaideletehisotryrecordpost) | **POST** /api/services/app/OpenAI/DeleteHisotryRecord | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiGetchathistoryGet**](doc/OpenAIApi.md#apiservicesappopenaigetchathistoryget) | **GET** /api/services/app/OpenAI/GetChatHistory | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiGettokenspertransactionsettingsGet**](doc/OpenAIApi.md#apiservicesappopenaigettokenspertransactionsettingsget) | **GET** /api/services/app/OpenAI/GetTokensPerTransactionSettings | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiHasexceedtokenslimitsGet**](doc/OpenAIApi.md#apiservicesappopenaihasexceedtokenslimitsget) | **GET** /api/services/app/OpenAI/HasExceedTokensLimits | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiSettokenspertransactionsettingsPost**](doc/OpenAIApi.md#apiservicesappopenaisettokenspertransactionsettingspost) | **POST** /api/services/app/OpenAI/SetTokensPerTransactionSettings | 
-[*OpenAIApi*](doc/OpenAIApi.md) | [**apiServicesAppOpenaiSuggestionPost**](doc/OpenAIApi.md#apiservicesappopenaisuggestionpost) | **POST** /api/services/app/OpenAI/Suggestion | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGetappmembersGet**](doc/PermissionApi.md#apiservicesapppermissiongetappmembersget) | **GET** /api/services/app/Permission/GetAppMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGetdashboardmembersGet**](doc/PermissionApi.md#apiservicesapppermissiongetdashboardmembersget) | **GET** /api/services/app/Permission/GetDashboardMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGetformmembersGet**](doc/PermissionApi.md#apiservicesapppermissiongetformmembersget) | **GET** /api/services/app/Permission/GetFormMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGetuserpermissiontreeGet**](doc/PermissionApi.md#apiservicesapppermissiongetuserpermissiontreeget) | **GET** /api/services/app/Permission/GetUserPermissionTree | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantdashboardmemberPost**](doc/PermissionApi.md#apiservicesapppermissiongrantdashboardmemberpost) | **POST** /api/services/app/Permission/GrantDashboardMember | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantdashboardmembersPost**](doc/PermissionApi.md#apiservicesapppermissiongrantdashboardmemberspost) | **POST** /api/services/app/Permission/GrantDashboardMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantformmembersPost**](doc/PermissionApi.md#apiservicesapppermissiongrantformmemberspost) | **POST** /api/services/app/Permission/GrantFormMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantlistmemberPost**](doc/PermissionApi.md#apiservicesapppermissiongrantlistmemberpost) | **POST** /api/services/app/Permission/GrantListMember | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantlistmembersPost**](doc/PermissionApi.md#apiservicesapppermissiongrantlistmemberspost) | **POST** /api/services/app/Permission/GrantListMembers | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantmemberPost**](doc/PermissionApi.md#apiservicesapppermissiongrantmemberpost) | **POST** /api/services/app/Permission/GrantMember | 
-[*PermissionApi*](doc/PermissionApi.md) | [**apiServicesAppPermissionGrantmembersPost**](doc/PermissionApi.md#apiservicesapppermissiongrantmemberspost) | **POST** /api/services/app/Permission/GrantMembers | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileChangelanguagePost**](doc/ProfileApi.md#apiservicesappprofilechangelanguagepost) | **POST** /api/services/app/Profile/ChangeLanguage | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileChangepasswordPost**](doc/ProfileApi.md#apiservicesappprofilechangepasswordpost) | **POST** /api/services/app/Profile/ChangePassword | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileConnecttologinproviderPost**](doc/ProfileApi.md#apiservicesappprofileconnecttologinproviderpost) | **POST** /api/services/app/Profile/ConnectToLoginProvider | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileDeleteprofilepictureDelete**](doc/ProfileApi.md#apiservicesappprofiledeleteprofilepicturedelete) | **DELETE** /api/services/app/Profile/DeleteProfilePicture | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileDisablegoogleauthenticatorPost**](doc/ProfileApi.md#apiservicesappprofiledisablegoogleauthenticatorpost) | **POST** /api/services/app/Profile/DisableGoogleAuthenticator | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileDisconnectfromloginproviderPost**](doc/ProfileApi.md#apiservicesappprofiledisconnectfromloginproviderpost) | **POST** /api/services/app/Profile/DisconnectFromLoginProvider | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileGetconnectedloginprovidersGet**](doc/ProfileApi.md#apiservicesappprofilegetconnectedloginprovidersget) | **GET** /api/services/app/Profile/GetConnectedLoginProviders | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileGetcurrentuserprofileforeditGet**](doc/ProfileApi.md#apiservicesappprofilegetcurrentuserprofileforeditget) | **GET** /api/services/app/Profile/GetCurrentUserProfileForEdit | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileGetfriendprofilepictureGet**](doc/ProfileApi.md#apiservicesappprofilegetfriendprofilepictureget) | **GET** /api/services/app/Profile/GetFriendProfilePicture | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileGetpasswordcomplexitysettingGet**](doc/ProfileApi.md#apiservicesappprofilegetpasswordcomplexitysettingget) | **GET** /api/services/app/Profile/GetPasswordComplexitySetting | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfilePreparecollecteddataPost**](doc/ProfileApi.md#apiservicesappprofilepreparecollecteddatapost) | **POST** /api/services/app/Profile/PrepareCollectedData | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileSendverificationsmsPost**](doc/ProfileApi.md#apiservicesappprofilesendverificationsmspost) | **POST** /api/services/app/Profile/SendVerificationSms | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileSetpasswordPost**](doc/ProfileApi.md#apiservicesappprofilesetpasswordpost) | **POST** /api/services/app/Profile/SetPassword | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileSetuserpasswordPost**](doc/ProfileApi.md#apiservicesappprofilesetuserpasswordpost) | **POST** /api/services/app/Profile/SetUserPassword | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileUpdatecurrentuserprofilePut**](doc/ProfileApi.md#apiservicesappprofileupdatecurrentuserprofileput) | **PUT** /api/services/app/Profile/UpdateCurrentUserProfile | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileUpdategoogleauthenticatorkeyPut**](doc/ProfileApi.md#apiservicesappprofileupdategoogleauthenticatorkeyput) | **PUT** /api/services/app/Profile/UpdateGoogleAuthenticatorKey | 
-[*ProfileApi*](doc/ProfileApi.md) | [**apiServicesAppProfileVerifysmscodePost**](doc/ProfileApi.md#apiservicesappprofileverifysmscodepost) | **POST** /api/services/app/Profile/VerifySmsCode | 
-[*RecordLayoutApi*](doc/RecordLayoutApi.md) | [**apiServicesAppRecordlayoutCreatePost**](doc/RecordLayoutApi.md#apiservicesapprecordlayoutcreatepost) | **POST** /api/services/app/RecordLayout/Create | 
-[*RecordLayoutApi*](doc/RecordLayoutApi.md) | [**apiServicesAppRecordlayoutDeleteDelete**](doc/RecordLayoutApi.md#apiservicesapprecordlayoutdeletedelete) | **DELETE** /api/services/app/RecordLayout/Delete | 
-[*RecordLayoutApi*](doc/RecordLayoutApi.md) | [**apiServicesAppRecordlayoutGetlistrecordlayoutsGet**](doc/RecordLayoutApi.md#apiservicesapprecordlayoutgetlistrecordlayoutsget) | **GET** /api/services/app/RecordLayout/GetListRecordLayouts | 
-[*RecordLayoutApi*](doc/RecordLayoutApi.md) | [**apiServicesAppRecordlayoutUpdatePut**](doc/RecordLayoutApi.md#apiservicesapprecordlayoutupdateput) | **PUT** /api/services/app/RecordLayout/Update | 
-[*RoleApi*](doc/RoleApi.md) | [**apiServicesAppRoleCreateorupdaterolePost**](doc/RoleApi.md#apiservicesapprolecreateorupdaterolepost) | **POST** /api/services/app/Role/CreateOrUpdateRole | 
-[*RoleApi*](doc/RoleApi.md) | [**apiServicesAppRoleDeleteroleDelete**](doc/RoleApi.md#apiservicesapproledeleteroledelete) | **DELETE** /api/services/app/Role/DeleteRole | 
-[*RoleApi*](doc/RoleApi.md) | [**apiServicesAppRoleGetroleforeditGet**](doc/RoleApi.md#apiservicesapprolegetroleforeditget) | **GET** /api/services/app/Role/GetRoleForEdit | 
-[*RoleApi*](doc/RoleApi.md) | [**apiServicesAppRoleGetrolesGet**](doc/RoleApi.md#apiservicesapprolegetrolesget) | **GET** /api/services/app/Role/GetRoles | 
-[*SectionApi*](doc/SectionApi.md) | [**apiServicesAppSectionCreatePost**](doc/SectionApi.md#apiservicesappsectioncreatepost) | **POST** /api/services/app/Section/Create | 
-[*SectionApi*](doc/SectionApi.md) | [**apiServicesAppSectionDeleteDelete**](doc/SectionApi.md#apiservicesappsectiondeletedelete) | **DELETE** /api/services/app/Section/Delete | 
-[*SectionApi*](doc/SectionApi.md) | [**apiServicesAppSectionGetGet**](doc/SectionApi.md#apiservicesappsectiongetget) | **GET** /api/services/app/Section/Get | 
-[*SectionApi*](doc/SectionApi.md) | [**apiServicesAppSectionUpdatePut**](doc/SectionApi.md#apiservicesappsectionupdateput) | **PUT** /api/services/app/Section/Update | 
-[*SessionApi*](doc/SessionApi.md) | [**apiServicesAppSessionGetcurrentlogininformationsGet**](doc/SessionApi.md#apiservicesappsessiongetcurrentlogininformationsget) | **GET** /api/services/app/Session/GetCurrentLoginInformations | 
-[*SessionApi*](doc/SessionApi.md) | [**apiServicesAppSessionUpdateusersignintokenPut**](doc/SessionApi.md#apiservicesappsessionupdateusersignintokenput) | **PUT** /api/services/app/Session/UpdateUserSignInToken | 
-[*SsoConfigurationManagerApi*](doc/SsoConfigurationManagerApi.md) | [**apiServicesAppSsoconfigurationmanagerGetconfigurationGet**](doc/SsoConfigurationManagerApi.md#apiservicesappssoconfigurationmanagergetconfigurationget) | **GET** /api/services/app/SsoConfigurationManager/GetConfiguration | 
-[*TaskApi*](doc/TaskApi.md) | [**apiServicesAppTaskGetgroupedpagedGet**](doc/TaskApi.md#apiservicesapptaskgetgroupedpagedget) | **GET** /api/services/app/Task/GetGroupedPaged | 
-[*TaskApi*](doc/TaskApi.md) | [**apiServicesAppTaskGetpagedGet**](doc/TaskApi.md#apiservicesapptaskgetpagedget) | **GET** /api/services/app/Task/GetPaged | 
-[*TaskApi*](doc/TaskApi.md) | [**apiServicesAppTaskSetorderinsectionPost**](doc/TaskApi.md#apiservicesapptasksetorderinsectionpost) | **POST** /api/services/app/Task/SetOrderInSection | 
-[*TaskApi*](doc/TaskApi.md) | [**apiServicesAppTaskSetsectionPost**](doc/TaskApi.md#apiservicesapptasksetsectionpost) | **POST** /api/services/app/Task/SetSection | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateCreateoreditPost**](doc/TemplateApi.md#apiservicesapptemplatecreateoreditpost) | **POST** /api/services/app/Template/CreateOrEdit | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateDeleteDelete**](doc/TemplateApi.md#apiservicesapptemplatedeletedelete) | **DELETE** /api/services/app/Template/Delete | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateGetallGet**](doc/TemplateApi.md#apiservicesapptemplategetallget) | **GET** /api/services/app/Template/GetAll | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateGetallappforlookuptableGet**](doc/TemplateApi.md#apiservicesapptemplategetallappforlookuptableget) | **GET** /api/services/app/Template/GetAllAppForLookupTable | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateGetalltemplatecategoryforlookuptableGet**](doc/TemplateApi.md#apiservicesapptemplategetalltemplatecategoryforlookuptableget) | **GET** /api/services/app/Template/GetAllTemplateCategoryForLookupTable | 
-[*TemplateApi*](doc/TemplateApi.md) | [**apiServicesAppTemplateGettemplateforeditGet**](doc/TemplateApi.md#apiservicesapptemplategettemplateforeditget) | **GET** /api/services/app/Template/GetTemplateForEdit | 
-[*TemplateCategoryApi*](doc/TemplateCategoryApi.md) | [**apiServicesAppTemplatecategoryCreateoreditPost**](doc/TemplateCategoryApi.md#apiservicesapptemplatecategorycreateoreditpost) | **POST** /api/services/app/TemplateCategory/CreateOrEdit | 
-[*TemplateCategoryApi*](doc/TemplateCategoryApi.md) | [**apiServicesAppTemplatecategoryDeleteDelete**](doc/TemplateCategoryApi.md#apiservicesapptemplatecategorydeletedelete) | **DELETE** /api/services/app/TemplateCategory/Delete | 
-[*TemplateCategoryApi*](doc/TemplateCategoryApi.md) | [**apiServicesAppTemplatecategoryGetallGet**](doc/TemplateCategoryApi.md#apiservicesapptemplatecategorygetallget) | **GET** /api/services/app/TemplateCategory/GetAll | 
-[*TemplateCategoryApi*](doc/TemplateCategoryApi.md) | [**apiServicesAppTemplatecategoryGettemplatecategoryforeditGet**](doc/TemplateCategoryApi.md#apiservicesapptemplatecategorygettemplatecategoryforeditget) | **GET** /api/services/app/TemplateCategory/GetTemplateCategoryForEdit | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantChangeownerPost**](doc/TenantApi.md#apiservicesapptenantchangeownerpost) | **POST** /api/services/app/Tenant/ChangeOwner | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantCleartemplogsPost**](doc/TenantApi.md#apiservicesapptenantcleartemplogspost) | **POST** /api/services/app/Tenant/ClearTempLogs | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantClonetenantappsPost**](doc/TenantApi.md#apiservicesapptenantclonetenantappspost) | **POST** /api/services/app/Tenant/CloneTenantApps | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantCreatetenantPost**](doc/TenantApi.md#apiservicesapptenantcreatetenantpost) | **POST** /api/services/app/Tenant/CreateTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantDeletetenantDelete**](doc/TenantApi.md#apiservicesapptenantdeletetenantdelete) | **DELETE** /api/services/app/Tenant/DeleteTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantExecuteautomationhistorymaintenancejobPost**](doc/TenantApi.md#apiservicesapptenantexecuteautomationhistorymaintenancejobpost) | **POST** /api/services/app/Tenant/ExecuteAutomationHistoryMaintenanceJob | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantExecuteautomationhistorymaintenanceworkerPost**](doc/TenantApi.md#apiservicesapptenantexecuteautomationhistorymaintenanceworkerpost) | **POST** /api/services/app/Tenant/ExecuteAutomationHistoryMaintenanceWorker | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantExecuteautomationjobmanuallyPost**](doc/TenantApi.md#apiservicesapptenantexecuteautomationjobmanuallypost) | **POST** /api/services/app/Tenant/ExecuteAutomationJobManually | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantExecuteautomationworkerPost**](doc/TenantApi.md#apiservicesapptenantexecuteautomationworkerpost) | **POST** /api/services/app/Tenant/ExecuteAutomationWorker | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantExecutetimetriggerautomationjobPost**](doc/TenantApi.md#apiservicesapptenantexecutetimetriggerautomationjobpost) | **POST** /api/services/app/Tenant/ExecuteTimeTriggerAutomationJob | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetairequesthistoryGet**](doc/TenantApi.md#apiservicesapptenantgetairequesthistoryget) | **GET** /api/services/app/Tenant/GetAIRequestHistory | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetaisettingsGet**](doc/TenantApi.md#apiservicesapptenantgetaisettingsget) | **GET** /api/services/app/Tenant/GetAISettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetallsettingsGet**](doc/TenantApi.md#apiservicesapptenantgetallsettingsget) | **GET** /api/services/app/Tenant/GetAllSettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetauditlogsGet**](doc/TenantApi.md#apiservicesapptenantgetauditlogsget) | **GET** /api/services/app/Tenant/GetAuditLogs | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetautomationhistoryPost**](doc/TenantApi.md#apiservicesapptenantgetautomationhistorypost) | **POST** /api/services/app/Tenant/GetAutomationHistory | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetcallapiinautomationsettingsGet**](doc/TenantApi.md#apiservicesapptenantgetcallapiinautomationsettingsget) | **GET** /api/services/app/Tenant/GetCallApiInAutomationSettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetjobloghistoryGet**](doc/TenantApi.md#apiservicesapptenantgetjobloghistoryget) | **GET** /api/services/app/Tenant/GetJobLogHistory | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetjobloghistorybytypeGet**](doc/TenantApi.md#apiservicesapptenantgetjobloghistorybytypeget) | **GET** /api/services/app/Tenant/GetJobLogHistoryByType | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetjoblogstatisticsGet**](doc/TenantApi.md#apiservicesapptenantgetjoblogstatisticsget) | **GET** /api/services/app/Tenant/GetJobLogStatistics | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetkeyvaluemapGet**](doc/TenantApi.md#apiservicesapptenantgetkeyvaluemapget) | **GET** /api/services/app/Tenant/GetKeyValueMap | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetpasswordexpirationinfoforuserGet**](doc/TenantApi.md#apiservicesapptenantgetpasswordexpirationinfoforuserget) | **GET** /api/services/app/Tenant/GetPasswordExpirationInfoForUser | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetsettingforapplicationGet**](doc/TenantApi.md#apiservicesapptenantgetsettingforapplicationget) | **GET** /api/services/app/Tenant/GetSettingForApplication | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetsettingfortenantGet**](doc/TenantApi.md#apiservicesapptenantgetsettingfortenantget) | **GET** /api/services/app/Tenant/GetSettingForTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetsettingforuserGet**](doc/TenantApi.md#apiservicesapptenantgetsettingforuserget) | **GET** /api/services/app/Tenant/GetSettingForUser | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetssosettingsGet**](doc/TenantApi.md#apiservicesapptenantgetssosettingsget) | **GET** /api/services/app/Tenant/GetSSoSettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettemplogsGet**](doc/TenantApi.md#apiservicesapptenantgettemplogsget) | **GET** /api/services/app/Tenant/GetTempLogs | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantappsGet**](doc/TenantApi.md#apiservicesapptenantgettenantappsget) | **GET** /api/services/app/Tenant/GetTenantApps | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantautomationsGet**](doc/TenantApi.md#apiservicesapptenantgettenantautomationsget) | **GET** /api/services/app/Tenant/GetTenantAutomations | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantclaimsGet**](doc/TenantApi.md#apiservicesapptenantgettenantclaimsget) | **GET** /api/services/app/Tenant/GetTenantClaims | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantfeaturesforeditGet**](doc/TenantApi.md#apiservicesapptenantgettenantfeaturesforeditget) | **GET** /api/services/app/Tenant/GetTenantFeaturesForEdit | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantforeditGet**](doc/TenantApi.md#apiservicesapptenantgettenantforeditget) | **GET** /api/services/app/Tenant/GetTenantForEdit | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantpublicinfoGet**](doc/TenantApi.md#apiservicesapptenantgettenantpublicinfoget) | **GET** /api/services/app/Tenant/GetTenantPublicInfo | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantsGet**](doc/TenantApi.md#apiservicesapptenantgettenantsget) | **GET** /api/services/app/Tenant/GetTenants | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGettenantsubscriptioninfoGet**](doc/TenantApi.md#apiservicesapptenantgettenantsubscriptioninfoget) | **GET** /api/services/app/Tenant/GetTenantSubscriptionInfo | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantGetworkerloghistoryGet**](doc/TenantApi.md#apiservicesapptenantgetworkerloghistoryget) | **GET** /api/services/app/Tenant/GetWorkerLogHistory | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantResettenantspecificfeaturesPost**](doc/TenantApi.md#apiservicesapptenantresettenantspecificfeaturespost) | **POST** /api/services/app/Tenant/ResetTenantSpecificFeatures | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantTrygeterrorauditlogsPost**](doc/TenantApi.md#apiservicesapptenanttrygeterrorauditlogspost) | **POST** /api/services/app/Tenant/TryGetErrorAuditLogs | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUnlocktenantadminPost**](doc/TenantApi.md#apiservicesapptenantunlocktenantadminpost) | **POST** /api/services/app/Tenant/UnlockTenantAdmin | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdateaisettingsPut**](doc/TenantApi.md#apiservicesapptenantupdateaisettingsput) | **PUT** /api/services/app/Tenant/UpdateAISettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatecallapiinautomationsettingsPut**](doc/TenantApi.md#apiservicesapptenantupdatecallapiinautomationsettingsput) | **PUT** /api/services/app/Tenant/UpdateCallApiInAutomationSettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatepasswordexpirationfortenantPut**](doc/TenantApi.md#apiservicesapptenantupdatepasswordexpirationfortenantput) | **PUT** /api/services/app/Tenant/UpdatePasswordExpirationForTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatepasswordexpirationinfoforuserPut**](doc/TenantApi.md#apiservicesapptenantupdatepasswordexpirationinfoforuserput) | **PUT** /api/services/app/Tenant/UpdatePasswordExpirationInfoForUser | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatesettingforapplicationPut**](doc/TenantApi.md#apiservicesapptenantupdatesettingforapplicationput) | **PUT** /api/services/app/Tenant/UpdateSettingForApplication | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatesettingfortenantPut**](doc/TenantApi.md#apiservicesapptenantupdatesettingfortenantput) | **PUT** /api/services/app/Tenant/UpdateSettingForTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatesettingforuserPut**](doc/TenantApi.md#apiservicesapptenantupdatesettingforuserput) | **PUT** /api/services/app/Tenant/UpdateSettingForUser | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatessosettingsPost**](doc/TenantApi.md#apiservicesapptenantupdatessosettingspost) | **POST** /api/services/app/Tenant/UpdateSSoSettings | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatetenantPut**](doc/TenantApi.md#apiservicesapptenantupdatetenantput) | **PUT** /api/services/app/Tenant/UpdateTenant | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatetenantfeaturesPut**](doc/TenantApi.md#apiservicesapptenantupdatetenantfeaturesput) | **PUT** /api/services/app/Tenant/UpdateTenantFeatures | 
-[*TenantApi*](doc/TenantApi.md) | [**apiServicesAppTenantUpdatetenantnamesPut**](doc/TenantApi.md#apiservicesapptenantupdatetenantnamesput) | **PUT** /api/services/app/Tenant/UpdateTenantNames | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetdailysalesGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetdailysalesget) | **GET** /api/services/app/TenantDashboard/GetDailySales | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetdashboarddataGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetdashboarddataget) | **GET** /api/services/app/TenantDashboard/GetDashboardData | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetgeneralstatsGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetgeneralstatsget) | **GET** /api/services/app/TenantDashboard/GetGeneralStats | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetmemberactivityGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetmemberactivityget) | **GET** /api/services/app/TenantDashboard/GetMemberActivity | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetprofitshareGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetprofitshareget) | **GET** /api/services/app/TenantDashboard/GetProfitShare | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetregionalstatsGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetregionalstatsget) | **GET** /api/services/app/TenantDashboard/GetRegionalStats | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGetsalessummaryGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgetsalessummaryget) | **GET** /api/services/app/TenantDashboard/GetSalesSummary | 
-[*TenantDashboardApi*](doc/TenantDashboardApi.md) | [**apiServicesAppTenantdashboardGettopstatsGet**](doc/TenantDashboardApi.md#apiservicesapptenantdashboardgettopstatsget) | **GET** /api/services/app/TenantDashboard/GetTopStats | 
-[*TenantRegistrationApi*](doc/TenantRegistrationApi.md) | [**apiServicesAppTenantregistrationGeteditionsforselectGet**](doc/TenantRegistrationApi.md#apiservicesapptenantregistrationgeteditionsforselectget) | **GET** /api/services/app/TenantRegistration/GetEditionsForSelect | 
-[*TenantRegistrationApi*](doc/TenantRegistrationApi.md) | [**apiServicesAppTenantregistrationRegistertenantPost**](doc/TenantRegistrationApi.md#apiservicesapptenantregistrationregistertenantpost) | **POST** /api/services/app/TenantRegistration/RegisterTenant | 
-[*TenantRegistrationApi*](doc/TenantRegistrationApi.md) | [**apiServicesAppTenantregistrationUpgrademobilePost**](doc/TenantRegistrationApi.md#apiservicesapptenantregistrationupgrademobilepost) | **POST** /api/services/app/TenantRegistration/UpgradeMobile | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsClearlogoPost**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsclearlogopost) | **POST** /api/services/app/TenantSettings/ClearLogo | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsClearwatermarkPost**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsclearwatermarkpost) | **POST** /api/services/app/TenantSettings/ClearWatermark | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGetcustomsettingsvalueGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgetcustomsettingsvalueget) | **GET** /api/services/app/TenantSettings/GetCustomSettingsValue | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGetcustomsettingvalueGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgetcustomsettingvalueget) | **GET** /api/services/app/TenantSettings/GetCustomSettingValue | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGetdatetimesettingsGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgetdatetimesettingsget) | **GET** /api/services/app/TenantSettings/GetDateTimeSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGetmaxlinkedlistallowedsettingsGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgetmaxlinkedlistallowedsettingsget) | **GET** /api/services/app/TenantSettings/GetMaxLinkedListAllowedSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGettimezonesettingsGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgettimezonesettingsget) | **GET** /api/services/app/TenantSettings/GetTimezoneSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsGettwofactorloginsettingsGet**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsgettwofactorloginsettingsget) | **GET** /api/services/app/TenantSettings/GetTwoFactorLoginSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsSetcustomsettingvaluePost**](doc/TenantSettingsApi.md#apiservicesapptenantsettingssetcustomsettingvaluepost) | **POST** /api/services/app/TenantSettings/SetCustomSettingValue | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsUpdatedatetimesettingsPut**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsupdatedatetimesettingsput) | **PUT** /api/services/app/TenantSettings/UpdateDateTimeSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsUpdatemaxlinkedlistallowedsettingsPut**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsupdatemaxlinkedlistallowedsettingsput) | **PUT** /api/services/app/TenantSettings/UpdateMaxLinkedListAllowedSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsUpdatetimezonesettingsPut**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsupdatetimezonesettingsput) | **PUT** /api/services/app/TenantSettings/UpdateTimezoneSettings | 
-[*TenantSettingsApi*](doc/TenantSettingsApi.md) | [**apiServicesAppTenantsettingsUpdatetwofactorloginsettingsPut**](doc/TenantSettingsApi.md#apiservicesapptenantsettingsupdatetwofactorloginsettingsput) | **PUT** /api/services/app/TenantSettings/UpdateTwoFactorLoginSettings | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionAttachtenantpaymentmethodPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionattachtenantpaymentmethodpost) | **POST** /api/services/app/TenantSubscription/AttachTenantPaymentMethod | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionCanceltenantsubscriptionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptioncanceltenantsubscriptionpost) | **POST** /api/services/app/TenantSubscription/CancelTenantSubscription | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionCantenanthastrialeditionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptioncantenanthastrialeditionpost) | **POST** /api/services/app/TenantSubscription/CanTenantHasTrialEdition | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionDetachtenantpaymentmethodPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiondetachtenantpaymentmethodpost) | **POST** /api/services/app/TenantSubscription/DetachTenantPaymentMethod | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionDisablerecurringpaymentsPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiondisablerecurringpaymentspost) | **POST** /api/services/app/TenantSubscription/DisableRecurringPayments | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionDowngradetenantsubscriptionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiondowngradetenantsubscriptionpost) | **POST** /api/services/app/TenantSubscription/DowngradeTenantSubscription | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionEnablerecurringpaymentsPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionenablerecurringpaymentspost) | **POST** /api/services/app/TenantSubscription/EnableRecurringPayments | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionExtendtrialperiodPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionextendtrialperiodpost) | **POST** /api/services/app/TenantSubscription/ExtendTrialPeriod | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGetcouponinfoGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongetcouponinfoget) | **GET** /api/services/app/TenantSubscription/GetCouponInfo | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGetgatewayconfigGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongetgatewayconfigget) | **GET** /api/services/app/TenantSubscription/GetGatewayConfig | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGetsubscriptiondetailsGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongetsubscriptiondetailsget) | **GET** /api/services/app/TenantSubscription/GetSubscriptionDetails | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGettenantcurrentperiodinfoGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongettenantcurrentperiodinfoget) | **GET** /api/services/app/TenantSubscription/GetTenantCurrentPeriodInfo | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGettenantcustomerbillinginfoGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongettenantcustomerbillinginfoget) | **GET** /api/services/app/TenantSubscription/GetTenantCustomerBillingInfo | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGettenantinvoicesGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongettenantinvoicesget) | **GET** /api/services/app/TenantSubscription/GetTenantInvoices | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGettenantpaymentmethodsGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongettenantpaymentmethodsget) | **GET** /api/services/app/TenantSubscription/GetTenantPaymentMethods | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionGettenantsubscriptioninfoGet**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptiongettenantsubscriptioninfoget) | **GET** /api/services/app/TenantSubscription/GetTenantSubscriptionInfo | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionMovetenantfromfreeeditiontotrialeditionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionmovetenantfromfreeeditiontotrialeditionpost) | **POST** /api/services/app/TenantSubscription/MoveTenantFromFreeEditionToTrialEdition | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionMovetenanttofreeeditionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionmovetenanttofreeeditionpost) | **POST** /api/services/app/TenantSubscription/MoveTenantToFreeEdition | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionMovetenanttotrialeditionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionmovetenanttotrialeditionpost) | **POST** /api/services/app/TenantSubscription/MoveTenantToTrialEdition | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionReactivatetenantsubscriptionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionreactivatetenantsubscriptionpost) | **POST** /api/services/app/TenantSubscription/ReactivateTenantSubscription | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionSettenantpaymentmethodasdefaultPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionsettenantpaymentmethodasdefaultpost) | **POST** /api/services/app/TenantSubscription/SetTenantPaymentMethodAsDefault | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionSubscribetenantPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionsubscribetenantpost) | **POST** /api/services/app/TenantSubscription/SubscribeTenant | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionSubscribetenantaddonPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionsubscribetenantaddonpost) | **POST** /api/services/app/TenantSubscription/SubscribeTenantAddon | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionUpdatetenantcustomerbillinginfoPut**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionupdatetenantcustomerbillinginfoput) | **PUT** /api/services/app/TenantSubscription/UpdateTenantCustomerBillingInfo | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionUpdatetenantpaymentmethodPut**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionupdatetenantpaymentmethodput) | **PUT** /api/services/app/TenantSubscription/UpdateTenantPaymentMethod | 
-[*TenantSubscriptionApi*](doc/TenantSubscriptionApi.md) | [**apiServicesAppTenantsubscriptionUpgradetenantsubscriptionPost**](doc/TenantSubscriptionApi.md#apiservicesapptenantsubscriptionupgradetenantsubscriptionpost) | **POST** /api/services/app/TenantSubscription/UpgradeTenantSubscription | 
-[*TimingApi*](doc/TimingApi.md) | [**apiServicesAppTimingGettimezonecomboboxitemsGet**](doc/TimingApi.md#apiservicesapptiminggettimezonecomboboxitemsget) | **GET** /api/services/app/Timing/GetTimezoneComboboxItems | 
-[*TimingApi*](doc/TimingApi.md) | [**apiServicesAppTimingGettimezonesGet**](doc/TimingApi.md#apiservicesapptiminggettimezonesget) | **GET** /api/services/app/Timing/GetTimezones | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthAuthenticatePost**](doc/TokenAuthApi.md#apitokenauthauthenticatepost) | **POST** /api/TokenAuth/Authenticate | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthAuthenticatemobilePost**](doc/TokenAuthApi.md#apitokenauthauthenticatemobilepost) | **POST** /api/TokenAuth/AuthenticateMobile | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthDelegatedimpersonatedauthenticatePost**](doc/TokenAuthApi.md#apitokenauthdelegatedimpersonatedauthenticatepost) | **POST** /api/TokenAuth/DelegatedImpersonatedAuthenticate | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthExternalauthenticatePost**](doc/TokenAuthApi.md#apitokenauthexternalauthenticatepost) | **POST** /api/TokenAuth/ExternalAuthenticate | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthExternalauthenticatemobilePost**](doc/TokenAuthApi.md#apitokenauthexternalauthenticatemobilepost) | **POST** /api/TokenAuth/ExternalAuthenticateMobile | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthGetexternalauthenticationprovidersGet**](doc/TokenAuthApi.md#apitokenauthgetexternalauthenticationprovidersget) | **GET** /api/TokenAuth/GetExternalAuthenticationProviders | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthGetexternaluserinfoGet**](doc/TokenAuthApi.md#apitokenauthgetexternaluserinfoget) | **GET** /api/TokenAuth/GetExternalUserInfo | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthGetuserconnectedprovidersGet**](doc/TokenAuthApi.md#apitokenauthgetuserconnectedprovidersget) | **GET** /api/TokenAuth/GetUserConnectedProviders | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthImpersonatedauthenticatePost**](doc/TokenAuthApi.md#apitokenauthimpersonatedauthenticatepost) | **POST** /api/TokenAuth/ImpersonatedAuthenticate | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthLinkedaccountauthenticatePost**](doc/TokenAuthApi.md#apitokenauthlinkedaccountauthenticatepost) | **POST** /api/TokenAuth/LinkedAccountAuthenticate | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthLogoutGet**](doc/TokenAuthApi.md#apitokenauthlogoutget) | **GET** /api/TokenAuth/LogOut | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthRefreshtokenPost**](doc/TokenAuthApi.md#apitokenauthrefreshtokenpost) | **POST** /api/TokenAuth/RefreshToken | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthRefreshtokenmobilePost**](doc/TokenAuthApi.md#apitokenauthrefreshtokenmobilepost) | **POST** /api/TokenAuth/RefreshTokenMobile | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthSendtwofactorauthcodePost**](doc/TokenAuthApi.md#apitokenauthsendtwofactorauthcodepost) | **POST** /api/TokenAuth/SendTwoFactorAuthCode | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthSsoauthenticationPost**](doc/TokenAuthApi.md#apitokenauthssoauthenticationpost) | **POST** /api/TokenAuth/SsoAuthentication | 
-[*TokenAuthApi*](doc/TokenAuthApi.md) | [**apiTokenauthTestnotificationGet**](doc/TokenAuthApi.md#apitokenauthtestnotificationget) | **GET** /api/TokenAuth/TestNotification | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserAcceptuserinvitationPost**](doc/UserApi.md#apiservicesappuseracceptuserinvitationpost) | **POST** /api/services/app/User/AcceptUserInvitation | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserAcceptuserinvitationfromexternalloginPost**](doc/UserApi.md#apiservicesappuseracceptuserinvitationfromexternalloginpost) | **POST** /api/services/app/User/AcceptUserInvitationFromExternalLogin | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserChangeusertypePost**](doc/UserApi.md#apiservicesappuserchangeusertypepost) | **POST** /api/services/app/User/ChangeUserType | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserCreateorupdateuserPost**](doc/UserApi.md#apiservicesappusercreateorupdateuserpost) | **POST** /api/services/app/User/CreateOrUpdateUser | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserDeleteuserinvitationDelete**](doc/UserApi.md#apiservicesappuserdeleteuserinvitationdelete) | **DELETE** /api/services/app/User/DeleteUserInvitation | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetalluserinvitationsGet**](doc/UserApi.md#apiservicesappusergetalluserinvitationsget) | **GET** /api/services/app/User/GetAllUserInvitations | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetallusersGet**](doc/UserApi.md#apiservicesappusergetallusersget) | **GET** /api/services/app/User/GetAllUsers | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetalluserswithinvitedGet**](doc/UserApi.md#apiservicesappusergetalluserswithinvitedget) | **GET** /api/services/app/User/GetAllUsersWithInvited | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetcurrentusersactiveGet**](doc/UserApi.md#apiservicesappusergetcurrentusersactiveget) | **GET** /api/services/app/User/GetCurrentUsersActive | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetinvitationlinkGet**](doc/UserApi.md#apiservicesappusergetinvitationlinkget) | **GET** /api/services/app/User/GetInvitationLink | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetuserforeditGet**](doc/UserApi.md#apiservicesappusergetuserforeditget) | **GET** /api/services/app/User/GetUserForEdit | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetuserinvitationGet**](doc/UserApi.md#apiservicesappusergetuserinvitationget) | **GET** /api/services/app/User/GetUserInvitation | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetusersGet**](doc/UserApi.md#apiservicesappusergetusersget) | **GET** /api/services/app/User/GetUsers | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetuserstoexcelGet**](doc/UserApi.md#apiservicesappusergetuserstoexcelget) | **GET** /api/services/app/User/GetUsersToExcel | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserGetvalueforuseridentityflagGet**](doc/UserApi.md#apiservicesappusergetvalueforuseridentityflagget) | **GET** /api/services/app/User/GetValueForUserIdentityFlag | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserInviteusersPost**](doc/UserApi.md#apiservicesappuserinviteuserspost) | **POST** /api/services/app/User/InviteUsers | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserResenduserinvitationPost**](doc/UserApi.md#apiservicesappuserresenduserinvitationpost) | **POST** /api/services/app/User/ResendUserInvitation | 
-[*UserApi*](doc/UserApi.md) | [**apiServicesAppUserUnlockuserPost**](doc/UserApi.md#apiservicesappuserunlockuserpost) | **POST** /api/services/app/User/UnlockUser | 
-[*UserDelegationApi*](doc/UserDelegationApi.md) | [**apiServicesAppUserdelegationDelegatenewuserPost**](doc/UserDelegationApi.md#apiservicesappuserdelegationdelegatenewuserpost) | **POST** /api/services/app/UserDelegation/DelegateNewUser | 
-[*UserDelegationApi*](doc/UserDelegationApi.md) | [**apiServicesAppUserdelegationGetactiveuserdelegationsGet**](doc/UserDelegationApi.md#apiservicesappuserdelegationgetactiveuserdelegationsget) | **GET** /api/services/app/UserDelegation/GetActiveUserDelegations | 
-[*UserDelegationApi*](doc/UserDelegationApi.md) | [**apiServicesAppUserdelegationGetdelegatedusersGet**](doc/UserDelegationApi.md#apiservicesappuserdelegationgetdelegatedusersget) | **GET** /api/services/app/UserDelegation/GetDelegatedUsers | 
-[*UserDelegationApi*](doc/UserDelegationApi.md) | [**apiServicesAppUserdelegationRemovedelegationDelete**](doc/UserDelegationApi.md#apiservicesappuserdelegationremovedelegationdelete) | **DELETE** /api/services/app/UserDelegation/RemoveDelegation | 
-[*UserLinkApi*](doc/UserLinkApi.md) | [**apiServicesAppUserlinkGetlinkedusersGet**](doc/UserLinkApi.md#apiservicesappuserlinkgetlinkedusersget) | **GET** /api/services/app/UserLink/GetLinkedUsers | 
-[*UserLinkApi*](doc/UserLinkApi.md) | [**apiServicesAppUserlinkGetrecentlyusedlinkedusersGet**](doc/UserLinkApi.md#apiservicesappuserlinkgetrecentlyusedlinkedusersget) | **GET** /api/services/app/UserLink/GetRecentlyUsedLinkedUsers | 
-[*UserLinkApi*](doc/UserLinkApi.md) | [**apiServicesAppUserlinkLinktouserPost**](doc/UserLinkApi.md#apiservicesappuserlinklinktouserpost) | **POST** /api/services/app/UserLink/LinkToUser | 
-[*UserLinkApi*](doc/UserLinkApi.md) | [**apiServicesAppUserlinkUnlinkuserPost**](doc/UserLinkApi.md#apiservicesappuserlinkunlinkuserpost) | **POST** /api/services/app/UserLink/UnlinkUser | 
-[*UserLoginApi*](doc/UserLoginApi.md) | [**apiServicesAppUserloginGetrecentuserloginattemptsGet**](doc/UserLoginApi.md#apiservicesappuserlogingetrecentuserloginattemptsget) | **GET** /api/services/app/UserLogin/GetRecentUserLoginAttempts | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsAddfavoritetoallusersPost**](doc/UserSettingsApi.md#apiservicesappusersettingsaddfavoritetoalluserspost) | **POST** /api/services/app/UserSettings/AddFavoriteToAllUsers | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsGetcustomsettingsvalueGet**](doc/UserSettingsApi.md#apiservicesappusersettingsgetcustomsettingsvalueget) | **GET** /api/services/app/UserSettings/GetCustomSettingsValue | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsGetcustomsettingvalueGet**](doc/UserSettingsApi.md#apiservicesappusersettingsgetcustomsettingvalueget) | **GET** /api/services/app/UserSettings/GetCustomSettingValue | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsGetdatetimesettingsGet**](doc/UserSettingsApi.md#apiservicesappusersettingsgetdatetimesettingsget) | **GET** /api/services/app/UserSettings/GetDateTimeSettings | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsGetfavoritelinksGet**](doc/UserSettingsApi.md#apiservicesappusersettingsgetfavoritelinksget) | **GET** /api/services/app/UserSettings/GetFavoriteLinks | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsGettwofactorloginsettingsGet**](doc/UserSettingsApi.md#apiservicesappusersettingsgettwofactorloginsettingsget) | **GET** /api/services/app/UserSettings/GetTwoFactorLoginSettings | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsSetcustomsettingvaluePost**](doc/UserSettingsApi.md#apiservicesappusersettingssetcustomsettingvaluepost) | **POST** /api/services/app/UserSettings/SetCustomSettingValue | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsUpdatedatetimesettingsPut**](doc/UserSettingsApi.md#apiservicesappusersettingsupdatedatetimesettingsput) | **PUT** /api/services/app/UserSettings/UpdateDateTimeSettings | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsUpdatefavoritelinksPut**](doc/UserSettingsApi.md#apiservicesappusersettingsupdatefavoritelinksput) | **PUT** /api/services/app/UserSettings/UpdateFavoriteLinks | 
-[*UserSettingsApi*](doc/UserSettingsApi.md) | [**apiServicesAppUsersettingsUpdatetwofactorloginsettingsPut**](doc/UserSettingsApi.md#apiservicesappusersettingsupdatetwofactorloginsettingsput) | **PUT** /api/services/app/UserSettings/UpdateTwoFactorLoginSettings | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsChangeorderPost**](doc/ViewsApi.md#apiservicesappviewschangeorderpost) | **POST** /api/services/app/Views/ChangeOrder | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsCreatePost**](doc/ViewsApi.md#apiservicesappviewscreatepost) | **POST** /api/services/app/Views/Create | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsDeleteDelete**](doc/ViewsApi.md#apiservicesappviewsdeletedelete) | **DELETE** /api/services/app/Views/Delete | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsGetGet**](doc/ViewsApi.md#apiservicesappviewsgetget) | **GET** /api/services/app/Views/Get | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsGetallGet**](doc/ViewsApi.md#apiservicesappviewsgetallget) | **GET** /api/services/app/Views/GetAll | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsResetactiveviewsPost**](doc/ViewsApi.md#apiservicesappviewsresetactiveviewspost) | **POST** /api/services/app/Views/ResetActiveViews | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsSetdefaultPost**](doc/ViewsApi.md#apiservicesappviewssetdefaultpost) | **POST** /api/services/app/Views/SetDefault | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsSetviewactivePost**](doc/ViewsApi.md#apiservicesappviewssetviewactivepost) | **POST** /api/services/app/Views/SetViewActive | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsSetviewinactivePost**](doc/ViewsApi.md#apiservicesappviewssetviewinactivepost) | **POST** /api/services/app/Views/SetViewInactive | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsUpdatePut**](doc/ViewsApi.md#apiservicesappviewsupdateput) | **PUT** /api/services/app/Views/Update | 
-[*ViewsApi*](doc/ViewsApi.md) | [**apiServicesAppViewsUpdatestatePut**](doc/ViewsApi.md#apiservicesappviewsupdatestateput) | **PUT** /api/services/app/Views/UpdateState | 
-[*WebLogApi*](doc/WebLogApi.md) | [**apiServicesAppWeblogDownloadweblogsPost**](doc/WebLogApi.md#apiservicesappweblogdownloadweblogspost) | **POST** /api/services/app/WebLog/DownloadWebLogs | 
-[*WebLogApi*](doc/WebLogApi.md) | [**apiServicesAppWeblogGetlatestweblogsGet**](doc/WebLogApi.md#apiservicesappwebloggetlatestweblogsget) | **GET** /api/services/app/WebLog/GetLatestWebLogs | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionActivatewebhooksubscriptionPost**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptionactivatewebhooksubscriptionpost) | **POST** /api/services/app/WebhookSubscription/ActivateWebhookSubscription | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionAddsubscriptionPost**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptionaddsubscriptionpost) | **POST** /api/services/app/WebhookSubscription/AddSubscription | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionDeletesubscriptionDelete**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptiondeletesubscriptiondelete) | **DELETE** /api/services/app/WebhookSubscription/DeleteSubscription | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionGetallsubscriptionsGet**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptiongetallsubscriptionsget) | **GET** /api/services/app/WebhookSubscription/GetAllSubscriptions | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionGetsubscriptionGet**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptiongetsubscriptionget) | **GET** /api/services/app/WebhookSubscription/GetSubscription | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionIssubscribedPost**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptionissubscribedpost) | **POST** /api/services/app/WebhookSubscription/IsSubscribed | 
-[*WebhookSubscriptionApi*](doc/WebhookSubscriptionApi.md) | [**apiServicesAppWebhooksubscriptionUpdatesubscriptionPut**](doc/WebhookSubscriptionApi.md#apiservicesappwebhooksubscriptionupdatesubscriptionput) | **PUT** /api/services/app/WebhookSubscription/UpdateSubscription | 
-[*ZapierDataApi*](doc/ZapierDataApi.md) | [**apiServicesAppZapierdataAllPost**](doc/ZapierDataApi.md#apiservicesappzapierdataallpost) | **POST** /api/services/app/ZapierData/All | 
-[*ZapierDataApi*](doc/ZapierDataApi.md) | [**apiServicesAppZapierdataGetGet**](doc/ZapierDataApi.md#apiservicesappzapierdatagetget) | **GET** /api/services/app/ZapierData/Get | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthAdminUsersUserIdStatusPatch**](doc/AuthApi.md#apiauthadminusersuseridstatuspatch) | **PATCH** /api/Auth/admin/users/{userId}/status | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthChangeEmailConfirmPost**](doc/AuthApi.md#apiauthchangeemailconfirmpost) | **POST** /api/Auth/change-email-confirm | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthChangeEmailRequestPost**](doc/AuthApi.md#apiauthchangeemailrequestpost) | **POST** /api/Auth/change-email-request | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthChangePasswordPost**](doc/AuthApi.md#apiauthchangepasswordpost) | **POST** /api/Auth/change-password | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthConfirmEmailPost**](doc/AuthApi.md#apiauthconfirmemailpost) | **POST** /api/Auth/confirm-email | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthDeleteAccountPost**](doc/AuthApi.md#apiauthdeleteaccountpost) | **POST** /api/Auth/delete-account | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthForgotPasswordPost**](doc/AuthApi.md#apiauthforgotpasswordpost) | **POST** /api/Auth/forgot-password | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthLoginPost**](doc/AuthApi.md#apiauthloginpost) | **POST** /api/Auth/login | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthLogoutPost**](doc/AuthApi.md#apiauthlogoutpost) | **POST** /api/Auth/logout | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthMeGet**](doc/AuthApi.md#apiauthmeget) | **GET** /api/Auth/me | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthRefreshPost**](doc/AuthApi.md#apiauthrefreshpost) | **POST** /api/Auth/refresh | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthRegisterPost**](doc/AuthApi.md#apiauthregisterpost) | **POST** /api/Auth/register | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthResendConfirmationPost**](doc/AuthApi.md#apiauthresendconfirmationpost) | **POST** /api/Auth/resend-confirmation | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthResetPasswordPost**](doc/AuthApi.md#apiauthresetpasswordpost) | **POST** /api/Auth/reset-password | 
+[*AuthApi*](doc/AuthApi.md) | [**apiAuthValidateTokenPost**](doc/AuthApi.md#apiauthvalidatetokenpost) | **POST** /api/Auth/validate-token | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersAddressesAddressIdDelete**](doc/CustomersApi.md#apicustomersaddressesaddressiddelete) | **DELETE** /api/Customers/addresses/{addressId} | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersAddressesAddressIdPut**](doc/CustomersApi.md#apicustomersaddressesaddressidput) | **PUT** /api/Customers/addresses/{addressId} | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersAddressesGet**](doc/CustomersApi.md#apicustomersaddressesget) | **GET** /api/Customers/addresses | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersAddressesPost**](doc/CustomersApi.md#apicustomersaddressespost) | **POST** /api/Customers/addresses | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersLoyaltyGet**](doc/CustomersApi.md#apicustomersloyaltyget) | **GET** /api/Customers/loyalty | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersProfileGet**](doc/CustomersApi.md#apicustomersprofileget) | **GET** /api/Customers/profile | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersProfileImagePost**](doc/CustomersApi.md#apicustomersprofileimagepost) | **POST** /api/Customers/profile/image | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersProfilePost**](doc/CustomersApi.md#apicustomersprofilepost) | **POST** /api/Customers/profile | 
+[*CustomersApi*](doc/CustomersApi.md) | [**apiCustomersProfilePut**](doc/CustomersApi.md#apicustomersprofileput) | **PUT** /api/Customers/profile | 
+[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryAdjustPost**](doc/InventoryApi.md#apiinventoryadjustpost) | **POST** /api/inventory/adjust | 
+[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryLowStockGet**](doc/InventoryApi.md#apiinventorylowstockget) | **GET** /api/inventory/low-stock | 
+[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryReportGet**](doc/InventoryApi.md#apiinventoryreportget) | **GET** /api/inventory/report | 
+[*InventoryApi*](doc/InventoryApi.md) | [**apiInventoryRestockPost**](doc/InventoryApi.md#apiinventoryrestockpost) | **POST** /api/inventory/restock | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuCategoriesCategoryIdImagePost**](doc/MenuApi.md#apimenucategoriescategoryidimagepost) | **POST** /api/menu/categories/{categoryId}/image | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuCategoriesGet**](doc/MenuApi.md#apimenucategoriesget) | **GET** /api/menu/categories | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuCategoriesPost**](doc/MenuApi.md#apimenucategoriespost) | **POST** /api/menu/categories | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuFeaturedGet**](doc/MenuApi.md#apimenufeaturedget) | **GET** /api/menu/featured | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsGet**](doc/MenuApi.md#apimenuitemsget) | **GET** /api/menu/items | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsIdDelete**](doc/MenuApi.md#apimenuitemsiddelete) | **DELETE** /api/menu/items/{id} | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsIdGet**](doc/MenuApi.md#apimenuitemsidget) | **GET** /api/menu/items/{id} | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsIdPut**](doc/MenuApi.md#apimenuitemsidput) | **PUT** /api/menu/items/{id} | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsItemIdImagePost**](doc/MenuApi.md#apimenuitemsitemidimagepost) | **POST** /api/menu/items/{itemId}/image | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsItemIdOptionGroupsPost**](doc/MenuApi.md#apimenuitemsitemidoptiongroupspost) | **POST** /api/menu/items/{itemId}/option-groups | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuItemsPost**](doc/MenuApi.md#apimenuitemspost) | **POST** /api/menu/items | 
+[*MenuApi*](doc/MenuApi.md) | [**apiMenuOptionGroupsGroupIdOptionsPost**](doc/MenuApi.md#apimenuoptiongroupsgroupidoptionspost) | **POST** /api/menu/option-groups/{groupId}/options | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersActiveGet**](doc/OrdersApi.md#apiordersactiveget) | **GET** /api/orders/active | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersHistoryGet**](doc/OrdersApi.md#apiordershistoryget) | **GET** /api/orders/history | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersIdAssignDriverPost**](doc/OrdersApi.md#apiordersidassigndriverpost) | **POST** /api/orders/{id}/assign-driver | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersIdCancelPost**](doc/OrdersApi.md#apiordersidcancelpost) | **POST** /api/orders/{id}/cancel | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersIdGet**](doc/OrdersApi.md#apiordersidget) | **GET** /api/orders/{id} | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersIdNotesPost**](doc/OrdersApi.md#apiordersidnotespost) | **POST** /api/orders/{id}/notes | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersIdStatusPut**](doc/OrdersApi.md#apiordersidstatusput) | **PUT** /api/orders/{id}/status | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersMyGet**](doc/OrdersApi.md#apiordersmyget) | **GET** /api/orders/my | 
+[*OrdersApi*](doc/OrdersApi.md) | [**apiOrdersPost**](doc/OrdersApi.md#apiorderspost) | **POST** /api/orders | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsHistoryGet**](doc/PaymentsApi.md#apipaymentshistoryget) | **GET** /api/payments/history | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsProcessPost**](doc/PaymentsApi.md#apipaymentsprocesspost) | **POST** /api/payments/process | 
+[*PaymentsApi*](doc/PaymentsApi.md) | [**apiPaymentsRefundPost**](doc/PaymentsApi.md#apipaymentsrefundpost) | **POST** /api/payments/refund | 
+[*ReportsApi*](doc/ReportsApi.md) | [**apiReportsCustomerAnalyticsGet**](doc/ReportsApi.md#apireportscustomeranalyticsget) | **GET** /api/reports/customer-analytics | 
+[*ReportsApi*](doc/ReportsApi.md) | [**apiReportsPopularItemsGet**](doc/ReportsApi.md#apireportspopularitemsget) | **GET** /api/reports/popular-items | 
+[*ReportsApi*](doc/ReportsApi.md) | [**apiReportsSalesGet**](doc/ReportsApi.md#apireportssalesget) | **GET** /api/reports/sales | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsAvailableTablesGet**](doc/ReservationsApi.md#apireservationsavailabletablesget) | **GET** /api/reservations/available-tables | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsIdCancelPost**](doc/ReservationsApi.md#apireservationsidcancelpost) | **POST** /api/reservations/{id}/cancel | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsIdConfirmPost**](doc/ReservationsApi.md#apireservationsidconfirmpost) | **POST** /api/reservations/{id}/confirm | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsMyGet**](doc/ReservationsApi.md#apireservationsmyget) | **GET** /api/reservations/my | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsPost**](doc/ReservationsApi.md#apireservationspost) | **POST** /api/reservations | 
+[*ReservationsApi*](doc/ReservationsApi.md) | [**apiReservationsTodayGet**](doc/ReservationsApi.md#apireservationstodayget) | **GET** /api/reservations/today | 
+[*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsIdRespondPost**](doc/ReviewsApi.md#apireviewsidrespondpost) | **POST** /api/reviews/{id}/respond | 
+[*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsMenuItemsMenuItemIdGet**](doc/ReviewsApi.md#apireviewsmenuitemsmenuitemidget) | **GET** /api/reviews/menu-items/{menuItemId} | 
+[*ReviewsApi*](doc/ReviewsApi.md) | [**apiReviewsPost**](doc/ReviewsApi.md#apireviewspost) | **POST** /api/reviews | 
+[*StaffApi*](doc/StaffApi.md) | [**apiStaffPost**](doc/StaffApi.md#apistaffpost) | **POST** /api/staff | 
 
 
 ## Documentation For Models
 
- - [AIChatFieldDto](doc/AIChatFieldDto.md)
- - [AIChatHistoryOutput](doc/AIChatHistoryOutput.md)
- - [AIChatListDto](doc/AIChatListDto.md)
- - [AIChatReactionInput](doc/AIChatReactionInput.md)
- - [AIOperation](doc/AIOperation.md)
- - [AIPromptsSetting](doc/AIPromptsSetting.md)
- - [AIRequestHistory](doc/AIRequestHistory.md)
- - [AIResultReaction](doc/AIResultReaction.md)
- - [AISettings](doc/AISettings.md)
- - [AIUsageDto](doc/AIUsageDto.md)
- - [AcceptFiltersInput](doc/AcceptFiltersInput.md)
- - [AcceptFriendshipRequestInput](doc/AcceptFriendshipRequestInput.md)
- - [AcceptUserInvitationDto](doc/AcceptUserInvitationDto.md)
- - [AcceptUserInvitationFromExternalLoginDto](doc/AcceptUserInvitationFromExternalLoginDto.md)
- - [ActivateEmailInput](doc/ActivateEmailInput.md)
- - [AddonDefinitionDto](doc/AddonDefinitionDto.md)
- - [AddonDto](doc/AddonDto.md)
- - [AddonSubscribeInputDto](doc/AddonSubscribeInputDto.md)
- - [AddonSubscribeOutputDto](doc/AddonSubscribeOutputDto.md)
- - [AddressModel](doc/AddressModel.md)
- - [AggregationType](doc/AggregationType.md)
- - [AiChatRawDataInput](doc/AiChatRawDataInput.md)
- - [AiSuggestionInput](doc/AiSuggestionInput.md)
- - [ApiModel](doc/ApiModel.md)
- - [ApiModelOptions](doc/ApiModelOptions.md)
- - [AppAccessLevel](doc/AppAccessLevel.md)
- - [AppDto](doc/AppDto.md)
- - [AppEditOutput](doc/AppEditOutput.md)
- - [AppLookupTableDto](doc/AppLookupTableDto.md)
- - [AppPermission](doc/AppPermission.md)
- - [AppSettingsJsonDto](doc/AppSettingsJsonDto.md)
- - [AppSuggestionInput](doc/AppSuggestionInput.md)
- - [AppSuggestionOutput](doc/AppSuggestionOutput.md)
- - [ApplicationInfoDto](doc/ApplicationInfoDto.md)
- - [ApplicationLanguageEditDto](doc/ApplicationLanguageEditDto.md)
- - [ApplicationLanguageListDto](doc/ApplicationLanguageListDto.md)
- - [ApprovalActionExecuteStatus](doc/ApprovalActionExecuteStatus.md)
- - [ApprovalRequestHistoryItem](doc/ApprovalRequestHistoryItem.md)
- - [ApprovalRequestStatus](doc/ApprovalRequestStatus.md)
- - [AsnEncodedData](doc/AsnEncodedData.md)
- - [AsymmetricAlgorithm](doc/AsymmetricAlgorithm.md)
- - [AuditLogListDto](doc/AuditLogListDto.md)
- - [AuthenticateModel](doc/AuthenticateModel.md)
- - [AuthenticateResultModel](doc/AuthenticateResultModel.md)
- - [AutomationActionType](doc/AutomationActionType.md)
- - [AutomationApprovalRequestDto](doc/AutomationApprovalRequestDto.md)
- - [AutomationDto](doc/AutomationDto.md)
- - [AutomationExecutionLog](doc/AutomationExecutionLog.md)
- - [AutomationExecutionLogSeverity](doc/AutomationExecutionLogSeverity.md)
- - [AutomationExecutionStatus](doc/AutomationExecutionStatus.md)
- - [AutomationExpressionValidationOutput](doc/AutomationExpressionValidationOutput.md)
- - [AutomationExpressionsValidationResult](doc/AutomationExpressionsValidationResult.md)
- - [AutomationHistory](doc/AutomationHistory.md)
- - [AutomationHistoryFilter](doc/AutomationHistoryFilter.md)
- - [AutomationHistoryStatistics](doc/AutomationHistoryStatistics.md)
- - [AutomationHistoryStatisticsFilter](doc/AutomationHistoryStatisticsFilter.md)
- - [AutomationOnErrorNotificationSettings](doc/AutomationOnErrorNotificationSettings.md)
- - [AutomationTriggerType](doc/AutomationTriggerType.md)
- - [AzureAIClientSetting](doc/AzureAIClientSetting.md)
- - [BlockUserInput](doc/BlockUserInput.md)
- - [BulkCalculateExpressionInput](doc/BulkCalculateExpressionInput.md)
- - [BulkDeleteInput](doc/BulkDeleteInput.md)
- - [BulkUpdateInput](doc/BulkUpdateInput.md)
- - [CacheDto](doc/CacheDto.md)
- - [CalculateCalculatedFieldsInput](doc/CalculateCalculatedFieldsInput.md)
- - [CalulcateExpressionOutput](doc/CalulcateExpressionOutput.md)
- - [CaptchaResult](doc/CaptchaResult.md)
- - [CardPaymentMethodModel](doc/CardPaymentMethodModel.md)
- - [CardPaymentMethodUpdateModel](doc/CardPaymentMethodUpdateModel.md)
- - [ChangeFieldTypeResult](doc/ChangeFieldTypeResult.md)
- - [ChangePasswordInput](doc/ChangePasswordInput.md)
- - [ChangeUserLanguageDto](doc/ChangeUserLanguageDto.md)
- - [ChangeUserTypeInput](doc/ChangeUserTypeInput.md)
- - [ChartDateInterval](doc/ChartDateInterval.md)
- - [ChatInput](doc/ChatInput.md)
- - [ChatMessageDto](doc/ChatMessageDto.md)
- - [ChatMessageInput](doc/ChatMessageInput.md)
- - [ChatMessageReadState](doc/ChatMessageReadState.md)
- - [ChatOutput](doc/ChatOutput.md)
- - [ChatSide](doc/ChatSide.md)
- - [CheckDatabaseOutput](doc/CheckDatabaseOutput.md)
- - [ClaimKeyValue](doc/ClaimKeyValue.md)
- - [ClearCacheNotification](doc/ClearCacheNotification.md)
- - [CloneTenantAppsEto](doc/CloneTenantAppsEto.md)
- - [ComboboxItemDto](doc/ComboboxItemDto.md)
- - [CommentItemStatus](doc/CommentItemStatus.md)
- - [ConversationItem](doc/ConversationItem.md)
- - [ConversationType](doc/ConversationType.md)
- - [CouponModel](doc/CouponModel.md)
- - [CreateAppFromExternalAppInput](doc/CreateAppFromExternalAppInput.md)
- - [CreateAppFromTemplateInput](doc/CreateAppFromTemplateInput.md)
- - [CreateAppsFromTemplateCategoryInput](doc/CreateAppsFromTemplateCategoryInput.md)
- - [CreateAutomationInput](doc/CreateAutomationInput.md)
- - [CreateConversationInput](doc/CreateConversationInput.md)
- - [CreateDashboardWidgetInput](doc/CreateDashboardWidgetInput.md)
- - [CreateEditAppInput](doc/CreateEditAppInput.md)
- - [CreateEditCommentDto](doc/CreateEditCommentDto.md)
- - [CreateEditDashboardInput](doc/CreateEditDashboardInput.md)
- - [CreateEditViewInput](doc/CreateEditViewInput.md)
- - [CreateEditWidgetInput](doc/CreateEditWidgetInput.md)
- - [CreateEditionDtoOfCustomEditionCreateDto](doc/CreateEditionDtoOfCustomEditionCreateDto.md)
- - [CreateEditionDtoOfFreeEditionCreateDto](doc/CreateEditionDtoOfFreeEditionCreateDto.md)
- - [CreateEditionDtoOfSubscribableEditionCreateDto](doc/CreateEditionDtoOfSubscribableEditionCreateDto.md)
- - [CreateFieldInput](doc/CreateFieldInput.md)
- - [CreateFormDto](doc/CreateFormDto.md)
- - [CreateFriendshipRequestByUserNameInput](doc/CreateFriendshipRequestByUserNameInput.md)
- - [CreateFriendshipRequestInput](doc/CreateFriendshipRequestInput.md)
- - [CreateGmailIntegrationInput](doc/CreateGmailIntegrationInput.md)
- - [CreateInvitationDto](doc/CreateInvitationDto.md)
- - [CreateLayoutSettingInput](doc/CreateLayoutSettingInput.md)
- - [CreateListInput](doc/CreateListInput.md)
- - [CreateOrEditTemplateCategoryDto](doc/CreateOrEditTemplateCategoryDto.md)
- - [CreateOrEditTemplateDto](doc/CreateOrEditTemplateDto.md)
- - [CreateOrUpdateLanguageInput](doc/CreateOrUpdateLanguageInput.md)
- - [CreateOrUpdateRoleInput](doc/CreateOrUpdateRoleInput.md)
- - [CreateOrUpdateUserInput](doc/CreateOrUpdateUserInput.md)
- - [CreateOutlookIntegrationInput](doc/CreateOutlookIntegrationInput.md)
- - [CreateRecordLayoutInput](doc/CreateRecordLayoutInput.md)
- - [CreateSmtpIntegrationInput](doc/CreateSmtpIntegrationInput.md)
- - [CreateTenantInput](doc/CreateTenantInput.md)
- - [CreateTwilioIntegrationInput](doc/CreateTwilioIntegrationInput.md)
- - [CreateUnifonicIntegrationInput](doc/CreateUnifonicIntegrationInput.md)
- - [CreateUserDelegationDto](doc/CreateUserDelegationDto.md)
- - [CreateUserInvitationDto](doc/CreateUserInvitationDto.md)
- - [CurrentTenantInfoDto](doc/CurrentTenantInfoDto.md)
- - [CurrentUserProfileEditDto](doc/CurrentUserProfileEditDto.md)
- - [CustomEditionCreateDto](doc/CustomEditionCreateDto.md)
- - [CustomerBalanceModel](doc/CustomerBalanceModel.md)
- - [CustomerModel](doc/CustomerModel.md)
- - [DashboardAccessLevel](doc/DashboardAccessLevel.md)
- - [DashboardDto](doc/DashboardDto.md)
- - [DashboardPermission](doc/DashboardPermission.md)
- - [DashboardWidgetDto](doc/DashboardWidgetDto.md)
- - [DataAccessMode](doc/DataAccessMode.md)
- - [DataFilter](doc/DataFilter.md)
- - [DataLookupInput](doc/DataLookupInput.md)
- - [DateTimeSettingsEditDto](doc/DateTimeSettingsEditDto.md)
- - [DateType](doc/DateType.md)
- - [DelegatedImpersonateInput](doc/DelegatedImpersonateInput.md)
- - [DeserializeAppInput](doc/DeserializeAppInput.md)
- - [DeviceType](doc/DeviceType.md)
- - [DistributionScaleType](doc/DistributionScaleType.md)
- - [DowngradeTenantSubscriptionInputDto](doc/DowngradeTenantSubscriptionInputDto.md)
- - [EditDashboardWidgetInput](doc/EditDashboardWidgetInput.md)
- - [EditFieldInput](doc/EditFieldInput.md)
- - [EditLayoutSettingInput](doc/EditLayoutSettingInput.md)
- - [EditRecordLayoutInput](doc/EditRecordLayoutInput.md)
- - [Edition](doc/Edition.md)
- - [EditionComboboxItemDto](doc/EditionComboboxItemDto.md)
- - [EditionDto](doc/EditionDto.md)
- - [EditionEditDto](doc/EditionEditDto.md)
- - [EditionInfoDto](doc/EditionInfoDto.md)
- - [EditionType](doc/EditionType.md)
- - [EditionWithFeaturesDto](doc/EditionWithFeaturesDto.md)
- - [EditionsSelectOutput](doc/EditionsSelectOutput.md)
- - [EmailSettingsEditDto](doc/EmailSettingsEditDto.md)
- - [EmojiItem](doc/EmojiItem.md)
- - [EntityChangeListDto](doc/EntityChangeListDto.md)
- - [EntityChangeType](doc/EntityChangeType.md)
- - [EntityDto](doc/EntityDto.md)
- - [EntityDtoOfGuid](doc/EntityDtoOfGuid.md)
- - [EntityDtoOfInt64](doc/EntityDtoOfInt64.md)
- - [EntityPropertyChangeDto](doc/EntityPropertyChangeDto.md)
- - [EntityType](doc/EntityType.md)
- - [ExpiringEditionDto](doc/ExpiringEditionDto.md)
- - [ExpiringTenant](doc/ExpiringTenant.md)
- - [ExportDataInput](doc/ExportDataInput.md)
- - [ExportHistoryDataInput](doc/ExportHistoryDataInput.md)
- - [ExpressionListInput](doc/ExpressionListInput.md)
- - [ExpressionValidationResult](doc/ExpressionValidationResult.md)
- - [ExternalAuthUserInfo](doc/ExternalAuthUserInfo.md)
- - [ExternalAuthenticateModel](doc/ExternalAuthenticateModel.md)
- - [ExternalAuthenticateResultModel](doc/ExternalAuthenticateResultModel.md)
- - [ExternalFileUploadConfirmationRequest](doc/ExternalFileUploadConfirmationRequest.md)
- - [ExternalFileUploadRequest](doc/ExternalFileUploadRequest.md)
- - [ExternalLoginProviderInfoModel](doc/ExternalLoginProviderInfoModel.md)
- - [ExternalLoginProviderSettingsEditDto](doc/ExternalLoginProviderSettingsEditDto.md)
- - [ExternalLoginSettingsDto](doc/ExternalLoginSettingsDto.md)
- - [FacebookExternalLoginProviderSettings](doc/FacebookExternalLoginProviderSettings.md)
- - [FavoriteLinkDto](doc/FavoriteLinkDto.md)
- - [FeatureDataType](doc/FeatureDataType.md)
- - [FeatureDto](doc/FeatureDto.md)
- - [FeatureInputTypeDto](doc/FeatureInputTypeDto.md)
- - [FeatureMetadataDto](doc/FeatureMetadataDto.md)
- - [FeatureUsageInfoDto](doc/FeatureUsageInfoDto.md)
- - [FeatureValueDto](doc/FeatureValueDto.md)
- - [FieldAccessLevel](doc/FieldAccessLevel.md)
- - [FieldDataType](doc/FieldDataType.md)
- - [FieldDto](doc/FieldDto.md)
- - [FieldEditOutput](doc/FieldEditOutput.md)
- - [FileContentType](doc/FileContentType.md)
- - [FileData](doc/FileData.md)
- - [FileDto](doc/FileDto.md)
- - [FileMetadataDto](doc/FileMetadataDto.md)
- - [FileType](doc/FileType.md)
- - [FilterCollectionOperator](doc/FilterCollectionOperator.md)
- - [FilterDateType](doc/FilterDateType.md)
- - [FilterDto](doc/FilterDto.md)
- - [FilterOperator](doc/FilterOperator.md)
- - [FilterPermission](doc/FilterPermission.md)
- - [FilterValueMappingType](doc/FilterValueMappingType.md)
- - [FindUsersInput](doc/FindUsersInput.md)
- - [FormAccessLevel](doc/FormAccessLevel.md)
- - [FormDto](doc/FormDto.md)
- - [FormField](doc/FormField.md)
- - [FormFieldDto](doc/FormFieldDto.md)
- - [FormPermissionAccessLevel](doc/FormPermissionAccessLevel.md)
- - [FormTokens](doc/FormTokens.md)
- - [FormulaDoc](doc/FormulaDoc.md)
- - [FreeEditionCreateDto](doc/FreeEditionCreateDto.md)
- - [FriendDto](doc/FriendDto.md)
- - [FriendshipState](doc/FriendshipState.md)
- - [GatewayConfigModel](doc/GatewayConfigModel.md)
- - [GenerateJsonInput](doc/GenerateJsonInput.md)
- - [GenerateJsonOutput](doc/GenerateJsonOutput.md)
- - [GeneratedWebhookInfoDto](doc/GeneratedWebhookInfoDto.md)
- - [GetCurrentLoginInformationsOutput](doc/GetCurrentLoginInformationsOutput.md)
- - [GetDailySalesOutput](doc/GetDailySalesOutput.md)
- - [GetDashboardDataOutput](doc/GetDashboardDataOutput.md)
- - [GetDataInput](doc/GetDataInput.md)
- - [GetDefaultEditionNameOutput](doc/GetDefaultEditionNameOutput.md)
- - [GetEditionEditOutput](doc/GetEditionEditOutput.md)
- - [GetEditionTenantStatisticsOutput](doc/GetEditionTenantStatisticsOutput.md)
- - [GetExpiringTenantsOutput](doc/GetExpiringTenantsOutput.md)
- - [GetGeneralStatsOutput](doc/GetGeneralStatsOutput.md)
- - [GetGrantedAppsOutPut](doc/GetGrantedAppsOutPut.md)
- - [GetGrantedDashboardsOutPut](doc/GetGrantedDashboardsOutPut.md)
- - [GetGrantedFormsOutput](doc/GetGrantedFormsOutput.md)
- - [GetGroupingDataInput](doc/GetGroupingDataInput.md)
- - [GetGroupingPagedDataInput](doc/GetGroupingPagedDataInput.md)
- - [GetIncomeStatisticsDataOutput](doc/GetIncomeStatisticsDataOutput.md)
- - [GetLanguageForEditOutput](doc/GetLanguageForEditOutput.md)
- - [GetLanguagesOutput](doc/GetLanguagesOutput.md)
- - [GetLatestWebLogsOutput](doc/GetLatestWebLogsOutput.md)
- - [GetMemberActivityOutput](doc/GetMemberActivityOutput.md)
- - [GetNotificationSettingsOutput](doc/GetNotificationSettingsOutput.md)
- - [GetNotificationsOutput](doc/GetNotificationsOutput.md)
- - [GetPasswordComplexitySettingOutput](doc/GetPasswordComplexitySettingOutput.md)
- - [GetProfilePictureOutput](doc/GetProfilePictureOutput.md)
- - [GetProfitShareOutput](doc/GetProfitShareOutput.md)
- - [GetRecentTenantsOutput](doc/GetRecentTenantsOutput.md)
- - [GetRegionalStatsOutput](doc/GetRegionalStatsOutput.md)
- - [GetRoleForEditOutput](doc/GetRoleForEditOutput.md)
- - [GetSalesSummaryOutput](doc/GetSalesSummaryOutput.md)
- - [GetTemplateCategoryForEditOutput](doc/GetTemplateCategoryForEditOutput.md)
- - [GetTemplateForEditOutput](doc/GetTemplateForEditOutput.md)
- - [GetTenantCurrentPeriodInfoOutputDto](doc/GetTenantCurrentPeriodInfoOutputDto.md)
- - [GetTenantFeaturesEditOutput](doc/GetTenantFeaturesEditOutput.md)
- - [GetTenantInvoicesOutputDto](doc/GetTenantInvoicesOutputDto.md)
- - [GetTenantPaymentMethodsOutputDto](doc/GetTenantPaymentMethodsOutputDto.md)
- - [GetTenantSubscriptionInfoOutputDto](doc/GetTenantSubscriptionInfoOutputDto.md)
- - [GetTopStatsOutput](doc/GetTopStatsOutput.md)
- - [GetUserChatFriendsWithSettingsOutput](doc/GetUserChatFriendsWithSettingsOutput.md)
- - [GetUserForEditOutput](doc/GetUserForEditOutput.md)
- - [GmailIntegrationSettings](doc/GmailIntegrationSettings.md)
- - [GmailIntegrationTestArgs](doc/GmailIntegrationTestArgs.md)
- - [GoogleExternalLoginProviderSettings](doc/GoogleExternalLoginProviderSettings.md)
- - [GrantDashboardMemberInput](doc/GrantDashboardMemberInput.md)
- - [GrantDashboardMembersInput](doc/GrantDashboardMembersInput.md)
- - [GrantFormMembersInput](doc/GrantFormMembersInput.md)
- - [GrantListMemberInput](doc/GrantListMemberInput.md)
- - [GrantListMembersInput](doc/GrantListMembersInput.md)
- - [GrantMemberInput](doc/GrantMemberInput.md)
- - [GrantMembersInput](doc/GrantMembersInput.md)
- - [GrantedMember](doc/GrantedMember.md)
- - [GroupOfJObject](doc/GroupOfJObject.md)
- - [GroupingDateFrequency](doc/GroupingDateFrequency.md)
- - [GroupingResultOfJObject](doc/GroupingResultOfJObject.md)
- - [HistoryAction](doc/HistoryAction.md)
- - [HistoryFilter](doc/HistoryFilter.md)
- - [HistoryRecord](doc/HistoryRecord.md)
- - [HostBillingSettingsEditDto](doc/HostBillingSettingsEditDto.md)
- - [HostDashboardData](doc/HostDashboardData.md)
- - [HostSettingsEditDto](doc/HostSettingsEditDto.md)
- - [HostUserManagementSettingsEditDto](doc/HostUserManagementSettingsEditDto.md)
- - [ICommentItem](doc/ICommentItem.md)
- - [IValueValidator](doc/IValueValidator.md)
- - [IdsFilterOperator](doc/IdsFilterOperator.md)
- - [ImpersonateInput](doc/ImpersonateInput.md)
- - [ImpersonateOutput](doc/ImpersonateOutput.md)
- - [ImpersonatedAuthenticateResultModel](doc/ImpersonatedAuthenticateResultModel.md)
- - [ImprtDataInput](doc/ImprtDataInput.md)
- - [IncomeStastistic](doc/IncomeStastistic.md)
- - [InstallDto](doc/InstallDto.md)
- - [IntegrationDto](doc/IntegrationDto.md)
- - [IntegrationGroup](doc/IntegrationGroup.md)
- - [IntegrationType](doc/IntegrationType.md)
- - [InvoiceModel](doc/InvoiceModel.md)
- - [IsTenantAvailableByFormTokenInput](doc/IsTenantAvailableByFormTokenInput.md)
- - [IsTenantAvailableInput](doc/IsTenantAvailableInput.md)
- - [IsTenantAvailableOutput](doc/IsTenantAvailableOutput.md)
- - [JobHistoryLogItem](doc/JobHistoryLogItem.md)
- - [JsonClaimMapDto](doc/JsonClaimMapDto.md)
- - [KeySizes](doc/KeySizes.md)
- - [KeyValueMap](doc/KeyValueMap.md)
- - [KeyValuePairOfStringObject](doc/KeyValuePairOfStringObject.md)
- - [LanguageTextListDto](doc/LanguageTextListDto.md)
- - [LayoutSettingDto](doc/LayoutSettingDto.md)
- - [LinkToUserInput](doc/LinkToUserInput.md)
- - [LinkType](doc/LinkType.md)
- - [LinkedRecord](doc/LinkedRecord.md)
- - [LinkedUserDto](doc/LinkedUserDto.md)
- - [ListAccessLevel](doc/ListAccessLevel.md)
- - [ListDto](doc/ListDto.md)
- - [ListPermission](doc/ListPermission.md)
- - [ListPermissionsGroup](doc/ListPermissionsGroup.md)
- - [ListResultDtoOfAppDto](doc/ListResultDtoOfAppDto.md)
- - [ListResultDtoOfAutomationDto](doc/ListResultDtoOfAutomationDto.md)
- - [ListResultDtoOfCacheDto](doc/ListResultDtoOfCacheDto.md)
- - [ListResultDtoOfChatMessageDto](doc/ListResultDtoOfChatMessageDto.md)
- - [ListResultDtoOfEditionDto](doc/ListResultDtoOfEditionDto.md)
- - [ListResultDtoOfFieldDto](doc/ListResultDtoOfFieldDto.md)
- - [ListResultDtoOfLayoutSettingDto](doc/ListResultDtoOfLayoutSettingDto.md)
- - [ListResultDtoOfLinkedUserDto](doc/ListResultDtoOfLinkedUserDto.md)
- - [ListResultDtoOfListDto](doc/ListResultDtoOfListDto.md)
- - [ListResultDtoOfListureWebHookDto](doc/ListResultDtoOfListureWebHookDto.md)
- - [ListResultDtoOfNameValueDto](doc/ListResultDtoOfNameValueDto.md)
- - [ListResultDtoOfRecordLayoutDto](doc/ListResultDtoOfRecordLayoutDto.md)
- - [ListResultDtoOfRoleListDto](doc/ListResultDtoOfRoleListDto.md)
- - [ListResultDtoOfTemplateCategoryDto](doc/ListResultDtoOfTemplateCategoryDto.md)
- - [ListResultDtoOfTemplateDto](doc/ListResultDtoOfTemplateDto.md)
- - [ListResultDtoOfUserListDto](doc/ListResultDtoOfUserListDto.md)
- - [ListResultDtoOfUserListWithInvitedDto](doc/ListResultDtoOfUserListWithInvitedDto.md)
- - [ListResultDtoOfUserLoginAttemptDto](doc/ListResultDtoOfUserLoginAttemptDto.md)
- - [ListResultDtoOfViewDto](doc/ListResultDtoOfViewDto.md)
- - [ListResultDtoOfWidgetDto](doc/ListResultDtoOfWidgetDto.md)
- - [ListType](doc/ListType.md)
- - [ListViewVisibilityDto](doc/ListViewVisibilityDto.md)
- - [ListVisibility](doc/ListVisibility.md)
- - [ListVisibilityInput](doc/ListVisibilityInput.md)
- - [ListureActivateWebhookSubscriptionInput](doc/ListureActivateWebhookSubscriptionInput.md)
- - [ListureAddWebHookDto](doc/ListureAddWebHookDto.md)
- - [ListureNotificationSubscriptionDto](doc/ListureNotificationSubscriptionDto.md)
- - [ListureNotificationSubscriptionWithDisplayNameDto](doc/ListureNotificationSubscriptionWithDisplayNameDto.md)
- - [ListureUpdateWebHookDto](doc/ListureUpdateWebHookDto.md)
- - [ListureUserNotification](doc/ListureUserNotification.md)
- - [ListureWebHookDto](doc/ListureWebHookDto.md)
- - [ListureWebhookIsSubscribedInput](doc/ListureWebhookIsSubscribedInput.md)
- - [LocalizableComboboxItemDto](doc/LocalizableComboboxItemDto.md)
- - [LocalizableComboboxItemSourceDto](doc/LocalizableComboboxItemSourceDto.md)
- - [LookupUserDto](doc/LookupUserDto.md)
- - [MarkAllUnreadMessagesOfUserAsReadInput](doc/MarkAllUnreadMessagesOfUserAsReadInput.md)
- - [MaxLinkedListAllowedSettingsEditDto](doc/MaxLinkedListAllowedSettingsEditDto.md)
- - [MemberActivity](doc/MemberActivity.md)
- - [MergeFieldsInput](doc/MergeFieldsInput.md)
- - [MicrosoftExternalLoginProviderSettings](doc/MicrosoftExternalLoginProviderSettings.md)
- - [MoveTenantToEditionInputDto](doc/MoveTenantToEditionInputDto.md)
- - [MoveTenantsToAnotherEditionDto](doc/MoveTenantsToAnotherEditionDto.md)
- - [NameValue](doc/NameValue.md)
- - [NameValueDto](doc/NameValueDto.md)
- - [NotificationData](doc/NotificationData.md)
- - [NotificationSeverity](doc/NotificationSeverity.md)
- - [NotificationSummary](doc/NotificationSummary.md)
- - [Oid](doc/Oid.md)
- - [OpenAIChatMessage](doc/OpenAIChatMessage.md)
- - [OpenAIClientSetting](doc/OpenAIClientSetting.md)
- - [OpenIdConnectExternalLoginProviderSettings](doc/OpenIdConnectExternalLoginProviderSettings.md)
- - [OtherSettingsEditDto](doc/OtherSettingsEditDto.md)
- - [OutlookIntegrationSettings](doc/OutlookIntegrationSettings.md)
- - [OutlookIntegrationTestArgs](doc/OutlookIntegrationTestArgs.md)
- - [PagedResultDtoOfAppLookupTableDto](doc/PagedResultDtoOfAppLookupTableDto.md)
- - [PagedResultDtoOfAuditLogListDto](doc/PagedResultDtoOfAuditLogListDto.md)
- - [PagedResultDtoOfEntityChangeListDto](doc/PagedResultDtoOfEntityChangeListDto.md)
- - [PagedResultDtoOfJObject](doc/PagedResultDtoOfJObject.md)
- - [PagedResultDtoOfKeyValueMap](doc/PagedResultDtoOfKeyValueMap.md)
- - [PagedResultDtoOfLanguageTextListDto](doc/PagedResultDtoOfLanguageTextListDto.md)
- - [PagedResultDtoOfLinkedUserDto](doc/PagedResultDtoOfLinkedUserDto.md)
- - [PagedResultDtoOfLookupUserDto](doc/PagedResultDtoOfLookupUserDto.md)
- - [PagedResultDtoOfNameValueDto](doc/PagedResultDtoOfNameValueDto.md)
- - [PagedResultDtoOfSettingDto](doc/PagedResultDtoOfSettingDto.md)
- - [PagedResultDtoOfTemplateCategoryDto](doc/PagedResultDtoOfTemplateCategoryDto.md)
- - [PagedResultDtoOfTemplateCategoryLookupTableDto](doc/PagedResultDtoOfTemplateCategoryLookupTableDto.md)
- - [PagedResultDtoOfTemplateDto](doc/PagedResultDtoOfTemplateDto.md)
- - [PagedResultDtoOfTenantClaim](doc/PagedResultDtoOfTenantClaim.md)
- - [PagedResultDtoOfTenantListDto](doc/PagedResultDtoOfTenantListDto.md)
- - [PagedResultDtoOfUserDelegationDto](doc/PagedResultDtoOfUserDelegationDto.md)
- - [PagedResultDtoOfUserListDto](doc/PagedResultDtoOfUserListDto.md)
- - [PagedTasksDto](doc/PagedTasksDto.md)
- - [PasswordComplexitySetting](doc/PasswordComplexitySetting.md)
- - [PaymentPeriodType](doc/PaymentPeriodType.md)
- - [PermissionTree](doc/PermissionTree.md)
- - [PriceModel](doc/PriceModel.md)
- - [PublicFormDataLookupInput](doc/PublicFormDataLookupInput.md)
- - [PublicFormDto](doc/PublicFormDto.md)
- - [PublicKey](doc/PublicKey.md)
- - [ReadOnlyMemoryOfByte](doc/ReadOnlyMemoryOfByte.md)
- - [RecentTenant](doc/RecentTenant.md)
- - [RecordIdentifierDto](doc/RecordIdentifierDto.md)
- - [RecordLayoutColumnDto](doc/RecordLayoutColumnDto.md)
- - [RecordLayoutDto](doc/RecordLayoutDto.md)
- - [RecordLayoutTabDto](doc/RecordLayoutTabDto.md)
- - [RecordNotificationDto](doc/RecordNotificationDto.md)
- - [RefreshTokenModel](doc/RefreshTokenModel.md)
- - [RefreshTokenResult](doc/RefreshTokenResult.md)
- - [RegionalStatCountry](doc/RegionalStatCountry.md)
- - [RegisterInput](doc/RegisterInput.md)
- - [RegisterOutput](doc/RegisterOutput.md)
- - [RegisterTenantInput](doc/RegisterTenantInput.md)
- - [RegisterTenantOutput](doc/RegisterTenantOutput.md)
- - [RelationType](doc/RelationType.md)
- - [RemoteLinkedFieldStatus](doc/RemoteLinkedFieldStatus.md)
- - [ReplyItem](doc/ReplyItem.md)
- - [ReportAccessLevel](doc/ReportAccessLevel.md)
- - [ReportPermissionAccessLevel](doc/ReportPermissionAccessLevel.md)
- - [ResetPasswordInput](doc/ResetPasswordInput.md)
- - [ResetPasswordOutput](doc/ResetPasswordOutput.md)
- - [ResolveTenantIdInput](doc/ResolveTenantIdInput.md)
- - [RoleEditDto](doc/RoleEditDto.md)
- - [RoleListDto](doc/RoleListDto.md)
- - [SalesSummaryData](doc/SalesSummaryData.md)
- - [SalesSummaryDatePeriod](doc/SalesSummaryDatePeriod.md)
- - [Saml2AuthnResponseSignTypes](doc/Saml2AuthnResponseSignTypes.md)
- - [Saml2Configuration](doc/Saml2Configuration.md)
- - [Saml2IndexedEndpoint](doc/Saml2IndexedEndpoint.md)
- - [SecuritySettingsEditDto](doc/SecuritySettingsEditDto.md)
- - [SendEmailActivationLinkInput](doc/SendEmailActivationLinkInput.md)
- - [SendPasswordResetCodeInput](doc/SendPasswordResetCodeInput.md)
- - [SendTestEmailInput](doc/SendTestEmailInput.md)
- - [SendTwoFactorAuthCodeModel](doc/SendTwoFactorAuthCodeModel.md)
- - [SendVerificationSmsInputDto](doc/SendVerificationSmsInputDto.md)
- - [SerializeAppInput](doc/SerializeAppInput.md)
- - [SessionTimeOutSettingsEditDto](doc/SessionTimeOutSettingsEditDto.md)
- - [SetAllArchivedUserNotificationsInput](doc/SetAllArchivedUserNotificationsInput.md)
- - [SetDefaultLanguageInput](doc/SetDefaultLanguageInput.md)
- - [SetPasswordInput](doc/SetPasswordInput.md)
- - [SetUserPasswordInput](doc/SetUserPasswordInput.md)
- - [Setting](doc/Setting.md)
- - [SettingDto](doc/SettingDto.md)
- - [SettingScopes](doc/SettingScopes.md)
- - [SmtpIntegrationSettings](doc/SmtpIntegrationSettings.md)
- - [SmtpIntegrationTestArgs](doc/SmtpIntegrationTestArgs.md)
- - [SortingType](doc/SortingType.md)
- - [SourceFieldOutput](doc/SourceFieldOutput.md)
- - [SsoConfigModel](doc/SsoConfigModel.md)
- - [StaticListItem](doc/StaticListItem.md)
- - [SubscribableEditionCreateDto](doc/SubscribableEditionCreateDto.md)
- - [SubscribeTenantInputDto](doc/SubscribeTenantInputDto.md)
- - [SubscriptionDetailsDto](doc/SubscriptionDetailsDto.md)
- - [SubscriptionModel](doc/SubscriptionModel.md)
- - [SubscriptionPayType](doc/SubscriptionPayType.md)
- - [SummaryMode](doc/SummaryMode.md)
- - [SwitchToLinkedAccountInput](doc/SwitchToLinkedAccountInput.md)
- - [SwitchToLinkedAccountOutput](doc/SwitchToLinkedAccountOutput.md)
- - [SwitchedAccountAuthenticateResultModel](doc/SwitchedAccountAuthenticateResultModel.md)
- - [SystemFieldType](doc/SystemFieldType.md)
- - [TaskDueDateFilter](doc/TaskDueDateFilter.md)
- - [TaskRecordDto](doc/TaskRecordDto.md)
- - [TaskSectionDto](doc/TaskSectionDto.md)
- - [TemplateCategoryDto](doc/TemplateCategoryDto.md)
- - [TemplateCategoryLookupTableDto](doc/TemplateCategoryLookupTableDto.md)
- - [TemplateDto](doc/TemplateDto.md)
- - [Tenant](doc/Tenant.md)
- - [TenantAvailabilityState](doc/TenantAvailabilityState.md)
- - [TenantClaim](doc/TenantClaim.md)
- - [TenantCustomerBillingInfoUpdateDto](doc/TenantCustomerBillingInfoUpdateDto.md)
- - [TenantEditDto](doc/TenantEditDto.md)
- - [TenantEdition](doc/TenantEdition.md)
- - [TenantListDto](doc/TenantListDto.md)
- - [TenantLoginInfoDto](doc/TenantLoginInfoDto.md)
- - [TenantManagementSettingsEditDto](doc/TenantManagementSettingsEditDto.md)
- - [TenantNamesEditDto](doc/TenantNamesEditDto.md)
- - [TenantNotification](doc/TenantNotification.md)
- - [TenantPublicInfoDto](doc/TenantPublicInfoDto.md)
- - [TenantSubscriptionInfoDto](doc/TenantSubscriptionInfoDto.md)
- - [TenantUseStatus](doc/TenantUseStatus.md)
- - [TestGmailIntegrationConnectionInput](doc/TestGmailIntegrationConnectionInput.md)
- - [TestOutlookIntegrationConnectionInput](doc/TestOutlookIntegrationConnectionInput.md)
- - [TestSmtpIntegrationConnectionInput](doc/TestSmtpIntegrationConnectionInput.md)
- - [TestTwilioIntegrationConnectionInput](doc/TestTwilioIntegrationConnectionInput.md)
- - [TestUnifonicIntegrationConnectionInput](doc/TestUnifonicIntegrationConnectionInput.md)
- - [TimezoneSettingsEditDto](doc/TimezoneSettingsEditDto.md)
- - [TopStatsData](doc/TopStatsData.md)
- - [TwilioSettings](doc/TwilioSettings.md)
- - [TwitterExternalLoginProviderSettings](doc/TwitterExternalLoginProviderSettings.md)
- - [TwoFactorLoginTenantSettingsEditDto](doc/TwoFactorLoginTenantSettingsEditDto.md)
- - [TwoFactorLoginUserSettingsEditDto](doc/TwoFactorLoginUserSettingsEditDto.md)
- - [UnblockUserInput](doc/UnblockUserInput.md)
- - [UnifonicSettings](doc/UnifonicSettings.md)
- - [UnlinkUserInput](doc/UnlinkUserInput.md)
- - [UpdateAutomationInput](doc/UpdateAutomationInput.md)
- - [UpdateCardPositionInput](doc/UpdateCardPositionInput.md)
- - [UpdateCardPositionOutput](doc/UpdateCardPositionOutput.md)
- - [UpdateEditionDto](doc/UpdateEditionDto.md)
- - [UpdateFormDto](doc/UpdateFormDto.md)
- - [UpdateGmailIntegrationInput](doc/UpdateGmailIntegrationInput.md)
- - [UpdateGoogleAuthenticatorKeyOutput](doc/UpdateGoogleAuthenticatorKeyOutput.md)
- - [UpdateLanguageTextInput](doc/UpdateLanguageTextInput.md)
- - [UpdateListInput](doc/UpdateListInput.md)
- - [UpdateNotificationSettingsInput](doc/UpdateNotificationSettingsInput.md)
- - [UpdateOutlookIntegrationInput](doc/UpdateOutlookIntegrationInput.md)
- - [UpdateSmtpIntegrationInput](doc/UpdateSmtpIntegrationInput.md)
- - [UpdateStateInput](doc/UpdateStateInput.md)
- - [UpdateTenantFeaturesInput](doc/UpdateTenantFeaturesInput.md)
- - [UpdateTwilioIntegrationInput](doc/UpdateTwilioIntegrationInput.md)
- - [UpdateUnifonicIntegrationInput](doc/UpdateUnifonicIntegrationInput.md)
- - [UpdateUserSignInTokenOutput](doc/UpdateUserSignInTokenOutput.md)
- - [UpgradeTenantSubscriptionInputDto](doc/UpgradeTenantSubscriptionInputDto.md)
- - [UrlInfo](doc/UrlInfo.md)
- - [User](doc/User.md)
- - [UserClaim](doc/UserClaim.md)
- - [UserDelegationDto](doc/UserDelegationDto.md)
- - [UserDeviceDto](doc/UserDeviceDto.md)
- - [UserEditDto](doc/UserEditDto.md)
- - [UserIdentityFlag](doc/UserIdentityFlag.md)
- - [UserInvitationDto](doc/UserInvitationDto.md)
- - [UserListDto](doc/UserListDto.md)
- - [UserListRoleDto](doc/UserListRoleDto.md)
- - [UserListWithInvitedDto](doc/UserListWithInvitedDto.md)
- - [UserLockOutSettingsEditDto](doc/UserLockOutSettingsEditDto.md)
- - [UserLogin](doc/UserLogin.md)
- - [UserLoginAttemptDto](doc/UserLoginAttemptDto.md)
- - [UserLoginInfoDto](doc/UserLoginInfoDto.md)
- - [UserNotificationState](doc/UserNotificationState.md)
- - [UserOrganizationUnit](doc/UserOrganizationUnit.md)
- - [UserPermissionSetting](doc/UserPermissionSetting.md)
- - [UserRole](doc/UserRole.md)
- - [UserRoleDto](doc/UserRoleDto.md)
- - [UserToken](doc/UserToken.md)
- - [UserType](doc/UserType.md)
- - [ValueTupleOfIEnumerableOfAutomationHistoryInt64](doc/ValueTupleOfIEnumerableOfAutomationHistoryInt64.md)
- - [ValueTupleOfIListOfTaskRecordDtoInt64](doc/ValueTupleOfIListOfTaskRecordDtoInt64.md)
- - [ValueTupleOfNullableOfDateTimeNullableOfDateTime](doc/ValueTupleOfNullableOfDateTimeNullableOfDateTime.md)
- - [VerifySmsCodeInputDto](doc/VerifySmsCodeInputDto.md)
- - [ViewAccessibility](doc/ViewAccessibility.md)
- - [ViewAccessibilityDto](doc/ViewAccessibilityDto.md)
- - [ViewDto](doc/ViewDto.md)
- - [ViewType](doc/ViewType.md)
- - [WebHookEventType](doc/WebHookEventType.md)
- - [WebhookInfoDto](doc/WebhookInfoDto.md)
- - [WebhookPayloadInfoDto](doc/WebhookPayloadInfoDto.md)
- - [WidgetDataDto](doc/WidgetDataDto.md)
- - [WidgetDto](doc/WidgetDto.md)
- - [WidgetEditOutput](doc/WidgetEditOutput.md)
- - [WidgetSortingType](doc/WidgetSortingType.md)
- - [WidgetType](doc/WidgetType.md)
- - [WidgetValue](doc/WidgetValue.md)
- - [WorkerHistoryLogItem](doc/WorkerHistoryLogItem.md)
- - [WsFederationExternalLoginProviderSettings](doc/WsFederationExternalLoginProviderSettings.md)
- - [X500DistinguishedName](doc/X500DistinguishedName.md)
- - [X509Certificate2](doc/X509Certificate2.md)
- - [X509CertificateValidationMode](doc/X509CertificateValidationMode.md)
- - [X509Extension](doc/X509Extension.md)
- - [X509RevocationMode](doc/X509RevocationMode.md)
+ - [AddAddressCommand](doc/AddAddressCommand.md)
+ - [AddOptionCommand](doc/AddOptionCommand.md)
+ - [AddOrderNoteRequest](doc/AddOrderNoteRequest.md)
+ - [AdjustInventoryCommand](doc/AdjustInventoryCommand.md)
+ - [AnalyticsDto](doc/AnalyticsDto.md)
+ - [AssignDriverRequest](doc/AssignDriverRequest.md)
+ - [AuthResult](doc/AuthResult.md)
+ - [CancelOrderRequest](doc/CancelOrderRequest.md)
+ - [CancelReservationCommand](doc/CancelReservationCommand.md)
+ - [CategoryDto](doc/CategoryDto.md)
+ - [ChangePasswordCommand](doc/ChangePasswordCommand.md)
+ - [ConfirmEmailChangeCommand](doc/ConfirmEmailChangeCommand.md)
+ - [ConfirmEmailCommand](doc/ConfirmEmailCommand.md)
+ - [ConfirmReservationCommand](doc/ConfirmReservationCommand.md)
+ - [CreateCategoryCommand](doc/CreateCategoryCommand.md)
+ - [CreateCustomerProfileCommand](doc/CreateCustomerProfileCommand.md)
+ - [CreateMenuItemCommand](doc/CreateMenuItemCommand.md)
+ - [CreateOptionGroupCommand](doc/CreateOptionGroupCommand.md)
+ - [CreateOrderCommand](doc/CreateOrderCommand.md)
+ - [CreateOrderDto](doc/CreateOrderDto.md)
+ - [CreateOrderItemDto](doc/CreateOrderItemDto.md)
+ - [CreateReservationCommand](doc/CreateReservationCommand.md)
+ - [CreateReservationDto](doc/CreateReservationDto.md)
+ - [CreateReviewCommand](doc/CreateReviewCommand.md)
+ - [CreateStaffProfileRequest](doc/CreateStaffProfileRequest.md)
+ - [CurrentUserDto](doc/CurrentUserDto.md)
+ - [CustomerAddressDto](doc/CustomerAddressDto.md)
+ - [CustomerProfileDto](doc/CustomerProfileDto.md)
+ - [ForgotPasswordCommand](doc/ForgotPasswordCommand.md)
+ - [InventoryItemDto](doc/InventoryItemDto.md)
+ - [InventoryTransactionDto](doc/InventoryTransactionDto.md)
+ - [InventoryTransactionType](doc/InventoryTransactionType.md)
+ - [LoginCommand](doc/LoginCommand.md)
+ - [LogoutCommand](doc/LogoutCommand.md)
+ - [LoyaltyPointsDto](doc/LoyaltyPointsDto.md)
+ - [MenuItemDetailDto](doc/MenuItemDetailDto.md)
+ - [MenuItemDto](doc/MenuItemDto.md)
+ - [MessageResponseDto](doc/MessageResponseDto.md)
+ - [OptionDto](doc/OptionDto.md)
+ - [OptionGroupDto](doc/OptionGroupDto.md)
+ - [OptionSelectionType](doc/OptionSelectionType.md)
+ - [OrderDetailDto](doc/OrderDetailDto.md)
+ - [OrderDto](doc/OrderDto.md)
+ - [OrderItemDto](doc/OrderItemDto.md)
+ - [OrderItemOptionDto](doc/OrderItemOptionDto.md)
+ - [OrderNoteType](doc/OrderNoteType.md)
+ - [OrderStatus](doc/OrderStatus.md)
+ - [OrderSummaryDto](doc/OrderSummaryDto.md)
+ - [OrderType](doc/OrderType.md)
+ - [PaymentDto](doc/PaymentDto.md)
+ - [PaymentMethod](doc/PaymentMethod.md)
+ - [PaymentResponseDto](doc/PaymentResponseDto.md)
+ - [PaymentStatus](doc/PaymentStatus.md)
+ - [PopularItemDto](doc/PopularItemDto.md)
+ - [ProblemDetails](doc/ProblemDetails.md)
+ - [ProcessPaymentCommand](doc/ProcessPaymentCommand.md)
+ - [RefreshTokenCommand](doc/RefreshTokenCommand.md)
+ - [RefundPaymentCommand](doc/RefundPaymentCommand.md)
+ - [RegisterCommand](doc/RegisterCommand.md)
+ - [RegisterResponseDto](doc/RegisterResponseDto.md)
+ - [RequestEmailChangeCommand](doc/RequestEmailChangeCommand.md)
+ - [ResendConfirmationCommand](doc/ResendConfirmationCommand.md)
+ - [ReservationDto](doc/ReservationDto.md)
+ - [ReservationStatus](doc/ReservationStatus.md)
+ - [ResetPasswordCommand](doc/ResetPasswordCommand.md)
+ - [RespondToReviewCommand](doc/RespondToReviewCommand.md)
+ - [RestockItemCommand](doc/RestockItemCommand.md)
+ - [ReviewDto](doc/ReviewDto.md)
+ - [SalesReportDto](doc/SalesReportDto.md)
+ - [SetUserActiveStatusRequest](doc/SetUserActiveStatusRequest.md)
+ - [TableAvailabilityDto](doc/TableAvailabilityDto.md)
+ - [TokenValidationDto](doc/TokenValidationDto.md)
+ - [UpdateAddressRequest](doc/UpdateAddressRequest.md)
+ - [UpdateCustomerProfileCommand](doc/UpdateCustomerProfileCommand.md)
+ - [UpdateMenuItemRequest](doc/UpdateMenuItemRequest.md)
+ - [UpdateOrderStatusRequest](doc/UpdateOrderStatusRequest.md)
+ - [UploadImageResponseDto](doc/UploadImageResponseDto.md)
+ - [ValidateTokenQuery](doc/ValidateTokenQuery.md)
+ - [ValidationProblemDetails](doc/ValidationProblemDetails.md)
 
 
 ## Documentation For Authorization
 
-Endpoints do not require authorization.
+
+Authentication schemes defined for the API:
+### Bearer
+
+- **Type**: HTTP Bearer Token authentication (JWT)
 
 
 ## Author

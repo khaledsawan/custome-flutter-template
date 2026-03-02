@@ -5,47 +5,38 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost*
+All URIs are relative to *https://petstore.swagger.io/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**apiServicesAppUserAcceptuserinvitationPost**](UserApi.md#apiservicesappuseracceptuserinvitationpost) | **POST** /api/services/app/User/AcceptUserInvitation | 
-[**apiServicesAppUserAcceptuserinvitationfromexternalloginPost**](UserApi.md#apiservicesappuseracceptuserinvitationfromexternalloginpost) | **POST** /api/services/app/User/AcceptUserInvitationFromExternalLogin | 
-[**apiServicesAppUserChangeusertypePost**](UserApi.md#apiservicesappuserchangeusertypepost) | **POST** /api/services/app/User/ChangeUserType | 
-[**apiServicesAppUserCreateorupdateuserPost**](UserApi.md#apiservicesappusercreateorupdateuserpost) | **POST** /api/services/app/User/CreateOrUpdateUser | 
-[**apiServicesAppUserDeleteuserinvitationDelete**](UserApi.md#apiservicesappuserdeleteuserinvitationdelete) | **DELETE** /api/services/app/User/DeleteUserInvitation | 
-[**apiServicesAppUserGetalluserinvitationsGet**](UserApi.md#apiservicesappusergetalluserinvitationsget) | **GET** /api/services/app/User/GetAllUserInvitations | 
-[**apiServicesAppUserGetallusersGet**](UserApi.md#apiservicesappusergetallusersget) | **GET** /api/services/app/User/GetAllUsers | 
-[**apiServicesAppUserGetalluserswithinvitedGet**](UserApi.md#apiservicesappusergetalluserswithinvitedget) | **GET** /api/services/app/User/GetAllUsersWithInvited | 
-[**apiServicesAppUserGetcurrentusersactiveGet**](UserApi.md#apiservicesappusergetcurrentusersactiveget) | **GET** /api/services/app/User/GetCurrentUsersActive | 
-[**apiServicesAppUserGetinvitationlinkGet**](UserApi.md#apiservicesappusergetinvitationlinkget) | **GET** /api/services/app/User/GetInvitationLink | 
-[**apiServicesAppUserGetuserforeditGet**](UserApi.md#apiservicesappusergetuserforeditget) | **GET** /api/services/app/User/GetUserForEdit | 
-[**apiServicesAppUserGetuserinvitationGet**](UserApi.md#apiservicesappusergetuserinvitationget) | **GET** /api/services/app/User/GetUserInvitation | 
-[**apiServicesAppUserGetusersGet**](UserApi.md#apiservicesappusergetusersget) | **GET** /api/services/app/User/GetUsers | 
-[**apiServicesAppUserGetuserstoexcelGet**](UserApi.md#apiservicesappusergetuserstoexcelget) | **GET** /api/services/app/User/GetUsersToExcel | 
-[**apiServicesAppUserGetvalueforuseridentityflagGet**](UserApi.md#apiservicesappusergetvalueforuseridentityflagget) | **GET** /api/services/app/User/GetValueForUserIdentityFlag | 
-[**apiServicesAppUserInviteusersPost**](UserApi.md#apiservicesappuserinviteuserspost) | **POST** /api/services/app/User/InviteUsers | 
-[**apiServicesAppUserResenduserinvitationPost**](UserApi.md#apiservicesappuserresenduserinvitationpost) | **POST** /api/services/app/User/ResendUserInvitation | 
-[**apiServicesAppUserUnlockuserPost**](UserApi.md#apiservicesappuserunlockuserpost) | **POST** /api/services/app/User/UnlockUser | 
+[**createUser**](UserApi.md#createuser) | **POST** /user | Create user
+[**createUsersWithArrayInput**](UserApi.md#createuserswitharrayinput) | **POST** /user/createWithArray | Creates list of users with given input array
+[**createUsersWithListInput**](UserApi.md#createuserswithlistinput) | **POST** /user/createWithList | Creates list of users with given input array
+[**deleteUser**](UserApi.md#deleteuser) | **DELETE** /user/{username} | Delete user
+[**getUserByName**](UserApi.md#getuserbyname) | **GET** /user/{username} | Get user by user name
+[**loginUser**](UserApi.md#loginuser) | **GET** /user/login | Logs user into the system
+[**logoutUser**](UserApi.md#logoutuser) | **GET** /user/logout | Logs out current logged in user session
+[**updateUser**](UserApi.md#updateuser) | **PUT** /user/{username} | Updated user
 
 
-# **apiServicesAppUserAcceptuserinvitationPost**
-> CaptchaResult apiServicesAppUserAcceptuserinvitationPost(acceptUserInvitationDto)
+# **createUser**
+> createUser(body)
 
+Create user
 
+This can only be done by the logged in user.
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final AcceptUserInvitationDto acceptUserInvitationDto = ; // AcceptUserInvitationDto | 
+final User body = ; // User | Created user object
 
 try {
-    final response = api.apiServicesAppUserAcceptuserinvitationPost(acceptUserInvitationDto);
-    print(response);
+    api.createUser(body);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserAcceptuserinvitationPost: $e\n');
+    print('Exception when calling UserApi->createUser: $e\n');
 }
 ```
 
@@ -53,47 +44,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **acceptUserInvitationDto** | [**AcceptUserInvitationDto**](AcceptUserInvitationDto.md)|  | [optional] 
-
-### Return type
-
-[**CaptchaResult**](CaptchaResult.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserAcceptuserinvitationfromexternalloginPost**
-> apiServicesAppUserAcceptuserinvitationfromexternalloginPost(acceptUserInvitationFromExternalLoginDto)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final AcceptUserInvitationFromExternalLoginDto acceptUserInvitationFromExternalLoginDto = ; // AcceptUserInvitationFromExternalLoginDto | 
-
-try {
-    api.apiServicesAppUserAcceptuserinvitationfromexternalloginPost(acceptUserInvitationFromExternalLoginDto);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserAcceptuserinvitationfromexternalloginPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **acceptUserInvitationFromExternalLoginDto** | [**AcceptUserInvitationFromExternalLoginDto**](AcceptUserInvitationFromExternalLoginDto.md)|  | [optional] 
+ **body** | [**User**](User.md)| Created user object | 
 
 ### Return type
 
@@ -105,27 +56,27 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserChangeusertypePost**
-> apiServicesAppUserChangeusertypePost(changeUserTypeInput)
+# **createUsersWithArrayInput**
+> createUsersWithArrayInput(body)
 
-
+Creates list of users with given input array
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final ChangeUserTypeInput changeUserTypeInput = ; // ChangeUserTypeInput | 
+final BuiltList<User> body = ; // BuiltList<User> | List of user object
 
 try {
-    api.apiServicesAppUserChangeusertypePost(changeUserTypeInput);
+    api.createUsersWithArrayInput(body);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserChangeusertypePost: $e\n');
+    print('Exception when calling UserApi->createUsersWithArrayInput: $e\n');
 }
 ```
 
@@ -133,7 +84,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **changeUserTypeInput** | [**ChangeUserTypeInput**](ChangeUserTypeInput.md)|  | [optional] 
+ **body** | [**BuiltList&lt;User&gt;**](User.md)| List of user object | 
 
 ### Return type
 
@@ -145,28 +96,27 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserCreateorupdateuserPost**
-> LookupUserDto apiServicesAppUserCreateorupdateuserPost(createOrUpdateUserInput)
+# **createUsersWithListInput**
+> createUsersWithListInput(body)
 
-
+Creates list of users with given input array
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final CreateOrUpdateUserInput createOrUpdateUserInput = ; // CreateOrUpdateUserInput | 
+final BuiltList<User> body = ; // BuiltList<User> | List of user object
 
 try {
-    final response = api.apiServicesAppUserCreateorupdateuserPost(createOrUpdateUserInput);
-    print(response);
+    api.createUsersWithListInput(body);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserCreateorupdateuserPost: $e\n');
+    print('Exception when calling UserApi->createUsersWithListInput: $e\n');
 }
 ```
 
@@ -174,11 +124,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **createOrUpdateUserInput** | [**CreateOrUpdateUserInput**](CreateOrUpdateUserInput.md)|  | [optional] 
+ **body** | [**BuiltList&lt;User&gt;**](User.md)| List of user object | 
 
 ### Return type
 
-[**LookupUserDto**](LookupUserDto.md)
+void (empty response body)
 
 ### Authorization
 
@@ -186,27 +136,29 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: text/plain, application/json, text/json
+ - **Content-Type**: application/json
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserDeleteuserinvitationDelete**
-> apiServicesAppUserDeleteuserinvitationDelete(invitationId)
+# **deleteUser**
+> deleteUser(username)
 
+Delete user
 
+This can only be done by the logged in user.
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final String invitationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
+final String username = username_example; // String | The name that needs to be deleted
 
 try {
-    api.apiServicesAppUserDeleteuserinvitationDelete(invitationId);
+    api.deleteUser(username);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserDeleteuserinvitationDelete: $e\n');
+    print('Exception when calling UserApi->deleteUser: $e\n');
 }
 ```
 
@@ -214,7 +166,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **invitationId** | **String**|  | [optional] 
+ **username** | **String**| The name that needs to be deleted | 
 
 ### Return type
 
@@ -231,31 +183,35 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserGetalluserinvitationsGet**
-> BuiltList<UserInvitationDto> apiServicesAppUserGetalluserinvitationsGet()
+# **getUserByName**
+> User getUserByName(username)
 
-
+Get user by user name
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
+final String username = username_example; // String | The name that needs to be fetched. Use user1 for testing. 
 
 try {
-    final response = api.apiServicesAppUserGetalluserinvitationsGet();
+    final response = api.getUserByName(username);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetalluserinvitationsGet: $e\n');
+    print('Exception when calling UserApi->getUserByName: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **String**| The name that needs to be fetched. Use user1 for testing.  | 
 
 ### Return type
 
-[**BuiltList&lt;UserInvitationDto&gt;**](UserInvitationDto.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -264,31 +220,28 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserGetallusersGet**
-> ListResultDtoOfUserListDto apiServicesAppUserGetallusersGet(filter, permissions, role, onlyLockedUsers, sorting)
+# **loginUser**
+> String loginUser(username, password)
 
-
+Logs user into the system
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final String filter = filter_example; // String | 
-final BuiltList<String> permissions = ; // BuiltList<String> | 
-final int role = 56; // int | 
-final bool onlyLockedUsers = true; // bool | 
-final String sorting = sorting_example; // String | 
+final String username = username_example; // String | The user name for login
+final String password = password_example; // String | The password for login in clear text
 
 try {
-    final response = api.apiServicesAppUserGetallusersGet(filter, permissions, role, onlyLockedUsers, sorting);
+    final response = api.loginUser(username, password);
     print(response);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetallusersGet: $e\n');
+    print('Exception when calling UserApi->loginUser: $e\n');
 }
 ```
 
@@ -296,142 +249,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | **String**|  | [optional] 
- **permissions** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
- **role** | **int**|  | [optional] 
- **onlyLockedUsers** | **bool**|  | [optional] 
- **sorting** | **String**|  | [optional] 
-
-### Return type
-
-[**ListResultDtoOfUserListDto**](ListResultDtoOfUserListDto.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetalluserswithinvitedGet**
-> ListResultDtoOfUserListWithInvitedDto apiServicesAppUserGetalluserswithinvitedGet(filter, permissions, role, onlyLockedUsers, sorting)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final String filter = filter_example; // String | 
-final BuiltList<String> permissions = ; // BuiltList<String> | 
-final int role = 56; // int | 
-final bool onlyLockedUsers = true; // bool | 
-final String sorting = sorting_example; // String | 
-
-try {
-    final response = api.apiServicesAppUserGetalluserswithinvitedGet(filter, permissions, role, onlyLockedUsers, sorting);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetalluserswithinvitedGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filter** | **String**|  | [optional] 
- **permissions** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
- **role** | **int**|  | [optional] 
- **onlyLockedUsers** | **bool**|  | [optional] 
- **sorting** | **String**|  | [optional] 
-
-### Return type
-
-[**ListResultDtoOfUserListWithInvitedDto**](ListResultDtoOfUserListWithInvitedDto.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetcurrentusersactiveGet**
-> int apiServicesAppUserGetcurrentusersactiveGet(tenantId)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final int tenantId = 56; // int | 
-
-try {
-    final response = api.apiServicesAppUserGetcurrentusersactiveGet(tenantId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetcurrentusersactiveGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **tenantId** | **int**|  | [optional] 
-
-### Return type
-
-**int**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetinvitationlinkGet**
-> String apiServicesAppUserGetinvitationlinkGet(invitationId)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final String invitationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    final response = api.apiServicesAppUserGetinvitationlinkGet(invitationId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetinvitationlinkGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **invitationId** | **String**|  | [optional] 
+ **username** | **String**| The user name for login | 
+ **password** | **String**| The password for login in clear text | 
 
 ### Return type
 
@@ -444,299 +263,30 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
+ - **Accept**: application/json, application/xml
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserGetuserforeditGet**
-> GetUserForEditOutput apiServicesAppUserGetuserforeditGet(id)
+# **logoutUser**
+> logoutUser()
 
-
+Logs out current logged in user session
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final int id = 789; // int | 
 
 try {
-    final response = api.apiServicesAppUserGetuserforeditGet(id);
-    print(response);
+    api.logoutUser();
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetuserforeditGet: $e\n');
+    print('Exception when calling UserApi->logoutUser: $e\n');
 }
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **int**|  | [optional] 
-
-### Return type
-
-[**GetUserForEditOutput**](GetUserForEditOutput.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetuserinvitationGet**
-> UserInvitationDto apiServicesAppUserGetuserinvitationGet(invitationId)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final String invitationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    final response = api.apiServicesAppUserGetuserinvitationGet(invitationId);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetuserinvitationGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **invitationId** | **String**|  | [optional] 
-
-### Return type
-
-[**UserInvitationDto**](UserInvitationDto.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetusersGet**
-> PagedResultDtoOfUserListDto apiServicesAppUserGetusersGet(maxResultCount, skipCount, filter, permissions, role, onlyLockedUsers, sorting)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final int maxResultCount = 56; // int | 
-final int skipCount = 56; // int | 
-final String filter = filter_example; // String | 
-final BuiltList<String> permissions = ; // BuiltList<String> | 
-final int role = 56; // int | 
-final bool onlyLockedUsers = true; // bool | 
-final String sorting = sorting_example; // String | 
-
-try {
-    final response = api.apiServicesAppUserGetusersGet(maxResultCount, skipCount, filter, permissions, role, onlyLockedUsers, sorting);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetusersGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **maxResultCount** | **int**|  | [optional] 
- **skipCount** | **int**|  | [optional] 
- **filter** | **String**|  | [optional] 
- **permissions** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
- **role** | **int**|  | [optional] 
- **onlyLockedUsers** | **bool**|  | [optional] 
- **sorting** | **String**|  | [optional] 
-
-### Return type
-
-[**PagedResultDtoOfUserListDto**](PagedResultDtoOfUserListDto.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetuserstoexcelGet**
-> FileDto apiServicesAppUserGetuserstoexcelGet(filter, permissions, role, onlyLockedUsers, sorting)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final String filter = filter_example; // String | 
-final BuiltList<String> permissions = ; // BuiltList<String> | 
-final int role = 56; // int | 
-final bool onlyLockedUsers = true; // bool | 
-final String sorting = sorting_example; // String | 
-
-try {
-    final response = api.apiServicesAppUserGetuserstoexcelGet(filter, permissions, role, onlyLockedUsers, sorting);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetuserstoexcelGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **filter** | **String**|  | [optional] 
- **permissions** | [**BuiltList&lt;String&gt;**](String.md)|  | [optional] 
- **role** | **int**|  | [optional] 
- **onlyLockedUsers** | **bool**|  | [optional] 
- **sorting** | **String**|  | [optional] 
-
-### Return type
-
-[**FileDto**](FileDto.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserGetvalueforuseridentityflagGet**
-> int apiServicesAppUserGetvalueforuseridentityflagGet(flag)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final UserIdentityFlag flag = ; // UserIdentityFlag | 
-
-try {
-    final response = api.apiServicesAppUserGetvalueforuseridentityflagGet(flag);
-    print(response);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserGetvalueforuseridentityflagGet: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **flag** | [**UserIdentityFlag**](.md)|  | [optional] 
-
-### Return type
-
-**int**
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserInviteusersPost**
-> apiServicesAppUserInviteusersPost(createInvitationDto)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final CreateInvitationDto createInvitationDto = ; // CreateInvitationDto | 
-
-try {
-    api.apiServicesAppUserInviteusersPost(createInvitationDto);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserInviteusersPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **createInvitationDto** | [**CreateInvitationDto**](CreateInvitationDto.md)|  | [optional] 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **apiServicesAppUserResenduserinvitationPost**
-> apiServicesAppUserResenduserinvitationPost(invitationId)
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getUserApi();
-final String invitationId = 38400000-8cf0-11bd-b23e-10b96e4ef00d; // String | 
-
-try {
-    api.apiServicesAppUserResenduserinvitationPost(invitationId);
-} on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserResenduserinvitationPost: $e\n');
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **invitationId** | **String**|  | [optional] 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -753,22 +303,25 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **apiServicesAppUserUnlockuserPost**
-> apiServicesAppUserUnlockuserPost(entityDtoOfInt64)
+# **updateUser**
+> updateUser(username, body)
 
+Updated user
 
+This can only be done by the logged in user.
 
 ### Example
 ```dart
 import 'package:openapi/api.dart';
 
 final api = Openapi().getUserApi();
-final EntityDtoOfInt64 entityDtoOfInt64 = ; // EntityDtoOfInt64 | 
+final String username = username_example; // String | name that need to be updated
+final User body = ; // User | Updated user object
 
 try {
-    api.apiServicesAppUserUnlockuserPost(entityDtoOfInt64);
+    api.updateUser(username, body);
 } on DioException catch (e) {
-    print('Exception when calling UserApi->apiServicesAppUserUnlockuserPost: $e\n');
+    print('Exception when calling UserApi->updateUser: $e\n');
 }
 ```
 
@@ -776,7 +329,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **entityDtoOfInt64** | [**EntityDtoOfInt64**](EntityDtoOfInt64.md)|  | [optional] 
+ **username** | **String**| name that need to be updated | 
+ **body** | [**User**](User.md)| Updated user object | 
 
 ### Return type
 
@@ -788,7 +342,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
