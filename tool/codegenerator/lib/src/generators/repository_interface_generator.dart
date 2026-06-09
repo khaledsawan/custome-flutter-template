@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:feature_generator/feature_generator.dart';
 import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/import_detector.dart';
 import 'package:feature_generator/src/models.dart';
@@ -10,6 +11,7 @@ Future<void> generateRepositoryInterface(
   ApiInfo apiInfo,
   String featureDir,
   FileModifier fileModifier,
+  Config config
 ) async {
   final file = File(
     path.join(
@@ -49,7 +51,7 @@ Future<void> generateRepositoryInterface(
   // Add barrel import for Params classes if any method has parameters
   final hasParamsMethods = apiInfo.methods.any((m) => m.parameters.isNotEmpty);
   if (hasParamsMethods) {
-    imports.add("import 'package:customtemplate/features/${apiInfo.featureName}/domain/usecases/params.dart';");
+    imports.add("import 'package:${config.packageName}/features/${apiInfo.featureName}/domain/usecases/params.dart';");
   }
 
   // Note: NoParams is not imported here because the repository interface

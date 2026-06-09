@@ -1,4 +1,4 @@
-import 'package:feature_generator/src/models.dart';
+import 'package:feature_generator/feature_generator.dart';
 
 bool needsBuiltCollectionImport(ApiInfo apiInfo) {
   // Check if any method uses BuiltList or BuiltMap in parameters
@@ -108,7 +108,7 @@ List<String> _extractBaseTypes(String typeString) {
   final baseTypes = <String>[];
 
   // Remove nullable marker
-  var cleaned = typeString.replaceAll('?', '').trim();
+  final cleaned = typeString.replaceAll('?', '').trim();
 
   // Handle generic types like BuiltList<Type>, BuiltMap<Key, Value>
   final genericPattern = RegExp(r'(\w+)<([^>]+)>');
@@ -121,10 +121,10 @@ List<String> _extractBaseTypes(String typeString) {
 
     // Extract and process the inner types
     final innerTypes = genericMatch.group(2)!;
-    
+
     // Handle multiple generic parameters (e.g., "BuiltMap<Key, Value>")
     var depth = 0;
-    var currentType = StringBuffer();
+    final currentType = StringBuffer();
     final innerTypeList = <String>[];
 
     for (var i = 0; i < innerTypes.length; i++) {
@@ -166,10 +166,11 @@ List<String> getUseCaseImports({
   required String featureName,
   required String returnType,
   required String paramsType,
+  required Config config,
 }) {
   final imports = <String>[
-    "import 'package:customtemplate/core/usecases/usecase.dart';",
-    "import 'package:customtemplate/features/$featureName/domain/repositories/${featureName}_repository.dart';",
+    "import 'package:${config.packageName}/core/usecases/usecase.dart';",
+    "import 'package:${config.packageName}/features/$featureName/domain/repositories/${featureName}_repository.dart';",
     "import 'package:dartz/dartz.dart';",
     '// ignore: unused_import',
     "import 'package:openapi/openapi.dart';",

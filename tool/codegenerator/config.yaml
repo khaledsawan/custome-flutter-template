@@ -1,6 +1,10 @@
 # Feature Generator Configuration
 # Copy this file to config.yaml and customize as needed
 
+# Package Name 
+
+package_name: 'example'
+
 # Feature selection
 features:
   Optional: explicitly include only these features (overrides exclude if both present)

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:feature_generator/feature_generator.dart';
 import 'package:feature_generator/src/file_modifier.dart';
 import 'package:feature_generator/src/import_detector.dart';
 import 'package:feature_generator/src/models.dart';
@@ -11,6 +12,7 @@ Future<void> generateUseCases(
   ApiInfo apiInfo,
   String featureDir,
   FileModifier fileModifier,
+  Config config
 ) async {
   final usecasesDir = Directory(path.join(featureDir, 'domain', 'usecases'));
 
@@ -59,7 +61,7 @@ Future<void> generateUseCases(
 
       // Build imports for params.dart
       final paramsImports = <String>[
-        "import 'package:customtemplate/core/model/i_params.dart';",
+        "import 'package:${config.packageName}/core/model/i_params.dart';",
       ];
 
       // Check if params need JsonObject (from built_value)
@@ -109,8 +111,8 @@ Future<void> generateUseCases(
 
     // Build imports for use_case.dart
     final useCaseImports = <String>[
-      "import 'package:customtemplate/core/usecases/usecase.dart';",
-      "import 'package:customtemplate/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
+      "import 'package:${config.packageName}/core/usecases/usecase.dart';",
+      "import 'package:${config.packageName}/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
       "import 'package:dartz/dartz.dart';",
       "import 'package:injectable/injectable.dart';",
     ];
@@ -119,7 +121,7 @@ Future<void> generateUseCases(
     if (method.parameters.isNotEmpty) {
       final paramsFileName = '${toSnakeCase(paramsClassName)}.dart';
       useCaseImports.add(
-        "import 'package:customtemplate/features/${apiInfo.featureName}/domain/usecases/$useCaseFolderName/$paramsFileName';",
+        "import 'package:${config.packageName}/features/${apiInfo.featureName}/domain/usecases/$useCaseFolderName/$paramsFileName';",
       );
     }
 

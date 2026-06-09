@@ -1,16 +1,13 @@
 import 'dart:io';
 
-import 'package:feature_generator/src/file_modifier.dart';
-import 'package:feature_generator/src/import_detector.dart';
-import 'package:feature_generator/src/models.dart';
-import 'package:feature_generator/src/naming_utils.dart';
-import 'package:feature_generator/src/type_converter.dart';
+import 'package:feature_generator/feature_generator.dart';
 import 'package:path/path.dart' as path;
 
 Future<void> generateRepositoryImplementation(
   ApiInfo apiInfo,
   String featureDir,
   FileModifier fileModifier,
+  Config config,
 ) async {
   final file = File(
     path.join(
@@ -37,10 +34,10 @@ Future<void> generateRepositoryImplementation(
   final imports = <String>[
     '// ignore: unused_import',
     "import 'package:built_collection/built_collection.dart';",
-    "import 'package:customtemplate/core/base/base_repo.dart';",
-    "import 'package:customtemplate/core/model/fetch_data_params.dart';",
-    "import 'package:customtemplate/features/${apiInfo.featureName}/data/sources/${apiInfo.featureName}_remote_data_source.dart';",
-    "import 'package:customtemplate/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
+    "import 'package:${config.packageName}/core/base/base_repo.dart';",
+    "import 'package:${config.packageName}/core/model/fetch_data_params.dart';",
+    "import 'package:${config.packageName}/features/${apiInfo.featureName}/data/sources/${apiInfo.featureName}_remote_data_source.dart';",
+    "import 'package:${config.packageName}/features/${apiInfo.featureName}/domain/repositories/${apiInfo.featureName}_repository.dart';",
     "import 'package:dartz/dartz.dart';",
     "import 'package:injectable/injectable.dart';",
     "import 'package:openapi/openapi.dart';",
@@ -49,12 +46,14 @@ Future<void> generateRepositoryImplementation(
   // Add barrel import for Params classes if any method has parameters
   final hasParamsMethods = apiInfo.methods.any((m) => m.parameters.isNotEmpty);
   if (hasParamsMethods) {
-    imports.add("import 'package:customtemplate/features/${apiInfo.featureName}/domain/usecases/params.dart';");
+    imports.add(
+      "import 'package:${config.packageName}/features/${apiInfo.featureName}/domain/usecases/params.dart';",
+    );
   }
 
   // Add NoParams import if any method has no parameters
   if (apiInfo.methods.any((m) => m.parameters.isEmpty)) {
-    imports.add("import 'package:customtemplate/core/usecases/usecase.dart';");
+    imports.add("import 'package:${config.packageName}/core/usecases/usecase.dart';");
   }
 
   // Only add built_collection if needed

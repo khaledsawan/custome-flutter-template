@@ -2,15 +2,19 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
+const String defaultpakcagename = 'packagename';
+
 class Config {
   final FeatureConfig features;
   final FolderConfig folders;
   final FileMode fileMode;
+  final String packageName;
 
   Config({
     required this.features,
     required this.folders,
     required this.fileMode,
+    required this.packageName,
   });
 
   factory Config.fromYaml(String yamlContent) {
@@ -34,10 +38,17 @@ class Config {
         ? FileMode.overwrite
         : FileMode.modify;
 
+    // Parse file mode
+    final packageNameStr = doc['package_name'] as String?;
+    final packageName = packageNameStr == null || packageNameStr.isEmpty
+        ? defaultpakcagename
+        : packageNameStr;
+
     return Config(
       features: featureConfig,
       folders: folderConfig,
       fileMode: fileMode,
+      packageName: packageName,
     );
   }
 
@@ -46,6 +57,7 @@ class Config {
       features: FeatureConfig.defaultConfig(),
       folders: FolderConfig.defaultConfig(),
       fileMode: FileMode.modify,
+      packageName: defaultpakcagename,
     );
   }
 

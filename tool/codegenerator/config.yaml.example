@@ -1,6 +1,9 @@
 # Feature Generator Configuration
 # Copy this file to config.yaml and customize as needed
 
+# Package Name 
+packagename= 'example'
+
 # Feature selection
 features:
   # Optional: explicitly include only these features (overrides exclude if both present)
@@ -28,4 +31,5 @@ folders:
 # File modification behavior
 # Options: 'modify' (use markers to preserve manual code) or 'overwrite' (regenerate completely)
 file_mode: modify
+
 

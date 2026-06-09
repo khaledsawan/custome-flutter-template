@@ -23,34 +23,44 @@ Future<void> generateFeature(
 
   // Create directory structure based on config
   final dirsToCreate = <Future<void>>[];
-  
+
   if (folderFilter.shouldGenerateDataSources()) {
     dirsToCreate.add(
-      Directory(path.join(featureDir, 'data', 'sources')).create(recursive: true),
+      Directory(
+        path.join(featureDir, 'data', 'sources'),
+      ).create(recursive: true),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDataImplements()) {
     dirsToCreate.add(
-      Directory(path.join(featureDir, 'data', 'implements')).create(recursive: true),
+      Directory(
+        path.join(featureDir, 'data', 'implements'),
+      ).create(recursive: true),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDomainRepositories()) {
     dirsToCreate.add(
-      Directory(path.join(featureDir, 'domain', 'repositories')).create(recursive: true),
+      Directory(
+        path.join(featureDir, 'domain', 'repositories'),
+      ).create(recursive: true),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDomainUseCases()) {
     dirsToCreate.add(
-      Directory(path.join(featureDir, 'domain', 'usecases')).create(recursive: true),
+      Directory(
+        path.join(featureDir, 'domain', 'usecases'),
+      ).create(recursive: true),
     );
   }
-  
+
   if (folderFilter.shouldGeneratePresentationGetX()) {
     dirsToCreate.add(
-      Directory(path.join(featureDir, 'presentation', 'getX')).create(recursive: true),
+      Directory(
+        path.join(featureDir, 'presentation', 'getX'),
+      ).create(recursive: true),
     );
   }
 
@@ -58,7 +68,7 @@ Future<void> generateFeature(
 
   // Run generators based on config
   final futures = <Future<void>>[];
-  
+
   if (folderFilter.shouldGenerateDataSources()) {
     futures.add(
       _safe(
@@ -67,34 +77,44 @@ Future<void> generateFeature(
       ),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDomainRepositories()) {
     futures.add(
       _safe(
-        () => generateRepositoryInterface(apiInfo, featureDir, fileModifier),
+        () => generateRepositoryInterface(
+          apiInfo,
+          featureDir,
+          fileModifier,
+          config,
+        ),
         'RepositoryInterface',
       ),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDataImplements()) {
     futures.add(
       _safe(
-        () => generateRepositoryImplementation(apiInfo, featureDir, fileModifier),
+        () => generateRepositoryImplementation(
+          apiInfo,
+          featureDir,
+          fileModifier,
+          config,
+        ),
         'RepositoryImplementation',
       ),
     );
   }
-  
+
   if (folderFilter.shouldGenerateDomainUseCases()) {
     futures.add(
       _safe(
-        () => generateUseCases(apiInfo, featureDir, fileModifier),
+        () => generateUseCases(apiInfo, featureDir, fileModifier, config),
         'UseCases',
       ),
     );
   }
-  
+
   if (folderFilter.shouldGeneratePresentationGetX()) {
     futures.add(
       _safe(
